@@ -1,27 +1,36 @@
 #pragma once
-#include "Fase1.h"
-#include "Jogo.h"
-#include "ObservadorMenuPrincipal.h"
-#include "Botao.h"
+#include"FaseParqueBarigui.h"
+#include"Botao.h"
+#include"Gerenciador_Eventos.h"
+#include"Menu.h"
 
-class MenuPrincipal
+namespace Observers
 {
-private:
-	ObservadorMenuPrincipal* observadorMenuPrincipal; //dupla// precisa?
+	class ObservadorMenuPrincipal;
+}
+using namespace Observers;
 
-	Botao* botao_jogarFase1;
-	Botao* botao_sair;
-	//Botao* botao_configuracoes;
+namespace Menus
+{
+	class MenuPrincipal : public Menu
+	{
+	private:
+		ObservadorMenuPrincipal* observadorMenuPrincipal; //dupla// precisa?
+
+		Botao* botao_jogarBarigui;
+		Botao* botao_jogarCooperativoBarigui;
+		//Botao* botao_continuar;
+		Botao* botao_sair;
+		//Botao* botao_configuracoes;
 
 
-public:
-	MenuPrincipal();
-	~MenuPrincipal();
+	public:
+		MenuPrincipal();
+		~MenuPrincipal();
 
-	void atualizarBotoes(const Vector2f posMouse);
-	void acessarBotao(const Vector2f posMouse);
+		void verificaClique(Vector2f posMouse); //const Mouse::Button botaoMouse,
 
-
-	//void desenhar(); // chamado pelo gerenciador grafico??
-};
-
+		void desenhar_se(); // chamado pelo gerenciador grafico??
+		void executar();
+	};
+}

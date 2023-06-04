@@ -1,23 +1,19 @@
 #include "ObservadorMenuPrincipal.h"
 
-ObservadorMenuPrincipal::ObservadorMenuPrincipal(MenuPrincipal* pMP):
-	Observador(IDs::menuPrincipal)
+Observers::ObservadorMenuPrincipal::ObservadorMenuPrincipal(MenuPrincipal* pMP) :
+	Observador(IDs::menuPrincipal),
+	pMenuPrincipal(nullptr)
 {
-	if(pMP)
+	if (pMP)
 		pMenuPrincipal = pMP;
 }
 
-ObservadorMenuPrincipal::~ObservadorMenuPrincipal()
+Observers::ObservadorMenuPrincipal::~ObservadorMenuPrincipal()
 {
+	pMenuPrincipal = nullptr;
 }
 
-void ObservadorMenuPrincipal::moveMouse(const Vector2f posMouse)
+void Observers::ObservadorMenuPrincipal::botaoMouseSolta(Vector2f posMouse) // const Mouse::Button botaoMouse, 
 {
-	pMenuPrincipal->atualizarBotoes(posMouse);
-	pMenuPrincipal->acessarBotao(posMouse);
-}
-
-void ObservadorMenuPrincipal::botaoMouseSolta(const Mouse::Button botaoMouse)
-{
-
+	pMenuPrincipal->verificaClique(posMouse); // botaoMouse,
 }

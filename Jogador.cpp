@@ -1,15 +1,16 @@
 #include"Jogador.h"
+#include"Gerenciador_Eventos.h"
+#include"ObservadorJogador.h"
 
-Personagens::Jogador::Jogador(Vector2f tam_corp) :
-    Personagem(IDs::jogador, tam_corp),
-    pontos(0)
+Jogador::Jogador(const IDs id, Vector2f pos) :
+    Personagem(id, pos),
+    pontos(0),
+    observadorJogador(nullptr)
 {
     Vector2f pos_ini_player(0.f, 200.f);
     corpo.setFillColor(Color::Blue);
     corpo.setPosition(pos_ini_player);
     posicao = pos_ini_player;
-
-
 
     // Cria seu Observador:
     observadorJogador = new ObservadorJogador(this); // this para setar la tambem
@@ -18,21 +19,27 @@ Personagens::Jogador::Jogador(Vector2f tam_corp) :
     Gerenciador_Eventos::getGerenciadorEventos()->adicionarObservador(observadorJogador);
 }
 
-Personagens::Jogador::~Jogador()
+Jogador::~Jogador()
 {
+    observadorJogador = nullptr;
 }
 
-void Personagens::Jogador::operator++()
+void Jogador::operator++()
 {
     pontos++;
 }
 
-void Personagens::Jogador::operator--()
+void Jogador::operator--()
 {
     num_vidas--;
 }
 
-void Personagens::Jogador::mover(const char* direcao)
+const int Jogador::getPontos()
+{
+    return pontos;
+}
+
+void Jogador::mover(const char* direcao)
 {
     if (!esta_no_chao)
     {
@@ -112,18 +119,18 @@ void Personagens::Jogador::mover(const char* direcao)
     posicao = corpo.getPosition();
 }
 
-void Personagens::Jogador::parar()
+void Jogador::parar()
 {
     velocidade.x = 0.f;
     velocidade.y = 0.f;
 }
 
-void Personagens::Jogador::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
+void Jogador::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 {
     esta_no_chao = false;
     switch (id)
     {
-    case IDs::inimigo:
+    case IDs::capanga:
     {
         if (distancia_colisao != Vector2f(0.f, 0.f))
         {
@@ -241,34 +248,7 @@ void Personagens::Jogador::colisao(const IDs id, Entidade* ent, Vector2f distanc
     }
 }
 
-void Personagens::Jogador::executar()
+void Jogador::executar()
 {
-    if (Keyboard::isKeyPressed(Keyboard::A))
-    {
-        mover("Esquerda");
-    }
-    else if (Keyboard::isKeyPressed(Keyboard::D))
-    {
-        mover("Direita");
-    }
-    else if (Keyboard::isKeyPressed(Keyboard::W))
-    {
-        if (Keyboard::isKeyPressed(Keyboard::LShift))
-        {
-            mover("Cima++");
-        }
-        else
-        {
-            mover("Cima");
-        }
-    }
-    else if (Keyboard::isKeyPressed(Keyboard::S))
-    {
-        mover("Baixo");
-    }
-    else
-    {
-        mover("");
-    }
     desenhar_se();
 }

@@ -8,11 +8,13 @@ namespace Entidades
 		class Plataforma : public Obstaculo
 		{
 		private:
+			double atrito;
 
 		public:
-			Plataforma(Vector2f tam_corpo = Vector2f(0.f, 0.f));
+			Plataforma(Vector2f pos);
 			~Plataforma();
 
+			const double getAtrito() const;
 			void executar();
 		};
 	}

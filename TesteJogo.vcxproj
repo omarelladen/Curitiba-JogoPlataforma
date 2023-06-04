@@ -133,21 +133,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bicicleta.cpp" />
     <ClCompile Include="Botao.cpp" />
+    <ClCompile Include="Capanga.cpp" />
+    <ClCompile Include="Capivara.cpp" />
+    <ClCompile Include="ChefeMafia.cpp" />
     <ClCompile Include="ConstrutorEntidade.cpp" />
-    <ClCompile Include="ConstrutorFase.cpp" />
     <ClCompile Include="Ente.cpp" />
     <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Estado.cpp" />
     <ClCompile Include="EstadoJogar.cpp" />
+    <ClCompile Include="EstadoMenuPause.cpp" />
     <ClCompile Include="EstadoMenuPrincipal.cpp" />
     <ClCompile Include="Fase.cpp" />
-    <ClCompile Include="Fase1.cpp" />
+    <ClCompile Include="FaseParqueBarigui.cpp" />
     <ClCompile Include="Gerenciador_Colisoes.cpp" />
     <ClCompile Include="Gerenciador_Estados.cpp" />
     <ClCompile Include="Gerenciador_Eventos.cpp" />
     <ClCompile Include="Gerenciador_Grafico.cpp" />
     <ClCompile Include="Inimigo.cpp" />
+    <ClCompile Include="Jacare.cpp" />
     <ClCompile Include="Jogador.cpp" />
     <ClCompile Include="Jogo.cpp" />
     <ClCompile Include="ListaEntidades.cpp" />
@@ -163,27 +168,33 @@
     <ClCompile Include="Obstaculo.cpp" />
     <ClCompile Include="Personagem.cpp" />
     <ClCompile Include="Plataforma.cpp" />
+    <ClCompile Include="Policial.cpp" />
     <ClCompile Include="Projetil.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="TesteJogo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bicicleta.h" />
     <ClInclude Include="Botao.h" />
+    <ClInclude Include="Capanga.h" />
+    <ClInclude Include="Capivara.h" />
+    <ClInclude Include="ChefeMafia.h" />
     <ClInclude Include="ConstrutorEntidade.h" />
-    <ClInclude Include="ConstrutorFase.h" />
     <ClInclude Include="Ente.h" />
     <ClInclude Include="Entidade.h" />
     <ClInclude Include="Estado.h" />
     <ClInclude Include="EstadoJogar.h" />
+    <ClInclude Include="EstadoMenuPause.h" />
     <ClInclude Include="EstadoMenuPrincipal.h" />
     <ClInclude Include="Fase.h" />
-    <ClInclude Include="Fase1.h" />
+    <ClInclude Include="FaseParqueBarigui.h" />
     <ClInclude Include="Gerenciador_Colisoes.h" />
     <ClInclude Include="Gerenciador_Estados.h" />
     <ClInclude Include="Gerenciador_Eventos.h" />
     <ClInclude Include="Gerenciador_Grafico.h" />
     <ClInclude Include="IDs.h" />
     <ClInclude Include="Inimigo.h" />
+    <ClInclude Include="Jacare.h" />
     <ClInclude Include="Jogador.h" />
     <ClInclude Include="Jogo.h" />
     <ClInclude Include="Lista.h" />
@@ -200,6 +211,7 @@
     <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="Personagem.h" />
     <ClInclude Include="Plataforma.h" />
+    <ClInclude Include="Policial.h" />
     <ClInclude Include="Projetil.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>

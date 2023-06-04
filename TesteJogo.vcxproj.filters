@@ -67,6 +67,30 @@
     <Filter Include="Source Files\Observador">
       <UniqueIdentifier>{bd52e29a-a1c8-4e5f-9f61-507b9a0898f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Ente\Entidade\Obstaculo">
+      <UniqueIdentifier>{b40634d5-82c5-4bf9-974b-c255e50dcc9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Ente\Entidade\Obstaculo">
+      <UniqueIdentifier>{09683944-2006-4382-b4c0-8b260c813f0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Ente\Entidade\Personagem">
+      <UniqueIdentifier>{c7bce5ea-039e-4ad7-8391-2bbf7b3b1b2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Ente\Entidade\Personagem\Inimigo">
+      <UniqueIdentifier>{16cb7dc3-5a7a-4c20-9a1c-da2cfeaf6017}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Ente\Entidade\Personagem\Jogador">
+      <UniqueIdentifier>{7191314e-ddde-4ce2-8fe5-6f669ad26eb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Ente\Entidade\Personagem">
+      <UniqueIdentifier>{f1f9c3d5-7829-4385-8dc0-fe6789a7a8c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Ente\Entidade\Personagem\Inimigo">
+      <UniqueIdentifier>{33241121-51fe-4e26-9f49-594382ab1c78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Ente\Entidade\Personagem\Jogador">
+      <UniqueIdentifier>{95b51efc-7656-4311-b045-d501eebcd576}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TesteJogo.cpp">
@@ -80,18 +104,6 @@
     </ClCompile>
     <ClCompile Include="Gerenciador_Grafico.cpp">
       <Filter>Source Files\Gerenciadores</Filter>
-    </ClCompile>
-    <ClCompile Include="Obstaculo.cpp">
-      <Filter>Source Files\Ente\Entidade</Filter>
-    </ClCompile>
-    <ClCompile Include="Personagem.cpp">
-      <Filter>Source Files\Ente\Entidade</Filter>
-    </ClCompile>
-    <ClCompile Include="Jogador.cpp">
-      <Filter>Source Files\Ente\Entidade</Filter>
-    </ClCompile>
-    <ClCompile Include="Inimigo.cpp">
-      <Filter>Source Files\Ente\Entidade</Filter>
     </ClCompile>
     <ClCompile Include="Entidade.cpp">
       <Filter>Source Files\Ente\Entidade</Filter>
@@ -126,13 +138,7 @@
     <ClCompile Include="Fase.cpp">
       <Filter>Source Files\Fase</Filter>
     </ClCompile>
-    <ClCompile Include="Fase1.cpp">
-      <Filter>Source Files\Fase</Filter>
-    </ClCompile>
     <ClCompile Include="ConstrutorEntidade.cpp">
-      <Filter>Source Files\Construtores</Filter>
-    </ClCompile>
-    <ClCompile Include="ConstrutorFase.cpp">
       <Filter>Source Files\Construtores</Filter>
     </ClCompile>
     <ClCompile Include="Observador.cpp">
@@ -153,9 +159,6 @@
     <ClCompile Include="ObservadorMenuPrincipal.cpp">
       <Filter>Source Files\Observador</Filter>
     </ClCompile>
-    <ClCompile Include="Plataforma.cpp">
-      <Filter>Source Files\Ente\Entidade</Filter>
-    </ClCompile>
     <ClCompile Include="ListaObservadores.cpp">
       <Filter>Source Files\Lista</Filter>
     </ClCompile>
@@ -167,6 +170,45 @@
     </ClCompile>
     <ClCompile Include="Projetil.cpp">
       <Filter>Source Files\Ente\Entidade</Filter>
+    </ClCompile>
+    <ClCompile Include="Inimigo.cpp">
+      <Filter>Source Files\Ente\Entidade\Personagem\Inimigo</Filter>
+    </ClCompile>
+    <ClCompile Include="ChefeMafia.cpp">
+      <Filter>Source Files\Ente\Entidade\Personagem\Inimigo</Filter>
+    </ClCompile>
+    <ClCompile Include="Jacare.cpp">
+      <Filter>Source Files\Ente\Entidade\Personagem\Inimigo</Filter>
+    </ClCompile>
+    <ClCompile Include="Capivara.cpp">
+      <Filter>Source Files\Ente\Entidade\Personagem\Jogador</Filter>
+    </ClCompile>
+    <ClCompile Include="Jogador.cpp">
+      <Filter>Source Files\Ente\Entidade\Personagem\Jogador</Filter>
+    </ClCompile>
+    <ClCompile Include="Capanga.cpp">
+      <Filter>Source Files\Ente\Entidade\Personagem\Inimigo</Filter>
+    </ClCompile>
+    <ClCompile Include="Policial.cpp">
+      <Filter>Source Files\Ente\Entidade\Personagem\Jogador</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstaculo.cpp">
+      <Filter>Source Files\Ente\Entidade\Obstaculo</Filter>
+    </ClCompile>
+    <ClCompile Include="Plataforma.cpp">
+      <Filter>Source Files\Ente\Entidade\Obstaculo</Filter>
+    </ClCompile>
+    <ClCompile Include="Personagem.cpp">
+      <Filter>Source Files\Ente\Entidade\Personagem</Filter>
+    </ClCompile>
+    <ClCompile Include="FaseParqueBarigui.cpp">
+      <Filter>Source Files\Fase</Filter>
+    </ClCompile>
+    <ClCompile Include="EstadoMenuPause.cpp">
+      <Filter>Source Files\Ente\Estado</Filter>
+    </ClCompile>
+    <ClCompile Include="Bicicleta.cpp">
+      <Filter>Source Files\Ente\Entidade\Obstaculo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -183,18 +225,6 @@
       <Filter>Header Files\Gerenciadores</Filter>
     </ClInclude>
     <ClInclude Include="Entidade.h">
-      <Filter>Header Files\Ente\Entidade</Filter>
-    </ClInclude>
-    <ClInclude Include="Inimigo.h">
-      <Filter>Header Files\Ente\Entidade</Filter>
-    </ClInclude>
-    <ClInclude Include="Jogador.h">
-      <Filter>Header Files\Ente\Entidade</Filter>
-    </ClInclude>
-    <ClInclude Include="Obstaculo.h">
-      <Filter>Header Files\Ente\Entidade</Filter>
-    </ClInclude>
-    <ClInclude Include="Personagem.h">
       <Filter>Header Files\Ente\Entidade</Filter>
     </ClInclude>
     <ClInclude Include="Estado.h">
@@ -227,16 +257,7 @@
     <ClInclude Include="Fase.h">
       <Filter>Header Files\Fase</Filter>
     </ClInclude>
-    <ClInclude Include="Fase1.h">
-      <Filter>Header Files\Fase</Filter>
-    </ClInclude>
-    <ClInclude Include="Plataforma.h">
-      <Filter>Header Files\Ente\Entidade</Filter>
-    </ClInclude>
     <ClInclude Include="ConstrutorEntidade.h">
-      <Filter>Header Files\Construtores</Filter>
-    </ClInclude>
-    <ClInclude Include="ConstrutorFase.h">
       <Filter>Header Files\Construtores</Filter>
     </ClInclude>
     <ClInclude Include="Observador.h">
@@ -269,8 +290,47 @@
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Inimigo.h">
+      <Filter>Header Files\Ente\Entidade\Personagem\Inimigo</Filter>
+    </ClInclude>
+    <ClInclude Include="Jacare.h">
+      <Filter>Header Files\Ente\Entidade\Personagem\Inimigo</Filter>
+    </ClInclude>
+    <ClInclude Include="ChefeMafia.h">
+      <Filter>Header Files\Ente\Entidade\Personagem\Inimigo</Filter>
+    </ClInclude>
+    <ClInclude Include="Capanga.h">
+      <Filter>Header Files\Ente\Entidade\Personagem\Inimigo</Filter>
+    </ClInclude>
+    <ClInclude Include="Jogador.h">
+      <Filter>Header Files\Ente\Entidade\Personagem\Jogador</Filter>
+    </ClInclude>
+    <ClInclude Include="Capivara.h">
+      <Filter>Header Files\Ente\Entidade\Personagem\Jogador</Filter>
+    </ClInclude>
+    <ClInclude Include="Policial.h">
+      <Filter>Header Files\Ente\Entidade\Personagem\Jogador</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstaculo.h">
+      <Filter>Header Files\Ente\Entidade\Obstaculo</Filter>
+    </ClInclude>
+    <ClInclude Include="Plataforma.h">
+      <Filter>Header Files\Ente\Entidade\Obstaculo</Filter>
+    </ClInclude>
+    <ClInclude Include="Personagem.h">
+      <Filter>Header Files\Ente\Entidade\Personagem</Filter>
+    </ClInclude>
     <ClInclude Include="Projetil.h">
-      <Filter>Header Files\Ente\Entidade</Filter>
+      <Filter>Header Files\Ente</Filter>
+    </ClInclude>
+    <ClInclude Include="FaseParqueBarigui.h">
+      <Filter>Header Files\Fase</Filter>
+    </ClInclude>
+    <ClInclude Include="EstadoMenuPause.h">
+      <Filter>Header Files\Ente\Estado</Filter>
+    </ClInclude>
+    <ClInclude Include="Bicicleta.h">
+      <Filter>Header Files\Ente\Entidade\Obstaculo</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

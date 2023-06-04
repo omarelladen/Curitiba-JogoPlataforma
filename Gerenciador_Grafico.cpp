@@ -1,16 +1,15 @@
 #include "Gerenciador_Grafico.h"
 using namespace Gerenciadores;
+#include<iostream>
+using namespace std;
 
-#include"Gerenciador_Grafico.h"
-#include"stdafx.h"
-
-Gerenciador_Grafico* Gerenciador_Grafico::pManager(NULL);
+Gerenciador_Grafico* Gerenciador_Grafico::pGerenciadorGrafico(nullptr);
 
 Gerenciador_Grafico::Gerenciador_Grafico() :
-	janela(NULL)
+	janela(nullptr)
 {
-	janela = new RenderWindow(VideoMode(1000, 900), "Jogo");
-	if (janela == NULL)
+	janela = new RenderWindow(VideoMode(1000, 900), "Jogo");////
+	if (janela == nullptr)
 	{
 		cerr << "Erro - Alocacao de janela nao realizada" << endl;
 	}
@@ -21,18 +20,18 @@ Gerenciador_Grafico::~Gerenciador_Grafico()
 	if (janela)
 	{
 		delete janela;
-		janela = NULL;
+		janela = nullptr;
 	}
-	delete this;
+	delete this; //
 }
 
 Gerenciador_Grafico* Gerenciador_Grafico::getGerenciadorGrafico()
 {
-	if (pManager == NULL)
+	if (pGerenciadorGrafico == nullptr)
 	{
-		pManager = new Gerenciador_Grafico();
+		pGerenciadorGrafico = new Gerenciador_Grafico();
 	}
-	return pManager;
+	return pGerenciadorGrafico;
 }
 
 RenderWindow* Gerenciador_Grafico::getJanela()

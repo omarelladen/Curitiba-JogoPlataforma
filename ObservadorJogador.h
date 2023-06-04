@@ -1,15 +1,20 @@
 #pragma once
 #include"Observador.h"
+#include"IDs.h"
+#include"Jogador.h"
 
-class ObservadorJogador : public Observador
+namespace Observers
 {
-private:
-	Jogador* pJogador;
-public:
-	ObservadorJogador(Jogador* pJ);
-	~ObservadorJogador();
+	class ObservadorJogador : public Observador
+	{
+	private:
+		Jogador* pJogador;
 
-	void teclaPressionada(const Keyboard::Key tecla);
-	void teclaSolta(const Keyboard::Key tecla);
-};
+	public:
+		ObservadorJogador(Jogador* pJ);
+		~ObservadorJogador();
 
+		void teclaPressionada(const Keyboard::Key tecla);
+		void teclaSolta(const Keyboard::Key tecla);
+	};
+}

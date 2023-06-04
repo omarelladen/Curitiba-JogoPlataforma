@@ -1,8 +1,9 @@
 #include"Inimigo.h"
-#include"Plataforma.h"
+#include<list>
+using namespace std;
 
-Inimigo::Inimigo( Vector2f tam_corp, Vector2f pos_i, Vector2f pos_f, Jogador* player) :
-    Personagem(IDs::inimigo, tam_corp),
+Inimigo::Inimigo(const IDs id, Vector2f pos, Jogador* player, Vector2f pos_i, Vector2f pos_f) :
+    Personagem(id, pos),
     alvo(player),
     nivel_maldade(0),
     indo(true),
@@ -16,7 +17,7 @@ Inimigo::Inimigo( Vector2f tam_corp, Vector2f pos_i, Vector2f pos_f, Jogador* pl
 
 Inimigo::~Inimigo()
 {
-    alvo = NULL;
+    alvo = nullptr;
 }
 
 void Inimigo::operator++()
@@ -90,11 +91,11 @@ void Inimigo::perseguirAlvo()
 
     if (pos_alvo.x > pos_perseguidor.x)
     {
-        corpo.move(0.1f, 0.f);
+        corpo.move(0.2f, 0.f);
     }
     else
     {
-        corpo.move(-0.1f, 0.f);
+        corpo.move(-0.2f, 0.f);
     }
 }
 
@@ -106,6 +107,7 @@ void Inimigo::setProjetil(Projetil* proj)
 
 void Inimigo::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 {
+    esta_no_chao = false;
     switch (id)
     {
     case IDs::plataforma:
@@ -120,13 +122,11 @@ void Inimigo::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
                 if (posicao.x < ent->getPosicao().x)
                 {
                     setPosicao(posicao + distancia_colisao);
-                    esta_no_chao = false;
                 }
                 //Colisao Direita
                 else
                 {
                     setPosicao(posicao - distancia_colisao);
-                    esta_no_chao = false;
                 }
             }
             //Colisao em y
@@ -143,14 +143,13 @@ void Inimigo::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
                 else
                 {
                     setPosicao(posicao - distancia_colisao);
-                    esta_no_chao = false;
                 }
             }
         }
     }
     break;
 
-    case IDs::jogador:
+    case IDs::capivara:
     {
         if (nivel_maldade >= 10)
         {
@@ -193,12 +192,10 @@ void Inimigo::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
     }
     break;
 
-    //Cantos
     case IDs::canto:
     {
         setPosicao(posicao - distancia_colisao);
     }
-    break;
 
     default: {
         cout << "Erro Colisao Inimigo" << endl;
@@ -220,7 +217,7 @@ void Inimigo::atirar()
             }
             else
             {
-                (*it)->colisao("Canto", NULL, Vector2f(0.f, 0.f));
+                (*it)->colisao(IDs::canto, nullptr, Vector2f(0.f, 0.f));
             }
         }
     }
@@ -231,4 +228,3 @@ void Inimigo::executar()
     desenhar_se();
     mover("");
 }
-

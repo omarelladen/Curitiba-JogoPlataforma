@@ -1,11 +1,23 @@
 #pragma once
 #include "Observador.h"
-class ObservadorMenuPause : public Observador
+
+namespace Menus
 {
-private:
+	class MenuPause;
+}
+using namespace Menus;
 
-public:
-	ObservadorMenuPause();
-	~ObservadorMenuPause();
-};
+namespace Observers
+{
+	class ObservadorMenuPause : public Observador
+	{
+	private:
+		MenuPause* pMenuPause;
 
+	public:
+		ObservadorMenuPause(MenuPause* pMP);
+		~ObservadorMenuPause();
+
+		void botaoMouseSolta(Vector2f posMouse);
+	};
+}

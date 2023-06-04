@@ -1,10 +1,21 @@
 #include "ObservadorMenuPause.h"
+using namespace Observers;
+#include"MenuPause.h"
 
-ObservadorMenuPause::ObservadorMenuPause():
-	Observador(IDs::menuPause)
+ObservadorMenuPause::ObservadorMenuPause(MenuPause* pMP):
+	Observador(IDs::menuPause),
+	pMenuPause(nullptr)
 {
+	if (pMP)
+		pMenuPause = pMP;
 }
 
 ObservadorMenuPause::~ObservadorMenuPause()
 {
+	pMenuPause = nullptr;
+}
+
+void ObservadorMenuPause::botaoMouseSolta(Vector2f posMouse)
+{
+	pMenuPause->verificaClique(posMouse);
 }

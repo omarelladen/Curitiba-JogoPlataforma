@@ -2,17 +2,17 @@
 #include"Inimigo.h"
 using namespace Entidades::Personagens;
 
-Projetil::Projetil(Vector2f tam_corpo, Vector2f vel) :
-    Entidade(IDs::projetil, tam_corpo),
+Projetil::Projetil(Vector2f pos, Vector2f vel) :
+    Entidade(IDs::projetil, pos),
     velocidade(vel),
     dano(0),
-    atirador(NULL)
+    atirador(nullptr)
 {
 }
 
 Projetil::~Projetil()
 {
-    atirador = NULL;
+    atirador = nullptr;
 }
 
 void Projetil::setAtirador(Personagem* atir)
@@ -30,15 +30,13 @@ const int Projetil::getDano() const
     return dano;
 }
 
-void Entidades::Projetil::colisao(const string id, Entidade* ent, Vector2f distancia_colisao)
+void Projetil::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 {
-    switch (id.c_str()[0])
+    switch (id)
     {
-        //Colisão Jogador
-
-    case 'J':
+    case IDs::capivara:
     {
-        if (atirador && atirador->getID() == IDs::inimigo)
+        if (atirador && atirador->getID() == IDs::jacare)
         {
             Inimigo* pInim = static_cast<Personagens::Inimigo*>(atirador);
             pInim->operator++();
@@ -46,25 +44,23 @@ void Entidades::Projetil::colisao(const string id, Entidade* ent, Vector2f dista
     }
     break;
 
-    case 'I':
+    case IDs::capanga:
     {
-        if (atirador && atirador->getID() == IDs::jogador)
+        if (atirador && atirador->getID() == IDs::policial)
         {
-            Jogador* pJog = static_cast<Jogador*>(atirador);
+            Policial* pJog = static_cast<Policial*>(atirador);
             pJog->operator++();
         }
     }
     break;
 
-    case 'P':
+    case IDs::plataforma:
     {
 
     }
     break;
 
-    //Colisao Cantos
-
-    case 'C':
+    case IDs::canto:
     {
         if (atirador)
         {

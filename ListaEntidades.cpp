@@ -1,7 +1,7 @@
 #include "ListaEntidades.h"
 
 ListaEntidades::ListaEntidades() :
-    LEs()
+    listaEntidades()
 {
 }
 
@@ -11,27 +11,37 @@ ListaEntidades::~ListaEntidades()
 
 void Listas::ListaEntidades::clear()
 {
-    LEs.clear();
+    listaEntidades.clear();
 }
 
-void ListaEntidades::setEntidade(Entidade* entid)
+void ListaEntidades::setEntidade(Entidade* entid) // mudar de set para add
 {
-    LEs.setElemento(entid);
+    listaEntidades.setElemento(entid);
 }
 
 void ListaEntidades::deleteEntidade(Entidade* entid)
 {
-    LEs.deleteElemento(entid);
+    listaEntidades.deleteElemento(entid);
+}
+
+void ListaEntidades::deleteEntidade(int pos) // precisa?
+{
+    listaEntidades.deleteElemento(listaEntidades[pos]);
 }
 
 Entidade* ListaEntidades::getEntidade(int pos)
 {
-    return LEs.getClassOrigin(pos);
+    return listaEntidades.getClassOrigin(pos);
 }
 
-const int ListaEntidades::getTamLista() const
+Entidade* ListaEntidades::operator[](int pos)
 {
-    return LEs.getTam();
+    return listaEntidades[pos];
+}
+
+const int ListaEntidades::getTamLista() const//
+{
+    return listaEntidades.getTam();
 }
 
 void ListaEntidades::executar()

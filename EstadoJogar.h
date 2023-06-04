@@ -1,18 +1,26 @@
 #pragma once
-#include "Estado.h"
-#include "Fase.h"
-#include "IDs.h"
+#include"Estado.h"
+#include"Fase.h"
+using namespace Fases;
+#include"IDs.h"
+#include"FaseParqueBarigui.h"
+#include"Jogador.h"
+#include "Capivara.h"//
 
-class EstadoJogar : public Estado
+namespace Estados
 {
-private:
-	Fase* fase; // agregado aqui
-	Jogador* jogador;
+	class EstadoJogar : public Estado
+	{
+	private:
+		Fase* fase; // agregado aqui
 
-public:
-	EstadoJogar(IDs id_fase);
-	~EstadoJogar();
+		Jogador* jogador1;
+		//Jogador* jogador2; // criaria outro jogador com seu observador
 
-	void executar();
-};
+	public:
+		EstadoJogar(IDs id_fase);
+		~EstadoJogar();
 
+		void executar();
+	};
+}

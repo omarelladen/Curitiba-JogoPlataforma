@@ -23,18 +23,11 @@ void ListaObservadores::notificarTeclaSolta(const Keyboard::Key tecla)
 			listaObservadores.getClassOrigin(i)->teclaSolta(tecla);
 }
 
-void ListaObservadores::notificarMovimentoMouse(Event::MouseMoveEvent mouse)
+void ListaObservadores::notificarMouseSolta(Event::MouseMoveEvent mouse)// Mouse::Button botaoMouse, 
 {
 	for (int i = 0; i < listaObservadores.getTam(); i++)
 		if (listaObservadores.getClassOrigin(i)->getAtivado())
-			listaObservadores.getClassOrigin(i)->moveMouse(Vector2f(mouse.x, mouse.y));
-}
-
-void ListaObservadores::notificarMouseSolta(Mouse::Button botaoMouse)
-{
-	for (int i = 0; i < listaObservadores.getTam(); i++)
-		if (listaObservadores.getClassOrigin(i)->getAtivado())
-			listaObservadores.getClassOrigin(i)->botaoMouseSolta(botaoMouse);
+			listaObservadores.getClassOrigin(i)->botaoMouseSolta(Vector2f(mouse.x, mouse.y)); //botaoMouse,  Vector2f(mouse.x, mouse.y)
 }
 
 
@@ -59,11 +52,11 @@ void ListaObservadores::ativaObservador(IDs id)
 {
 	for (int i = 0; i < listaObservadores.getTam(); i++)
 	{
-		if (!listaObservadores.getClassOrigin(i)->getAtivado())
+		if (listaObservadores[i]->getID() == id)
 		{
-			if (listaObservadores.getClassOrigin(i)->getID() == id)
+			if (!listaObservadores[i]->getAtivado())
 			{
-				listaObservadores.getClassOrigin(i)->setAtivado(true);
+				listaObservadores[i]->setAtivado(true);
 			}
 		}
 	}
@@ -76,5 +69,5 @@ int ListaObservadores::getTamanho()
 
 Observador* ListaObservadores::operator[](int pos)
 {
-	return listaObservadores.getClassOrigin(pos);
+	return listaObservadores[pos];
 }

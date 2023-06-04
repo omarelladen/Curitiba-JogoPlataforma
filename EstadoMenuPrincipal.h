@@ -1,15 +1,19 @@
 #pragma once
-#include "Estado.h"
+#include"Estado.h"
+#include"MenuPrincipal.h"
+using namespace Menus;
 
-class EstadoMenuPrincipal : public Estado
+namespace Estados
 {
-private:
-	MenuPrincipal* menu_principal; // agregado aqui
+	class EstadoMenuPrincipal : public Estado
+	{
+	private:
+		MenuPrincipal* menu_principal; // agregado aqui
 
-public:
-	EstadoMenuPrincipal();
-	~EstadoMenuPrincipal();
+	public:
+		EstadoMenuPrincipal();
+		~EstadoMenuPrincipal();
 
-	void executar();
-};
-
+		void executar();
+	};
+}

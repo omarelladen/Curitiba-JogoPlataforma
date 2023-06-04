@@ -1,4 +1,5 @@
 #include "Observador.h"
+using namespace Observers;
 
 Observador::Observador(IDs id):
     Ente(id),
@@ -10,25 +11,19 @@ Observador::~Observador()
 {
 }
 
-bool Observador::getAtivado()
+void Observador::setAtivado(bool ativar)
+{
+    ativado = ativar;
+}
+
+const bool Observador::getAtivado() const
 {
     return ativado;
 }
 
-void Observador::setAtivado(bool ativar)
-{
-    if (ativar)
-        ativado = true;
-    else
-        ativado = false;
-}
-
-void Observador::desenhar_se()
-{
-}
-
 void Observador::executar()
 {
+    // precisa ??? por causa do Ente??
 }
 
 void Observador::teclaPressionada(const Keyboard::Key tecla)
@@ -39,10 +34,7 @@ void Observador::teclaSolta(const Keyboard::Key tecla)
 {
 }
 
-void Observador::moveMouse(const Vector2f posMouse)
-{
-}
 
-void Observador::botaoMouseSolta(const Mouse::Button botaoMouse)
+void Observador::botaoMouseSolta(Vector2f posMouse) // const Mouse::Button botaoMouse, 
 {
 }

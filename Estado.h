@@ -2,16 +2,17 @@
 #include "Ente.h"
 #include "Gerenciador_Estados.h"
 
-class Estado : public Ente
+namespace Estados
 {
-protected:
-	Gerenciador_Estados* pGerenciadorEstados;
+	class Estado : public Ente
+	{
+	protected:
+		Gerenciador_Estados* pGerenciadorEstados;
 
-public:
-	Estado(const IDs id);
-	~Estado();
+	public:
+		Estado(const IDs id);
+		~Estado();
 
-	void desenhar_se();
-	virtual void executar() = 0;
-};
-
+		virtual void executar() = 0;
+	};
+}

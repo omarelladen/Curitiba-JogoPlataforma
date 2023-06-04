@@ -8,7 +8,7 @@ namespace Listas
 	class ListaEntidades
 	{
 	private:
-		Lista<Entidade> LEs;
+		Lista<Entidade> listaEntidades;
 
 	public:
 		ListaEntidades();
@@ -18,8 +18,10 @@ namespace Listas
 
 		void setEntidade(Entidade* entid);
 		void deleteEntidade(Entidade* entid);
+		void deleteEntidade(int pos);
 
 		Entidade* getEntidade(int pos);
+		Entidade* operator[](int pos);
 
 		const int getTamLista() const;
 

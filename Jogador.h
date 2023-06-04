@@ -2,8 +2,17 @@
 #include"Personagem.h"
 using namespace Personagens;
 
-#include"ObservadorJogador.h"
-#include"Gerenciador_Eventos.h"
+namespace Gerenciadores
+{
+	class Gerenciador_Eventos;
+}
+using namespace Gerenciadores;
+
+namespace Observers
+{
+	class ObservadorJogador;
+}
+using namespace Observers;
 
 namespace Entidades
 {
@@ -11,17 +20,21 @@ namespace Entidades
 	{
 		class Jogador : public Personagem
 		{
-		private:
+		protected:
 			ObservadorJogador* observadorJogador;
 
+			// bool jogador2;
 			int pontos;
 
 		public:
-			Jogador(Vector2f tam_corpo = Vector2f(0.f, 0.f));
+			//(, bool dupla = false) false default, so passa como parametro se for dupla
+			Jogador(const IDs id = {}, Vector2f pos = Vector2f(0.f, 0.f));
 			~Jogador();
 
 			void operator++();
 			void operator--();
+
+			const int getPontos();
 
 			void mover(const char* direcao);
 			void parar();

@@ -1,32 +1,38 @@
 #pragma once
 #include "Lista.h"
 #include "Observador.h"
+using namespace Observers;
 
-class ListaObservadores
+#include <SFML/Graphics.hpp>
+using namespace sf;
+
+namespace Listas
 {
-private:
-	Lista<Observador> listaObservadores;
+	class ListaObservadores
+	{
+	private:
+		Lista<Observador> listaObservadores;
 
-public:
-	ListaObservadores();
-	~ListaObservadores();
+	public:
+		ListaObservadores();
+		~ListaObservadores();
 
-	void adicionarObservador(Observador* observador);
-	void removerObservador(Observador* observador);
-	void ativaObservador(IDs id);
-	int getTamanho();
-	Observador* operator[](int pos);
+		void adicionarObservador(Observador* observador);
+		void removerObservador(Observador* observador);
+
+		void ativaObservador(IDs id);// especificos - igual nome do gerenciador chama essa
+		int getTamanho();
+		Observador* operator[](int pos);
 
 
-	// Teclado
-	void notificarTeclaPressionada(const Keyboard::Key tecla);
-	void notificarTeclaSolta(const Keyboard::Key tecla);
+		// Teclado
+		void notificarTeclaPressionada(const Keyboard::Key tecla);
+		void notificarTeclaSolta(const Keyboard::Key tecla);
 
-	// Mouse
-	void notificarMovimentoMouse(Event::MouseMoveEvent mouse);
-	void notificarMouseSolta(Mouse::Button botaoMouse);
+		// Mouse
+		void notificarMouseSolta(Event::MouseMoveEvent mouse); //Mouse::Button botaoMouse, 
 
-	//
-	void desativarObservadores();
-};
-
+		//
+		void desativarObservadores();
+	};
+}

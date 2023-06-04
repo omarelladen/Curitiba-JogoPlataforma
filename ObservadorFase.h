@@ -1,16 +1,21 @@
 #pragma once
 #include "Observador.h"
 #include "Fase.h"
+using namespace Fases;
+#include"Gerenciador_Estados.h"
 
-class ObservadorFase : public Observador
+namespace Observers
 {
-private:
-	Fase* pFase;
+	class ObservadorFase : public Observador
+	{
+	private:
+		Fase* pFase;
 
-public:
-	ObservadorFase(Fase* pF);
-	~ObservadorFase();
-	void teclaPressionada(const Keyboard::Key tecla);
-	void teclaSolta(const Keyboard::Key tecla);
-};
+	public:
+		ObservadorFase(Fase* pF);
+		~ObservadorFase();
 
+		//void teclaPressionada(const Keyboard::Key tecla);
+		void teclaSolta(const Keyboard::Key tecla);
+	};
+}

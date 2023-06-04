@@ -1,36 +1,34 @@
 #pragma once
-#include"stdafx.h"
 #include"Gerenciador_Estados.h"
+#include "Ente.h"//
 
-class Observador : public Ente
+namespace Observers
 {
-protected:
-	//Gerenciador_Estados* pGEstados;
+	class Observador : public Ente
+	{
+	protected:
+		//Gerenciador_Estados* pGEstados;
 
-private:
-	bool ativado;
+	private:
+		bool ativado;
 
-public:
-	Observador(IDs id);
-	~Observador();
+	public:
+		Observador(IDs id);
+		~Observador();
 
-	bool getAtivado();
+		void setAtivado(const bool ativar);
+		const bool getAtivado() const;
 
-	//
-	void setAtivado(bool ativar);
+		void executar();
 
-	void desenhar_se();
-	void executar();
+		//Recebe do Gerenciador de Eventos:
 
-	//Recebe do Gerenciador de Eventos:
+		// Teclado
+		virtual void teclaPressionada(const Keyboard::Key tecla); // = 0
+		virtual void teclaSolta(const Keyboard::Key tecla); // = 0
 
-	// Teclado
-	virtual void teclaPressionada(const Keyboard::Key tecla); // = 0
-	virtual void teclaSolta(const Keyboard::Key tecla); // = 0
-
-	// Mouse
-	virtual void moveMouse(const Vector2f posMouse);
-	virtual void botaoMouseSolta(const Mouse::Button botaoMouse);
-
-
-};
+		// Mouse
+		//virtual void moveMouse(const Vector2f posMouse);
+		virtual void botaoMouseSolta(Vector2f posMouse); // const Mouse::Button botaoMouse, 
+	};
+}

@@ -2,16 +2,17 @@
 enum class IDs
 {
 	empty = 0,
-	jogador,
-	inimigo,
+	capivara,
+	policial,
+	chefeMafia,
+	capanga,
+	jacare,
 	plataforma,
-	projetil,
 	caixa,
+	bicicleta,
+	projetil,
 
 	canto,
-	
-	fase1,
-	fase2,
 
 	// Botao:
 	normal,
@@ -24,7 +25,8 @@ enum class IDs
 
 	estadoJogar,
 	estadoMenuPrincipal,
-	estadoMenuPause
+	estadoMenuPause,
 
+	fase_barigui
 };
 

@@ -1,47 +1,54 @@
 #pragma once
-#include "EstadoJogar.h"
-#include "EstadoMenuPrincipal.h"
-#include "Jogo.h"
-#include "IDs.h"
 #include <iostream>
 #include <stack>
-using std::stack;
+using namespace std;
+#include"IDs.h"
 
-class Gerenciador_Estados
+class Jogo;
+
+namespace Estados
 {
-private:
-	Jogo* pJogo;//
+	class Estado;
+}
 
-	stack<Estado*> pilhaEstados;
+namespace Gerenciadores
+{
+	class Gerenciador_Estados
+	{
+	private:
+		Jogo* pJogo;//
 
-
-
-	// S T A T I C
-	static Gerenciador_Estados* pGerenciadorEstados;
-
-	Gerenciador_Estados();
-public:
-	~Gerenciador_Estados();
-
-	// S T A T I C
-	static Gerenciador_Estados* getGerenciadorEstado();
+		stack<Estados::Estado*> pilhaEstados;
 
 
 
-	// Criacao de Estados
-	Estado* criarEstadoJogar(IDs id_fase);
-	Estado* criarEstadoMenuPrincipal();
-	Estado* criarEstadoMenuPause();
+		// S T A T I C
+		static Gerenciador_Estados* pGerenciadorEstados;
+
+		Gerenciador_Estados();
+	public:
+		~Gerenciador_Estados();
+
+		// S T A T I C
+		static Gerenciador_Estados* getGerenciadorEstados();
 
 
-	// Gestão de Estados
-	void removerEstado(); // pop delete e fecha janela se empty
-	void adicionarEstado(Estado* pE);
-	void getEstadoAtual();
 
-	Jogo* getJogo();
+		// Criacao de Estados
+		Estados::Estado* criarEstadoJogar(IDs id_fase);
+		Estados::Estado* criarEstadoMenuPrincipal();
+		Estados::Estado* criarEstadoMenuPause();
 
-	void executar(); // no loop do Jogo(Principal) ele executa o topo da pilha
-};
 
+		// Gestão de Estados
+		void removerEstado(int n); // pop delete e fecha janela se empty
+		void adicionarEstado(Estados::Estado* pE);
+		//void getEstadoAtual();
+
+
+		Jogo* getJogo();
+
+		void executar(); // no loop do Jogo(Principal) ele executa o topo da pilha
+	};
+}
 

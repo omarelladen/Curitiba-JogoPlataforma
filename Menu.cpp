@@ -1,6 +1,9 @@
 #include "Menu.h"
+using namespace Menus;
 
-Menu::Menu()
+Menu::Menu(const IDs id):
+	Ente(id),
+	texto()
 {
 }
 

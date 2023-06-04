@@ -1,4 +1,6 @@
 #pragma once
+#include<list>
+using namespace std;
 #include"Personagem.h"
 #include"Projetil.h"
 #include"Jogador.h"
@@ -20,8 +22,8 @@ namespace Entidades
 			Vector2f pos_fin;
 
 		public:
-			Inimigo(Vector2f tam_corpo = Vector2f(0.f, 0.f), Vector2f pos_i = Vector2f(0.f, 0.f),
-				Vector2f pos_f = Vector2f(0.f, 0.f), Jogador* player = NULL);
+			Inimigo(const IDs id = {}, Vector2f pos = Vector2f(0.f, 0.f), Jogador* player = nullptr,
+				Vector2f pos_i = Vector2f(0.f, 0.f), Vector2f pos_f = Vector2f(0.f, 0.f));
 			~Inimigo();
 
 			void operator++();

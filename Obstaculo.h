@@ -12,7 +12,7 @@ namespace Entidades
 			bool danoso;
 
 		public:
-			Obstaculo(const IDs id, Vector2f tam_corpo = Vector2f(0.f, 0.f));
+			Obstaculo(const IDs id, Vector2f pos);//
 			~Obstaculo();
 
 			virtual void executar() = 0;

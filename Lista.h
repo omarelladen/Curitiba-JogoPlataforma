@@ -1,13 +1,13 @@
 #pragma once
-#include"stdafx.h"
+#include<iostream>
+using namespace std;
 
 namespace Listas
 {
 	template <class TypeL>
 	class Lista
 	{
-	public:
-
+	private:
 		/*-------------------------------------------------------------------------------------------*/
 		/*-------------------------------------------------------------------------------------------*/
 
@@ -34,7 +34,6 @@ namespace Listas
 		/*-------------------------------------------------------------------------------------------*/
 		/*-------------------------------------------------------------------------------------------*/
 
-	private:
 		Elemento<TypeL>* pPrimeiro;
 		Elemento<TypeL>* pUltimo;
 		static int tam;
@@ -47,9 +46,11 @@ namespace Listas
 
 		void setElemento(TypeL* elem);
 		void deleteElemento(TypeL* elem);
-		TypeL* getClassOrigin(int pos);
 
-		static const int getTam(); //const; do problema por algum motivo
+		TypeL* getClassOrigin(int pos);
+		TypeL* operator[] (int pos);
+
+		static const int getTam(); //const; da problema por algum motivo
 	};
 }
 using namespace Listas;
@@ -64,10 +65,10 @@ template<class TypeL>
 int Lista<TypeL>::tam(0);
 
 template<class TypeL>
-Lista<TypeL>::Lista()
+Lista<TypeL>::Lista() :
+	pPrimeiro(nullptr),
+	pUltimo(nullptr)
 {
-	pPrimeiro = NULL;
-	pUltimo = NULL;
 }
 
 template<class TypeL>
@@ -80,9 +81,9 @@ template<class TypeL>
 inline void Lista<TypeL>::clear()
 {
 	Elemento<TypeL>* temp = pPrimeiro;
-	Elemento<TypeL>* temp2 = NULL;
+	Elemento<TypeL>* temp2 = nullptr;
 
-	while (temp != NULL)
+	while (temp != nullptr)
 	{
 		if (temp)
 		{
@@ -92,8 +93,8 @@ inline void Lista<TypeL>::clear()
 		}
 	}
 
-	pPrimeiro = NULL;
-	pUltimo = NULL;
+	pPrimeiro = nullptr;
+	pUltimo = nullptr;
 }
 
 template<class TypeL>
@@ -101,7 +102,7 @@ void Lista<TypeL>::setElemento(TypeL* class_o)
 {
 	if (class_o)
 	{
-		if (pPrimeiro == NULL)
+		if (pPrimeiro == nullptr)
 		{
 			pPrimeiro = new Elemento<TypeL>();
 			if (pPrimeiro)
@@ -121,7 +122,7 @@ void Lista<TypeL>::setElemento(TypeL* class_o)
 			temp->setClassOrigin(class_o);
 			pUltimo->setPProx(temp);
 			pUltimo = temp;
-			temp = NULL;
+			temp = nullptr;
 		}
 		tam++;
 	}
@@ -136,7 +137,7 @@ template<class TypeL>
 void Lista<TypeL>::deleteElemento(TypeL* elem)
 {
 	Elemento<TypeL>* temp = pPrimeiro;
-	Elemento<TypeL>* ant = NULL;
+	Elemento<TypeL>* ant = nullptr;
 
 	bool achou = false;
 
@@ -146,7 +147,7 @@ void Lista<TypeL>::deleteElemento(TypeL* elem)
 		{
 			pPrimeiro = pPrimeiro->getPProx();
 			delete temp;
-			temp = NULL;
+			temp = nullptr;
 			achou = true;
 		}
 	}
@@ -155,21 +156,25 @@ void Lista<TypeL>::deleteElemento(TypeL* elem)
 		cout << "Lista vazia" << endl;
 	}
 
-	while (temp != NULL)
+	if (!achou)
 	{
-		ant = temp;
-		temp = temp->getPProx();
-
-		if (temp && temp->getClassOrigin() == elem)
+		while (temp != nullptr)
 		{
-			ant->setPProx(temp->getPProx());
-			delete temp;
-			temp = NULL;
-			ant = NULL;
-			achou = true;
-			break;
+			ant = temp;
+			temp = temp->getPProx();
+
+			if (temp && temp->getClassOrigin() == elem)
+			{
+				ant->setPProx(temp->getPProx());
+				delete temp;
+				temp = nullptr;
+				ant = nullptr;
+				achou = true;
+				break;
+			}
 		}
 	}
+
 
 	if (achou)
 	{
@@ -199,14 +204,20 @@ TypeL* Lista<TypeL>::getClassOrigin(int pos)
 		else
 		{
 			cout << "Lista vazia" << endl;
-			return NULL;
+			return nullptr;
 		}
 	}
 	else
 	{
 		cout << "Acesso de posicao invalida" << endl;
-		return NULL;
+		return nullptr;
 	}
+}
+
+template<class TypeL>
+TypeL* Listas::Lista<TypeL>::operator[](int pos)
+{
+	return getClassOrigin(pos);
 }
 
 template<class TypeL>
@@ -223,18 +234,18 @@ const int Lista<TypeL>::getTam()
 
 template<class TypeL>
 template<class TypeE>
-inline Lista<TypeL>::Elemento<TypeE>::Elemento()
+inline Lista<TypeL>::Elemento<TypeE>::Elemento() :
+	pProx(nullptr),
+	pClass_origin(nullptr)
 {
-	pProx = NULL;
-	pClass_origin = NULL;
 }
 
 template<class TypeL>
 template<class TypeE>
 inline Listas::Lista<TypeL>::Elemento<TypeE>::~Elemento()
 {
-	pProx = NULL;
-	pClass_origin = NULL;
+	pProx = nullptr;
+	pClass_origin = nullptr;
 }
 
 template<class TypeL>

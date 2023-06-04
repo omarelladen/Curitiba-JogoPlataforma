@@ -22,4 +22,3 @@ Gerenciador_Grafico* Ente::getManager()
 {
 	return window_manager;
 }
-

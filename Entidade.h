@@ -14,20 +14,22 @@ namespace Entidades
 		bool esta_no_chao;
 
 	public:
-		Entidade(const IDs id, Vector2f tam_corpo = Vector2f(0.f, 0.f));
+		Entidade(const IDs id = {}, Vector2f pos = Vector2f(0.f, 0.f));
 		~Entidade();
 
-		virtual void executar() = 0;
-		virtual void mover(const char* direcao);
-		void desenhar_se();
-
-		void setColidiu(const bool c);
+		void setEstaNoChao(const bool c);
 		virtual void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao);
 
 		void setPosicao(Vector2f pos);
 		Vector2f getPosicao() const;
 
+		void setTamanho(Vector2f tam);
 		Vector2f getTamanho() const;
+
 		const RectangleShape getCorpo() const;
+
+		void desenhar_se();
+		virtual void mover(const char* direcao);
+		virtual void executar() = 0;
 	};
 }

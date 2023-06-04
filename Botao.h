@@ -1,31 +1,29 @@
 #pragma once
-#include "IDs.h"
 #include <iostream>
 #include <SFML/Graphics.hpp>
 using namespace std;
 using namespace sf;
+#include "Gerenciador_Grafico.h"//
+using namespace Gerenciadores;//
 
 class Botao
 {
 private:
-	int estado;
+	//int estado;
 
 	RectangleShape forma;
 
 	Font* fonte;
 	Text texto;
-	Color cor1;
-	Color cor2;
-	Color cor3;
+	Color cor;
 
 public:
-	Botao(float x, float y, float l, float h, Font* f, string t, Color c1, Color c2, Color c3);
+	Botao(Vector2f pos = Vector2f(0.f, 0.f), Vector2f tam = Vector2f(0.f, 0.f), string t = "", Color c = Color::Black);
 	~Botao();
 
-	const bool pressionado();
+	const bool pressionado(Vector2f posMouse);
 
-	void render(RenderTarget* target);
-	void atualizar(Vector2f posMouse);
+	void render();
 
 };
 

@@ -1,28 +1,103 @@
 #include "Fase.h"
-#include"stdafx.h"
+using namespace Fases;
+#include"ObservadorFase.h"
+using namespace Observers;
 
-Fase::Fase():
-	listaPersonagens(NULL),
-	listaObstaculos(NULL),
-	gerenciador_colisoes(NULL),
-	construtorEntidade(NULL)
+Fase::Fase(const IDs id):
+	Ente(id),
+	listaPersonagens(nullptr),
+	listaObstaculos(nullptr),
+	gerenciadorColisoes(nullptr),
+	construtorEntidade(nullptr),
+	observadorFase(nullptr)
 {
+	// NAO EH AQUI QUE CRIA O PERSONAGEM !!!!!
+	/*// Cria o personagem
+	construtorEntidade->setJogador(  (Jogador*)(construtorEntidade->criarCapivara(Vector2f(9, 8)))  );
+	listaPersonagens->setEntidade(construtorEntidade->getJogador());
+	// Player 2:*/
+
+	//Cria Listas de Entidades
+	listaPersonagens = new ListaEntidades();
+	listaObstaculos = new ListaEntidades();
+
+	//Cria Gerenciador
+	gerenciadorColisoes = new Gerenciador_Colisoes(listaPersonagens, listaObstaculos);
+
+	//Cria Construtor de Entidades
+	construtorEntidade = new ConstrutorEntidade();
+
+	// Cria seu Observador:
+	observadorFase = new ObservadorFase(this); // this para setar la tambem Observers::
+
+	// Adiciona o seu Observador na lista de Observadores
+	Gerenciador_Eventos::getGerenciadorEventos()->adicionarObservador(observadorFase);
 }
 
 Fase::~Fase()
 {
+	if (listaObstaculos)
+	{
+		listaObstaculos->clear();
+	}
+	if (listaPersonagens)
+	{
+		listaPersonagens->clear();
+	}
+	listaPersonagens = nullptr;
+	listaObstaculos = nullptr;
+	gerenciadorColisoes = nullptr;
+	construtorEntidade = nullptr;
+	observadorFase = nullptr;
+}
+
+void Fase::adicionarJogador(Jogador* pJ)
+{
+	if (pJ)
+	{
+		construtorEntidade->setJogador(pJ);//
+		listaPersonagens->setEntidade(pJ);
+	}
 }
 
 void Fase::criarEntidade(const char simbolo, Vector2f pos)
 {
+	
 	switch (simbolo)
 	{
-	case 'p':
+		// abstrata: x
+	/*case 'J':
+		listaObstaculos->setEntidade(construtorEntidade->criarJogador(pos));
+		break;*/
+	case '#':
+	{
 		listaObstaculos->setEntidade(construtorEntidade->criarPlataforma(pos));
+	}
 		break;
 
-	// case '':
+	case 'j':
+		listaPersonagens->setEntidade(construtorEntidade->criarJacare(pos));
+		break;
 
+	// Fonte de erros
+	/*case 'c':
+		listaPersonagens->setEntidade(construtorEntidade->criarCapivara(pos));
+		break;
+
+	case 'p':
+		listaPersonagens->setEntidade(construtorEntidade->criarPolicial(pos));
+		break;*/
+
+	case 'b':
+		listaObstaculos->setEntidade(construtorEntidade->criarBicicleta(pos));
+		break;
+
+	case 'C':
+		listaPersonagens->setEntidade(construtorEntidade->criarCapanga(pos));
+		break;
+
+	case 'B':
+		listaPersonagens->setEntidade(construtorEntidade->criarChefeMafia(pos));
+		break;
 	}
 }
-

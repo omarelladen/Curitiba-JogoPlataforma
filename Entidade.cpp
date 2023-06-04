@@ -1,22 +1,22 @@
 #include "Entidade.h"
 using namespace Entidades;
 
-#include"Plataforma.h"
-
-Entidade::Entidade(const IDs id, Vector2f tam_corpo) :
+Entidade::Entidade(const IDs id, Vector2f pos) : //
 	Ente(id),
-	corpo(tam_corpo),
-	posicao(),
+	corpo(),
+	posicao(pos), // pos.x * cont
 	esta_no_chao(true),
-	tam_corpo(tam_corpo)
+	tam_corpo(Vector2f(0.0f, 0.f))//
 {
+	// rand
+	// lista direto de Entidade* //
 }
 
 Entidade::~Entidade()
 {
 }
 
-void Entidade::setColidiu(const bool c)
+void Entidade::setEstaNoChao(const bool c)
 {
 	esta_no_chao = c;
 }
@@ -52,12 +52,18 @@ Vector2f Entidade::getPosicao() const
 	return posicao;
 }
 
+void Entidade::setTamanho(Vector2f tam)
+{
+	tam_corpo = tam;
+	corpo.setSize(tam);
+}
+
 Vector2f Entidade::getTamanho() const
 {
 	return tam_corpo;
 }
 
-const RectangleShape Entidades::Entidade::getCorpo() const
+const RectangleShape Entidade::getCorpo() const
 {
 	return corpo;
 }

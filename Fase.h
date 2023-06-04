@@ -1,30 +1,44 @@
 #pragma once
 #include"ListaEntidades.h"
 #include"Gerenciador_Colisoes.h"
+#include"Gerenciador_Eventos.h"
 #include"ConstrutorEntidade.h"
+#include"Jogador.h"
 
-class Fase
+namespace Observers
 {
-protected:
-	ListaEntidades* listaPersonagens;
-	ListaEntidades* listaObstaculos; 
+	class ObservadorFase;
+}
+using namespace Observers;
 
-	Gerenciador_Colisoes* gerenciador_colisoes;
+namespace Fases
+{
+	class Fase : public Ente
+	{
+	protected:
+		ListaEntidades* listaPersonagens;
+		ListaEntidades* listaObstaculos;
 
-	ConstrutorEntidade* construtorEntidade;
-	
-	// fundo - imagem/camada
+		Gerenciador_Colisoes* gerenciadorColisoes;
 
-public:
-	Fase();
-	~Fase();
+		ConstrutorEntidade* construtorEntidade;
 
-	virtual void criarMapa() = 0;
-	void criarEntidade(const char simbolo, Vector2f pos); //*
+		// fundo - imagem/camada
 
-	virtual void executar() = 0;
-};
+		ObservadorFase* observadorFase;
 
+	public:
+		Fase(const IDs id = {});
+		~Fase();
+
+		void adicionarJogador(Jogador* pJ);
+
+		void criarEntidade(const char simbolo, Vector2f pos);
+
+		virtual void criarMapa() = 0;
+		virtual void executar() = 0;
+	};
+}
 /*
 private:
 	

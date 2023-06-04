@@ -9,7 +9,7 @@ namespace Gerenciadores
 	{
 	private:
 		RenderWindow* janela;
-		static Gerenciador_Grafico* pManager;
+		static Gerenciador_Grafico* pGerenciadorGrafico;
 
 		Gerenciador_Grafico();
 	public:

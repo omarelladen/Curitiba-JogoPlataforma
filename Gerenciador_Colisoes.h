@@ -1,6 +1,5 @@
 #pragma once
 #include"ListaEntidades.h"
-#include"stdafx.h"
 
 namespace Gerenciadores
 {
@@ -11,11 +10,8 @@ namespace Gerenciadores
 		ListaEntidades* listaObstaculos;
 
 	public:
-		Gerenciador_Colisoes();
+		Gerenciador_Colisoes(ListaEntidades* LPs = nullptr, ListaEntidades* LOs = nullptr);
 		~Gerenciador_Colisoes();
-
-		void setListaPersonagens(ListaEntidades* listPers);
-		void setListaObstaculos(ListaEntidades* listObsts);
 
 		void GerenciarColisoes();
 
