@@ -1,9 +1,10 @@
-#include "Gerenciador_Estados.h"
+#include"Gerenciador_Estados.h"
 using namespace Gerenciadores;
-#include "EstadoJogar.h"
-#include "EstadoMenuPrincipal.h"
+#include"EstadoJogar.h"
+#include"EstadoMenuPrincipal.h"
+#include"EstadoMenuPause.h"
 using namespace Estados;
-#include "Jogo.h"
+#include"Jogo.h"
 
 
 //Gerenciadores::
@@ -20,7 +21,7 @@ Gerenciador_Estados::~Gerenciador_Estados()
 	pJogo = nullptr;
 
 	// limpar pilhaEstados
-	for (int i = 0; i < pilhaEstados.size(); i++)
+	for (int i = 0; i < (int) pilhaEstados.size(); i++)
 	{
 		Estado* estado = pilhaEstados.top();
 		pilhaEstados.pop();
@@ -57,7 +58,7 @@ Estado* Gerenciador_Estados::criarEstadoMenuPrincipal()
 Estado* Gerenciador_Estados::criarEstadoMenuPause()
 {
 	//Ver onde esta sendo desalocado
-	Estado* estado = static_cast<Estado*>(new EstadoMenuPrincipal());
+	Estado* estado = static_cast<Estado*>(new EstadoMenuPause());
 	return estado;
 }
 
@@ -73,10 +74,9 @@ void Gerenciador_Estados::removerEstado(int n) // n: numero de estados a serem d
 			delete (estado);
 		}
 	}
-
 }
 
-void Gerenciador_Estados::adicionarEstado(Estado* pE)
+void Gerenciador_Estados::addEstado(Estado* pE)
 {
 	if (pE)
 		pilhaEstados.push(pE);
@@ -86,6 +86,7 @@ Jogo* Gerenciador_Estados::getJogo()
 {
 	if (pJogo)
 		return pJogo;
+	return nullptr;
 }
 
 void Gerenciador_Estados::executar()

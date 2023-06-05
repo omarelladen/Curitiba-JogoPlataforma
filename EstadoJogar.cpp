@@ -1,7 +1,7 @@
 #include "EstadoJogar.h"
 using namespace Estados;
 
-EstadoJogar::EstadoJogar(IDs id_fase): //(, bool dupla) - default false
+EstadoJogar::EstadoJogar(const IDs id_fase): //(, bool dupla) - default false
 	Estado(IDs::estadoJogar),
 	fase(nullptr),
 	jogador1(nullptr)
@@ -11,9 +11,12 @@ EstadoJogar::EstadoJogar(IDs id_fase): //(, bool dupla) - default false
 	// Cria a Fase
 	if (id_fase == IDs::fase_barigui)
 	{
+		jogador1 = new Capivara();
 		fase = new FaseParqueBarigui();
 
-		jogador1 = new Capivara(); // default -> talvez mtirar de (0,0)
+		fase->adicionarJogador(jogador1);
+		fase->criarMapa();
+
 		//if(dupla)
 		//	jogador2 = new Policial(true);
 		//else
@@ -33,10 +36,6 @@ EstadoJogar::EstadoJogar(IDs id_fase): //(, bool dupla) - default false
 		
 
 	}*/
-
-	
-	 
-	fase->adicionarJogador(jogador1);
 	
 	//if (dupla)
 		//fase->adicionarJogador(jogador2);

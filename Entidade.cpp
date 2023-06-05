@@ -5,9 +5,13 @@ Entidade::Entidade(const IDs id, Vector2f pos) : //
 	Ente(id),
 	corpo(),
 	posicao(pos), // pos.x * cont
-	esta_no_chao(true),
-	tam_corpo(Vector2f(0.0f, 0.f))//
+	esta_no_chao(false),
+	tam_corpo(Vector2f(50.0f, 50.f)),
+	tempo(),
+	relogio()
 {
+	corpo.setPosition(pos);
+	corpo.setSize(tam_corpo);
 	// rand
 	// lista direto de Entidade* //
 }
@@ -19,6 +23,11 @@ Entidade::~Entidade()
 void Entidade::setEstaNoChao(const bool c)
 {
 	esta_no_chao = c;
+}
+
+const bool Entidades::Entidade::getEstaNoChao()
+{
+	return esta_no_chao;
 }
 
 void Entidade::mover(const char* direcao)

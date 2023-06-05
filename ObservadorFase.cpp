@@ -20,7 +20,7 @@ void Observers::ObservadorFase::teclaSolta(const Keyboard::Key tecla)
 	{
 	case (Keyboard::Escape):
 	{
-		Gerenciador_Estados::getGerenciadorEstados()->adicionarEstado
+		Gerenciador_Estados::getGerenciadorEstados()->addEstado
 		(
 			Gerenciador_Estados::getGerenciadorEstados()->criarEstadoMenuPause()
 		);

@@ -2,9 +2,9 @@
 #include"Entidade.h"
 using namespace Entidades;
 
-constexpr auto MAX_VEL = static_cast<float>(0.7);
-constexpr auto MAX_VEL_AR = static_cast<float>(2.0);
-constexpr auto INCRE_VEL = static_cast<float>(0.2);
+constexpr auto MAX_VEL = 16.f;
+constexpr auto MAX_VEL_AR = 1.0f;
+constexpr auto INCRE_VEL = 8.f;
 
 namespace Entidades
 {
@@ -14,13 +14,13 @@ namespace Entidades
 		{
 		protected:
 			int num_vidas;
-			Time tempo;
-			Clock relogio;
 			Vector2f velocidade;
 
 		public:
 			Personagem(const IDs id = {}, Vector2f pos = Vector2f(0.f, 0.f));
 			~Personagem();
+
+			void operator--();
 
 			// Funcoes exclusivamente para polimorfismo
 			virtual void mover(const char* direcao) = 0;

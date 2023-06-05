@@ -2,6 +2,9 @@
 using namespace Menus;
 #include"ObservadorMenuPrincipal.h"
 
+constexpr auto TAM_BOTOES_X = 400.f;
+constexpr auto TAM_BOTOES_Y = 100.f;
+
 MenuPrincipal::MenuPrincipal() :
 	Menu(IDs::menuPrincipal),
 	observadorMenuPrincipal(nullptr),
@@ -15,10 +18,12 @@ MenuPrincipal::MenuPrincipal() :
 	// Adiciona o seu Observador na lista de Observadores
 	Gerenciador_Eventos::getGerenciadorEventos()->adicionarObservador(observadorMenuPrincipal);
 
+	RenderWindow* janela = Gerenciador_Grafico::getGerenciadorGrafico()->getJanela();
+
 	// Alocacao Botoes
-	botao_jogarBarigui = new Botao(Vector2f(100.f, 100.f), Vector2f(150.f, 50.f), "Fase Barigui", Color::Yellow);
-	botao_jogarCooperativoBarigui = new Botao(Vector2f(100.f, 500.f), Vector2f(150.f, 50.f), "Fase Barigui Cooperativo", Color::Green);
-	botao_sair = new Botao(Vector2f(100.f, 300.f), Vector2f(150.f, 50.f), "Sair", Color::Red);
+	botao_jogarBarigui = new Botao(Vector2f((janela->getSize().x/2.f) - TAM_BOTOES_X/2.f, (janela->getSize().y / 4.f) - TAM_BOTOES_Y/2.f), Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Fase Barigui", Color::Green);
+	botao_jogarCooperativoBarigui = new Botao(Vector2f((janela->getSize().x / 2.f) - TAM_BOTOES_X / 2.f, (janela->getSize().y / 2.f) - TAM_BOTOES_Y / 2.f), Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Fase Barigui Cooperativo", Color::Green);
+	botao_sair = new Botao(Vector2f((janela->getSize().x / 2.f) - TAM_BOTOES_X / 2.f, ((janela->getSize().y*3.f) / 4.f) - TAM_BOTOES_Y / 2.f), Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Sair", Color::Red);
 	//botao_configuracoes = new Botao(100, 100, 150, 50, xxxxx, "Configuracoes", Color::Yellow, Color::Red);
 }
 
@@ -46,7 +51,7 @@ void MenuPrincipal::verificaClique(Vector2f posMouse) // const Mouse::Button bot
 			Gerenciador_Eventos::getGerenciadorEventos()->desativaObservadores();
 
 			// cria só o Player 1
-			Gerenciador_Estados::getGerenciadorEstados()->adicionarEstado
+			Gerenciador_Estados::getGerenciadorEstados()->addEstado
 			(
 				Gerenciador_Estados::getGerenciadorEstados()->criarEstadoJogar(IDs::fase_barigui)
 			);

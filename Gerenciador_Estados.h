@@ -10,6 +10,7 @@ namespace Estados
 {
 	class Estado;
 }
+using namespace Estados;
 
 namespace Gerenciadores
 {
@@ -18,7 +19,7 @@ namespace Gerenciadores
 	private:
 		Jogo* pJogo;//
 
-		stack<Estados::Estado*> pilhaEstados;
+		stack<Estado*> pilhaEstados;
 
 
 
@@ -35,14 +36,14 @@ namespace Gerenciadores
 
 
 		// Criacao de Estados
-		Estados::Estado* criarEstadoJogar(IDs id_fase);
-		Estados::Estado* criarEstadoMenuPrincipal();
-		Estados::Estado* criarEstadoMenuPause();
+		Estado* criarEstadoJogar(IDs id_fase);
+		Estado* criarEstadoMenuPrincipal();
+		Estado* criarEstadoMenuPause();
 
 
 		// Gestão de Estados
 		void removerEstado(int n); // pop delete e fecha janela se empty
-		void adicionarEstado(Estados::Estado* pE);
+		void addEstado(Estado* pE);
 		//void getEstadoAtual();
 
 

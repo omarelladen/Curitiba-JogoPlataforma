@@ -2,7 +2,7 @@
 using namespace Menus;
 
 //
-Menus::MenuPause::MenuPause():
+MenuPause::MenuPause():
 	Menu(IDs::menuPause),
 	observadorMenuPause(nullptr),
 	botao_voltar(nullptr),
@@ -13,12 +13,12 @@ Menus::MenuPause::MenuPause():
 	Gerenciador_Eventos::getGerenciadorEventos()->adicionarObservador(observadorMenuPause);//
 
 	// Alocacao Botoes
-	botao_voltar = new Botao(Vector2f(100.f, 100.f), Vector2f(150.f, 50.f), "Fase Barigui", Color::Yellow);
+	botao_voltar = new Botao(Vector2f(100.f, 100.f), Vector2f(150.f, 50.f), "Voltar", Color::Yellow);
 	botao_sair = new Botao(Vector2f(100.f, 300.f), Vector2f(150.f, 50.f), "Sair", Color::Red);
 	//botao_configuracoes = new Botao(100, 100, 150, 50, xxxxx, "Configuracoes", Color::Yellow, Color::Red);
 }
 
-Menus::MenuPause::~MenuPause()
+MenuPause::~MenuPause()
 {
 	delete observadorMenuPause;
 	delete botao_voltar;
@@ -29,7 +29,7 @@ Menus::MenuPause::~MenuPause()
 	botao_voltar = nullptr;
 }
 
-void Menus::MenuPause::verificaClique(Vector2f posMouse)
+void MenuPause::verificaClique(Vector2f posMouse)
 {
 	if (Mouse::isButtonPressed(Mouse::Left)) //forma.getGlobalBounds().contains(posMouse))
 	{
@@ -55,13 +55,13 @@ void Menus::MenuPause::verificaClique(Vector2f posMouse)
 	}
 }
 
-void Menus::MenuPause::desenhar_se()
+void MenuPause::desenhar_se()
 {
 	botao_voltar->render();
 	botao_sair->render();
 }
 
-void Menus::MenuPause::executar()
+void MenuPause::executar()
 {
 	desenhar_se();
 }

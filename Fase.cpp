@@ -56,7 +56,7 @@ void Fase::adicionarJogador(Jogador* pJ)
 	if (pJ)
 	{
 		construtorEntidade->setJogador(pJ);//
-		listaPersonagens->setEntidade(pJ);
+		listaPersonagens->addEntidade(pJ);
 	}
 }
 
@@ -71,12 +71,12 @@ void Fase::criarEntidade(const char simbolo, Vector2f pos)
 		break;*/
 	case '#':
 	{
-		listaObstaculos->setEntidade(construtorEntidade->criarPlataforma(pos));
+		listaObstaculos->addEntidade(construtorEntidade->criarPlataforma(pos));
 	}
 		break;
 
 	case 'j':
-		listaPersonagens->setEntidade(construtorEntidade->criarJacare(pos));
+		listaPersonagens->addEntidade(construtorEntidade->criarJacare(pos));
 		break;
 
 	// Fonte de erros
@@ -89,15 +89,17 @@ void Fase::criarEntidade(const char simbolo, Vector2f pos)
 		break;*/
 
 	case 'b':
-		listaObstaculos->setEntidade(construtorEntidade->criarBicicleta(pos));
+		listaObstaculos->addEntidade(construtorEntidade->criarBicicleta(pos));
 		break;
 
-	case 'C':
-		listaPersonagens->setEntidade(construtorEntidade->criarCapanga(pos));
+	case 'c':
+		listaPersonagens->addEntidade(construtorEntidade->criarCapanga(pos));
 		break;
 
 	case 'B':
-		listaPersonagens->setEntidade(construtorEntidade->criarChefeMafia(pos));
+		listaPersonagens->addEntidade(construtorEntidade->criarChefeMafia(pos));
+		break;
+	default:
 		break;
 	}
 }

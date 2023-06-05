@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Arquivos de Recurso">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Arquivos .h">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Arquivos .cpp">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Arquivos .h\Ente">
+      <UniqueIdentifier>{72ebdb93-5a10-45c8-a134-c282febad3a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .h\Ente\Fase">
+      <UniqueIdentifier>{91f509d9-7246-464e-95e6-4f031a865b54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .h\Ente\Observador">
+      <UniqueIdentifier>{1c1efa2c-b3e6-44e5-b1fb-fca91b641a88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .h\Ente\Entidade">
+      <UniqueIdentifier>{1aece238-34a8-4fc6-b775-577faa15a7cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .h\Ente\Estado">
+      <UniqueIdentifier>{e60a91f5-8d0b-4e1a-9b42-bb65d2ca3a34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .h\Ente\Menu">
+      <UniqueIdentifier>{7ddc3619-4805-466c-b6c6-2fcb331b270f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .h\Ente\Entidade\Personagem">
+      <UniqueIdentifier>{f46b220b-2d66-4a81-a2e9-e91760c9005d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .h\Ente\Entidade\Obstaculo">
+      <UniqueIdentifier>{167385f7-d5b7-42f5-a2b0-478f3735bb75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .h\Gerenciador">
+      <UniqueIdentifier>{f882f379-b467-425b-9475-cbcdfc7c3ef5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .h\Lista">
+      <UniqueIdentifier>{1a92df9e-00cb-421a-b165-a679335845ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .h\Construtor">
+      <UniqueIdentifier>{615d6892-c0f3-4ed4-8106-602c2110f0ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .h\Ente\Entidade\Personagem\Jogador">
+      <UniqueIdentifier>{001d9885-876b-4afd-b79c-506a5d944db5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .h\Ente\Entidade\Personagem\Inimigo">
+      <UniqueIdentifier>{51f47900-2029-4375-81ba-06bb2b69c5c8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Curitiba.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Bicicleta.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Botao.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Capanga.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Capivara.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="ChefeMafia.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstrutorEntidade.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstrutorFase.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Ente.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Entidade.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Estado.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="EstadoJogar.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="EstadoMenuPause.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="EstadoMenuPrincipal.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Fase.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="FaseParqueBarigui.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Gerenciador_Colisoes.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Gerenciador_Estados.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Gerenciador_Eventos.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Gerenciador_Grafico.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Inimigo.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Jacare.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Jogador.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Jogo.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="ListaEntidades.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="ListaObservadores.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuPause.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuPrincipal.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Observador.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="ObservadorFase.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="ObservadorJogador.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="ObservadorMenuPause.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="ObservadorMenuPrincipal.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstaculo.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Personagem.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Plataforma.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Policial.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Projetil.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="SalvaJogo.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Arvore.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Lixo.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Beco.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Botao.h">
+      <Filter>Arquivos .h</Filter>
+    </ClInclude>
+    <ClInclude Include="IDs.h">
+      <Filter>Arquivos .h</Filter>
+    </ClInclude>
+    <ClInclude Include="Jogo.h">
+      <Filter>Arquivos .h</Filter>
+    </ClInclude>
+    <ClInclude Include="SalvaJogo.h">
+      <Filter>Arquivos .h</Filter>
+    </ClInclude>
+    <ClInclude Include="Bicicleta.h">
+      <Filter>Arquivos .h\Ente\Entidade\Obstaculo</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstrutorEntidade.h">
+      <Filter>Arquivos .h\Construtor</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstrutorFase.h">
+      <Filter>Arquivos .h\Construtor</Filter>
+    </ClInclude>
+    <ClInclude Include="Entidade.h">
+      <Filter>Arquivos .h\Ente\Entidade</Filter>
+    </ClInclude>
+    <ClInclude Include="Ente.h">
+      <Filter>Arquivos .h\Ente</Filter>
+    </ClInclude>
+    <ClInclude Include="Estado.h">
+      <Filter>Arquivos .h\Ente\Estado</Filter>
+    </ClInclude>
+    <ClInclude Include="EstadoJogar.h">
+      <Filter>Arquivos .h\Ente\Estado</Filter>
+    </ClInclude>
+    <ClInclude Include="EstadoMenuPause.h">
+      <Filter>Arquivos .h\Ente\Estado</Filter>
+    </ClInclude>
+    <ClInclude Include="EstadoMenuPrincipal.h">
+      <Filter>Arquivos .h\Ente\Estado</Filter>
+    </ClInclude>
+    <ClInclude Include="Fase.h">
+      <Filter>Arquivos .h\Ente\Fase</Filter>
+    </ClInclude>
+    <ClInclude Include="FaseParqueBarigui.h">
+      <Filter>Arquivos .h\Ente\Fase</Filter>
+    </ClInclude>
+    <ClInclude Include="Gerenciador_Colisoes.h">
+      <Filter>Arquivos .h\Gerenciador</Filter>
+    </ClInclude>
+    <ClInclude Include="Gerenciador_Estados.h">
+      <Filter>Arquivos .h\Gerenciador</Filter>
+    </ClInclude>
+    <ClInclude Include="Gerenciador_Eventos.h">
+      <Filter>Arquivos .h\Gerenciador</Filter>
+    </ClInclude>
+    <ClInclude Include="Gerenciador_Grafico.h">
+      <Filter>Arquivos .h\Gerenciador</Filter>
+    </ClInclude>
+    <ClInclude Include="Lista.h">
+      <Filter>Arquivos .h\Lista</Filter>
+    </ClInclude>
+    <ClInclude Include="ListaEntidades.h">
+      <Filter>Arquivos .h\Lista</Filter>
+    </ClInclude>
+    <ClInclude Include="ListaObservadores.h">
+      <Filter>Arquivos .h\Lista</Filter>
+    </ClInclude>
+    <ClInclude Include="Menu.h">
+      <Filter>Arquivos .h\Ente\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuPause.h">
+      <Filter>Arquivos .h\Ente\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuPrincipal.h">
+      <Filter>Arquivos .h\Ente\Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="Observador.h">
+      <Filter>Arquivos .h\Ente\Observador</Filter>
+    </ClInclude>
+    <ClInclude Include="ObservadorFase.h">
+      <Filter>Arquivos .h\Ente\Observador</Filter>
+    </ClInclude>
+    <ClInclude Include="ObservadorJogador.h">
+      <Filter>Arquivos .h\Ente\Observador</Filter>
+    </ClInclude>
+    <ClInclude Include="ObservadorMenuPause.h">
+      <Filter>Arquivos .h\Ente\Observador</Filter>
+    </ClInclude>
+    <ClInclude Include="ObservadorMenuPrincipal.h">
+      <Filter>Arquivos .h\Ente\Observador</Filter>
+    </ClInclude>
+    <ClInclude Include="Projetil.h">
+      <Filter>Arquivos .h\Ente\Entidade</Filter>
+    </ClInclude>
+    <ClInclude Include="Plataforma.h">
+      <Filter>Arquivos .h\Ente\Entidade\Obstaculo</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstaculo.h">
+      <Filter>Arquivos .h\Ente\Entidade\Obstaculo</Filter>
+    </ClInclude>
+    <ClInclude Include="Personagem.h">
+      <Filter>Arquivos .h\Ente\Entidade\Personagem</Filter>
+    </ClInclude>
+    <ClInclude Include="Capanga.h">
+      <Filter>Arquivos .h\Ente\Entidade\Personagem\Inimigo</Filter>
+    </ClInclude>
+    <ClInclude Include="Capivara.h">
+      <Filter>Arquivos .h\Ente\Entidade\Personagem\Jogador</Filter>
+    </ClInclude>
+    <ClInclude Include="ChefeMafia.h">
+      <Filter>Arquivos .h\Ente\Entidade\Personagem\Inimigo</Filter>
+    </ClInclude>
+    <ClInclude Include="Inimigo.h">
+      <Filter>Arquivos .h\Ente\Entidade\Personagem\Inimigo</Filter>
+    </ClInclude>
+    <ClInclude Include="Jogador.h">
+      <Filter>Arquivos .h\Ente\Entidade\Personagem\Jogador</Filter>
+    </ClInclude>
+    <ClInclude Include="Jacare.h">
+      <Filter>Arquivos .h\Ente\Entidade\Personagem\Inimigo</Filter>
+    </ClInclude>
+    <ClInclude Include="Policial.h">
+      <Filter>Arquivos .h\Ente\Entidade\Personagem\Jogador</Filter>
+    </ClInclude>
+    <ClInclude Include="Lixo.h">
+      <Filter>Arquivos .h</Filter>
+    </ClInclude>
+    <ClInclude Include="Arvore.h">
+      <Filter>Arquivos .h\Ente\Entidade\Obstaculo</Filter>
+    </ClInclude>
+    <ClInclude Include="Beco.h">
+      <Filter>Arquivos .h</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

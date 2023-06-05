@@ -3,8 +3,8 @@ using namespace Obstaculos;
 
 Bicicleta::Bicicleta(Vector2f pos) :
 	Obstaculo(IDs::bicicleta, pos),
-	//Personagem(IDs::bicicleta, pos),
-	pula(false)
+	nivel_ricochete(0),
+	velocidade()
 {
 }
 
@@ -12,14 +12,22 @@ Bicicleta::~Bicicleta()
 {
 }
 
-void Bicicleta::mover(const char* direcao)
+void Bicicleta::inicializaAtributos()
 {
+	time_t t;
+	srand((unsigned)time(&t));
+
+	nivel_ricochete = rand() % 101 + 150;
+	velocidade = Vector2f((rand() % 5 + 1) / -10.f, 0.f);
 }
 
-void Bicicleta::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
+void Bicicleta::mover()
 {
+	corpo.move(velocidade);
+	posicao = corpo.getPosition();
 }
 
 void Bicicleta::executar()
 {
+	desenhar_se();
 }

@@ -4,8 +4,8 @@
 using namespace Fases;
 #include"IDs.h"
 #include"FaseParqueBarigui.h"
-#include"Jogador.h"
-#include "Capivara.h"//
+#include"Policial.h"
+#include"Capivara.h"//
 
 namespace Estados
 {
@@ -14,11 +14,11 @@ namespace Estados
 	private:
 		Fase* fase; // agregado aqui
 
-		Jogador* jogador1;
-		//Jogador* jogador2; // criaria outro jogador com seu observador
+		Capivara* jogador1;
+		//Policial* jogador2; // criaria outro jogador com seu observador
 
 	public:
-		EstadoJogar(IDs id_fase);
+		EstadoJogar(const IDs id_fase = {});
 		~EstadoJogar();
 
 		void executar();

@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 using namespace sf;
 #include "Ente.h"
+#include"SalvaJogo.h"
 
 namespace Menus
 {
@@ -11,9 +12,10 @@ namespace Menus
 		// botoes
 
 		Text texto;
+		SalvaJogo load;
 
 	public:
-		Menu(const IDs id);
+		Menu(const IDs id = {});
 		~Menu();
 
 		virtual void verificaClique(Vector2f posMouse) = 0;

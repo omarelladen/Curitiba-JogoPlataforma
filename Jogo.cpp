@@ -7,7 +7,7 @@ Jogo::Jogo():
 	gerenciador_estados(Gerenciador_Estados::getGerenciadorEstados())
 {
 	// Manda criar e adicionar o Estado Menu Principal
-		gerenciador_estados->adicionarEstado
+		gerenciador_estados->addEstado
 	(
 		gerenciador_estados->criarEstadoMenuPrincipal()
 	);

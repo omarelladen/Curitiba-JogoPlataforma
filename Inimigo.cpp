@@ -1,8 +1,9 @@
 #include"Inimigo.h"
+#include"Projetil.h"
 #include<list>
 using namespace std;
 
-Inimigo::Inimigo(const IDs id, Vector2f pos, Jogador* player, Vector2f pos_i, Vector2f pos_f) :
+Inimigo::Inimigo(const IDs id, Vector2f pos, Capivara* player, Vector2f pos_i, Vector2f pos_f) :
     Personagem(id, pos),
     alvo(player),
     nivel_maldade(0),
@@ -11,8 +12,9 @@ Inimigo::Inimigo(const IDs id, Vector2f pos, Jogador* player, Vector2f pos_i, Ve
     pos_ini(pos_i),
     pos_fin(pos_f)
 {
-    velocidade.x = 2.f;
     corpo.setFillColor(Color::Red);
+    corpo.setSize(tam_corpo);
+    corpo.setPosition(pos);
 }
 
 Inimigo::~Inimigo()
@@ -20,38 +22,14 @@ Inimigo::~Inimigo()
     alvo = nullptr;
 }
 
+const int Inimigo::getNivelMaldade() const
+{
+    return nivel_maldade;
+}
+
 void Inimigo::operator++()
 {
     nivel_maldade++;
-}
-
-void Inimigo::mover(const char* direcao)
-{
-    atirar();
-
-    Vector2f pos_alvo = alvo->getPosicao() + alvo->getTamanho() / 2.f;
-    Vector2f pos_perseguidor = posicao + tam_corpo / 2.f;
-
-    if (fabs(pos_alvo.x - pos_perseguidor.x) < RAIO_PERSEGUICAO_X && nivel_maldade >= 10)
-    {
-        perseguirAlvo();
-    }
-
-    tempo = relogio.restart();
-    velocidade.y = 0.f;
-    formaPadraoMover();
-    corpo.move(velocidade);
-
-    //Efeito Gravidade
-
-    if (velocidade.y <= MAX_VEL)
-    {
-        tempo = relogio.getElapsedTime();
-        velocidade.y += (GRAVIDADE * (tempo.asSeconds() / (float)100.0));
-    }
-    corpo.move(0.f, velocidade.y);
-
-    posicao = corpo.getPosition();
 }
 
 void Inimigo::formaPadraoMover()
@@ -105,105 +83,6 @@ void Inimigo::setProjetil(Projetil* proj)
         projs.push_back(proj);
 }
 
-void Inimigo::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
-{
-    esta_no_chao = false;
-    switch (id)
-    {
-    case IDs::plataforma:
-    {
-        if (distancia_colisao != Vector2f(0.f, 0.f))
-        {
-            //Colisao em x
-            if (distancia_colisao.x > distancia_colisao.y)
-            {
-                distancia_colisao.y = 0.f;
-                //Colisao Esquerda
-                if (posicao.x < ent->getPosicao().x)
-                {
-                    setPosicao(posicao + distancia_colisao);
-                }
-                //Colisao Direita
-                else
-                {
-                    setPosicao(posicao - distancia_colisao);
-                }
-            }
-            //Colisao em y
-            else
-            {
-                distancia_colisao.x = 0.f;
-                //Colisao Cima
-                if (posicao.y < ent->getPosicao().y)
-                {
-                    setPosicao(posicao + distancia_colisao);
-                    esta_no_chao = true;
-                }
-                //Colisao Baixo
-                else
-                {
-                    setPosicao(posicao - distancia_colisao);
-                }
-            }
-        }
-    }
-    break;
-
-    case IDs::capivara:
-    {
-        if (nivel_maldade >= 10)
-        {
-            Jogador* pJog = static_cast<Jogador*>(ent);
-            pJog->operator--();
-        }
-        if (distancia_colisao != Vector2f(0.f, 0.f))
-        {
-            //Colisao em x
-            if (distancia_colisao.x > distancia_colisao.y)
-            {
-                distancia_colisao.y = 0.f;
-                //Colisao Esquerda
-                if (posicao.x < ent->getPosicao().x)
-                {
-                    setPosicao(posicao + distancia_colisao);
-                }
-                //Colisao Direita
-                else
-                {
-                    setPosicao(posicao - distancia_colisao);
-                }
-            }
-            //Colisao em y
-            else
-            {
-                distancia_colisao.x = 0.f;
-                //Colisao Cima
-                if (posicao.y < ent->getPosicao().y)
-                {
-                    setPosicao(posicao + distancia_colisao);
-                }
-                //Colisao Baixo
-                else
-                {
-                    setPosicao(posicao - distancia_colisao);
-                }
-            }
-        }
-    }
-    break;
-
-    case IDs::canto:
-    {
-        setPosicao(posicao - distancia_colisao);
-    }
-
-    default: {
-        cout << "Erro Colisao Inimigo" << endl;
-    }
-           break;
-    }
-}
-
 void Inimigo::atirar()
 {
     list<Projetil*>::iterator it;
@@ -213,7 +92,7 @@ void Inimigo::atirar()
         {
             if ((*it)->getPosicao().x >= pos_ini.x && (*it)->getPosicao().x <= pos_fin.x)
             {
-                (*it)->mover();
+                (*it)->executar();
             }
             else
             {

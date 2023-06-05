@@ -32,16 +32,15 @@ namespace Entidades
 			~Jogador();
 
 			void operator++();
-			void operator--();
 
 			const int getPontos();
 
 			void mover(const char* direcao);
 			void parar();
 
-			void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao);
-
 			void executar();
+
+			void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao) = 0;
 		};
 	}
 }

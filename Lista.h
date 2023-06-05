@@ -44,7 +44,7 @@ namespace Listas
 
 		void clear();
 
-		void setElemento(TypeL* elem);
+		void addElemento(TypeL* elem);
 		void deleteElemento(TypeL* elem);
 
 		TypeL* getClassOrigin(int pos);
@@ -98,7 +98,7 @@ inline void Lista<TypeL>::clear()
 }
 
 template<class TypeL>
-void Lista<TypeL>::setElemento(TypeL* class_o)
+void Lista<TypeL>::addElemento(TypeL* class_o)
 {
 	if (class_o)
 	{
@@ -194,11 +194,13 @@ TypeL* Lista<TypeL>::getClassOrigin(int pos)
 		{
 			for (int i = 0; i < pos; i++)
 			{
+				//cout << i << " " << pos << " " << tam << endl;
 				if (temp)
 				{
 					temp = temp->getPProx();
 				}
 			}
+			//if(temp)
 			return temp->getClassOrigin();
 		}
 		else
@@ -215,7 +217,7 @@ TypeL* Lista<TypeL>::getClassOrigin(int pos)
 }
 
 template<class TypeL>
-TypeL* Listas::Lista<TypeL>::operator[](int pos)
+TypeL* Lista<TypeL>::operator[](int pos)
 {
 	return getClassOrigin(pos);
 }
@@ -242,7 +244,7 @@ inline Lista<TypeL>::Elemento<TypeE>::Elemento() :
 
 template<class TypeL>
 template<class TypeE>
-inline Listas::Lista<TypeL>::Elemento<TypeE>::~Elemento()
+inline Lista<TypeL>::Elemento<TypeE>::~Elemento()
 {
 	pProx = nullptr;
 	pClass_origin = nullptr;
@@ -250,28 +252,28 @@ inline Listas::Lista<TypeL>::Elemento<TypeE>::~Elemento()
 
 template<class TypeL>
 template<class TypeE>
-inline void Listas::Lista<TypeL>::Elemento<TypeE>::setPProx(Elemento<TypeE>* pprox)
+inline void Lista<TypeL>::Elemento<TypeE>::setPProx(Elemento<TypeE>* pprox)
 {
 	pProx = pprox;
 }
 
 template<class TypeL>
 template<class TypeE>
-inline Listas::Lista<TypeL>::Elemento<TypeE>* Listas::Lista<TypeL>::Elemento<TypeE>::getPProx()
+inline Lista<TypeL>::Elemento<TypeE>* Lista<TypeL>::Elemento<TypeE>::getPProx()
 {
 	return pProx;
 }
 
 template<class TypeL>
 template<class TypeE>
-inline void Listas::Lista<TypeL>::Elemento<TypeE>::setClassOrigin(TypeE* co)
+inline void Lista<TypeL>::Elemento<TypeE>::setClassOrigin(TypeE* co)
 {
 	pClass_origin = co;
 }
 
 template<class TypeL>
 template<class TypeE>
-inline TypeE* Listas::Lista<TypeL>::Elemento<TypeE>::getClassOrigin()
+inline TypeE* Lista<TypeL>::Elemento<TypeE>::getClassOrigin()
 {
 	return pClass_origin;
 }

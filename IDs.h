@@ -10,6 +10,8 @@ enum class IDs
 	plataforma,
 	caixa,
 	bicicleta,
+	arvore,
+	lixo,
 	projetil,
 
 	canto,

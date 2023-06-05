@@ -7,8 +7,9 @@ Jogador::Jogador(const IDs id, Vector2f pos) :
     pontos(0),
     observadorJogador(nullptr)
 {
-    Vector2f pos_ini_player(0.f, 200.f);
+    Vector2f pos_ini_player(100.f, 300.f);
     corpo.setFillColor(Color::Blue);
+    corpo.setSize(tam_corpo);
     corpo.setPosition(pos_ini_player);
     posicao = pos_ini_player;
 
@@ -27,11 +28,6 @@ Jogador::~Jogador()
 void Jogador::operator++()
 {
     pontos++;
-}
-
-void Jogador::operator--()
-{
-    num_vidas--;
 }
 
 const int Jogador::getPontos()
@@ -85,11 +81,11 @@ void Jogador::mover(const char* direcao)
         {
             if (direcao == "Cima++")
             {
-                velocidade.y = -3.f;
+                velocidade.y = -2.5f;
             }
             else if (direcao == "Cima")
             {
-                velocidade.y = -1.f;
+                velocidade.y = -1.5f;
             }
             corpo.move(0.f, velocidade.y);
 
@@ -122,133 +118,11 @@ void Jogador::mover(const char* direcao)
 void Jogador::parar()
 {
     velocidade.x = 0.f;
-    velocidade.y = 0.f;
-}
-
-void Jogador::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
-{
-    esta_no_chao = false;
-    switch (id)
-    {
-    case IDs::capanga:
-    {
-        if (distancia_colisao != Vector2f(0.f, 0.f))
-        {
-            //Colisao em x
-
-            if (distancia_colisao.x > distancia_colisao.y)
-            {
-                distancia_colisao.y = 0.f;
-
-                //Colisao Esquerda
-
-                if (posicao.x < ent->getPosicao().x)
-                {
-                    setPosicao(posicao + distancia_colisao);
-                }
-
-                //Colisao Direita
-
-                else
-                {
-                    setPosicao(posicao - distancia_colisao);
-                }
-            }
-
-            //Colisao em y
-
-            else
-            {
-                distancia_colisao.x = 0.f;
-
-                //Colisao Cima
-
-                if (posicao.y < ent->getPosicao().y)
-                {
-                    esta_no_chao = true;
-                    executar();
-                    setPosicao(posicao + distancia_colisao);
-                }
-
-                //Colisao Baixo
-
-                else
-                {
-                    setPosicao(posicao - distancia_colisao);
-                }
-            }
-        }
-    }
-    break;
-
-    case IDs::plataforma:
-    {
-        if (distancia_colisao != Vector2f(0.f, 0.f))
-        {
-            //Colisao em x
-
-            if (distancia_colisao.x > distancia_colisao.y)
-            {
-                distancia_colisao.y = 0.f;
-
-                //Colisao Esquerda
-
-                if (posicao.x < ent->getPosicao().x)
-                {
-                    setPosicao(posicao + distancia_colisao);
-                }
-
-                //Colisao Direita
-
-                else
-                {
-                    setPosicao(posicao - distancia_colisao);
-                }
-            }
-
-            //Colisao em y
-
-            else
-            {
-                distancia_colisao.x = 0.f;
-                //Colisao Cima
-
-                if (posicao.y < ent->getPosicao().y)
-                {
-                    esta_no_chao = true;
-                    executar();
-                    setPosicao(posicao + distancia_colisao);
-                }
-                //Colisao Baixo
-
-                else
-                {
-                    setPosicao(posicao - distancia_colisao);
-                }
-            }
-        }
-    }
-    break;
-
-    case IDs::projetil:
-    {
-        this->operator--();
-    }
-
-    case IDs::canto:
-    {
-        setPosicao(posicao - distancia_colisao);
-    }
-    break;
-
-    default: {
-        cout << "Erro Colisao Jogador" << endl;
-    }
-           break;
-    }
 }
 
 void Jogador::executar()
 {
+    if (!esta_no_chao)
+        mover("");
     desenhar_se();
 }

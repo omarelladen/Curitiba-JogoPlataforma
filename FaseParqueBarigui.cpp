@@ -2,10 +2,8 @@
 using namespace Fases;
 
 FaseParqueBarigui::FaseParqueBarigui() :
-	Fase(IDs::fase_barigui) // acusando ambiguidade (?)
+	Fase(IDs::fase_barigui)
 {
-	// criar Mapa () ?? - ja esta no EstadoJogar() - ou aqui
-	criarMapa();
 }
 
 FaseParqueBarigui::~FaseParqueBarigui()
@@ -17,7 +15,7 @@ void FaseParqueBarigui::criarMapa()
 	ifstream arquivo;
 	string linha;
 
-	arquivo.open("C:/Users/User/Desktop/tecprog2023.1/TesteJogo/TesteJogo/Mapas/MapaParqueBarigui.txt");
+	arquivo.open("C:/Users/felpi/Documents/Jogo_Simao/Curitiba/Mapas/MapaParqueBarigui.txt");
 
 	
 	if (!arquivo.is_open())

@@ -10,7 +10,7 @@ namespace Estados
 		Gerenciador_Estados* pGerenciadorEstados;
 
 	public:
-		Estado(const IDs id);
+		Estado(const IDs id = {});
 		~Estado();
 
 		virtual void executar() = 0;

@@ -1,6 +1,5 @@
 #pragma once
-#include"Capivara.h"
-#include"Policial.h"
+#include"Entidade.h"
 using namespace Personagens;
 
 namespace Entidades
@@ -8,6 +7,7 @@ namespace Entidades
 	namespace Personagens
 	{
 		class Inimigo;
+		class Capivara;
 	}
 	using namespace Personagens;
 

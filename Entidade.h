@@ -11,6 +11,8 @@ namespace Entidades
 		RectangleShape corpo;
 		Vector2f posicao;
 		Vector2f tam_corpo;
+		Time tempo;
+		Clock relogio;
 		bool esta_no_chao;
 
 	public:
@@ -18,7 +20,7 @@ namespace Entidades
 		~Entidade();
 
 		void setEstaNoChao(const bool c);
-		virtual void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao);
+		const bool getEstaNoChao();
 
 		void setPosicao(Vector2f pos);
 		Vector2f getPosicao() const;
@@ -28,8 +30,9 @@ namespace Entidades
 
 		const RectangleShape getCorpo() const;
 
-		void desenhar_se();
+		virtual void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao);
 		virtual void mover(const char* direcao);
+		void desenhar_se();
 		virtual void executar() = 0;
 	};
 }

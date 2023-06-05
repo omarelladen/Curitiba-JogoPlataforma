@@ -11,14 +11,15 @@ Botao::Botao(Vector2f pos, Vector2f tam, string t, Color c):
 
 	fonte = new Font();
 
-	fonte->loadFromFile("C:/Users/User/Desktop/tecprog2023.1/TesteJogo/TesteJogo/Fonte/SparkyStonesRegular-BW6ld.ttf"); //
+	fonte->loadFromFile("C:/Users/felpi/Documents/Jogo_Simao/Curitiba/Fonte/SparkyStonesRegular-BW6ld.ttf"); //
 
-	texto.setFont(*this->fonte);
+	texto.setFont(*fonte);
 	texto.setString(t);
-	texto.setFillColor(Color::White);
-	texto.setCharacterSize(15);
-	texto.setPosition(forma.getPosition().x / 2.f - texto.getGlobalBounds().width / 2.f,
-		forma.getPosition().y / 2.f - texto.getGlobalBounds().width / 2.f);
+	texto.setFillColor(Color::Black);
+	texto.setOutlineColor(Color::Magenta);
+	texto.setCharacterSize(25);
+	texto.setPosition(forma.getPosition().x + forma.getSize().x / 2.f - texto.getGlobalBounds().width / 2.f,
+					  forma.getPosition().y + forma.getSize().y / 2.f - texto.getGlobalBounds().height);
 
 	forma.setFillColor(c);
 }

@@ -1,7 +1,7 @@
 #include"ObservadorJogador.h"
 using namespace Observers;
 
-Observers::ObservadorJogador::ObservadorJogador(Jogador* pJ):
+ObservadorJogador::ObservadorJogador(Jogador* pJ):
 	Observador(IDs::jogo),
 	pJogador(nullptr)
 {
@@ -9,12 +9,12 @@ Observers::ObservadorJogador::ObservadorJogador(Jogador* pJ):
 		pJogador = pJ;
 }
 
-Observers::ObservadorJogador::~ObservadorJogador()
+ObservadorJogador::~ObservadorJogador()
 {
 	pJogador = nullptr;
 }
 
-void Observers::ObservadorJogador::teclaPressionada(const Keyboard::Key tecla)
+void ObservadorJogador::teclaPressionada(const Keyboard::Key tecla)
 {
 	//if(!pJogador->jogador2)
 	switch (tecla)
@@ -22,29 +22,44 @@ void Observers::ObservadorJogador::teclaPressionada(const Keyboard::Key tecla)
 	// Pular
 	case (Keyboard::W):
 	{
-		if (Keyboard::isKeyPressed(Keyboard::LShift))
-			pJogador->mover("Cima++");
-		else
-			pJogador->mover("Cima");
+		//cout << pJogador->getEstaNoChao() << endl;
+		if (pJogador->getEstaNoChao())
+		{
+			if (Keyboard::isKeyPressed(Keyboard::LShift))
+				pJogador->mover("Cima++");
+			else
+				pJogador->mover("Cima");
+
+			pJogador->setEstaNoChao(false);
+		}
 	}
 		break;
 
 	// Andar para a esquerda
 	case (Keyboard::A):
+	{
 		pJogador->mover("Esquerda");
+	}
 		break;
 
 	case (Keyboard::S):
-		pJogador->mover("Baixo");
+	{
+		if(!pJogador->getEstaNoChao())
+			pJogador->mover("Baixo");
+	}
 		break;
 
 	// Andar para a direita
 	case (Keyboard::D):
+	{
 		pJogador->mover("Direita");
+	}
 		break;
 
 	default:
-		pJogador->mover("");
+	{
+		//cout << "Erro Movimento Jogador no ObservadorJogador" << endl;
+	}
 		break;
 	}
 
@@ -84,7 +99,7 @@ void Observers::ObservadorJogador::teclaPressionada(const Keyboard::Key tecla)
 	*/
 }
 
-void Observers::ObservadorJogador::teclaSolta(const Keyboard::Key tecla)
+void ObservadorJogador::teclaSolta(const Keyboard::Key tecla)
 {
 	switch (tecla)
 	{
@@ -101,6 +116,7 @@ void Observers::ObservadorJogador::teclaSolta(const Keyboard::Key tecla)
 	break;
 
 	default:
+		pJogador->mover("");
 		break;
 	}
 }

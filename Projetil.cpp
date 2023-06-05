@@ -1,5 +1,6 @@
 #include"Projetil.h"
 #include"Inimigo.h"
+#include"Capivara.h"
 using namespace Entidades::Personagens;
 
 Projetil::Projetil(Vector2f pos, Vector2f vel) :
@@ -32,65 +33,91 @@ const int Projetil::getDano() const
 
 void Projetil::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 {
-    switch (id)
+    if (atirador)
     {
-    case IDs::capivara:
-    {
-        if (atirador && atirador->getID() == IDs::jacare)
+        if (posicao.x > atirador->getPosicao().x)
         {
-            Inimigo* pInim = static_cast<Personagens::Inimigo*>(atirador);
-            pInim->operator++();
-        }
-    }
-    break;
-
-    case IDs::capanga:
-    {
-        if (atirador && atirador->getID() == IDs::policial)
-        {
-            Policial* pJog = static_cast<Policial*>(atirador);
-            pJog->operator++();
-        }
-    }
-    break;
-
-    case IDs::plataforma:
-    {
-
-    }
-    break;
-
-    case IDs::canto:
-    {
-        if (atirador)
-        {
-            if (posicao.x > atirador->getPosicao().x)
-            {
-                setPosicao(Vector2f(atirador->getPosicao().x + atirador->getTamanho().x + 5.f,
-                    atirador->getPosicao().y + atirador->getTamanho().y / 2.f));
-            }
-            else
-            {
-                setPosicao(Vector2f(atirador->getPosicao().x - tam_corpo.x - 5.f,
-                    atirador->getPosicao().y + atirador->getTamanho().y / 2.f));
-            }
+            setPosicao(Vector2f(atirador->getPosicao().x + atirador->getTamanho().x + 5.f,
+                atirador->getPosicao().y + atirador->getTamanho().y / 2.f));
         }
         else
         {
-            cout << "Erro - Projetil sem atirador" << endl;
+            setPosicao(Vector2f(atirador->getPosicao().x - tam_corpo.x - 5.f,
+                atirador->getPosicao().y + atirador->getTamanho().y / 2.f));
+        }
+
+        //id eh de quem eh atacado
+        switch (id)
+        {
+        case IDs::capivara:
+        {
+            switch (atirador->getID())
+            {
+            case IDs::capanga:
+            {
+
+            }
+            default:
+                break;
+            } 
+        }
+        break;
+
+        case IDs::jacare:
+        {
+
+        }
+
+        case IDs::capanga:
+        {
+            if (atirador->getID() == IDs::capivara)
+            {
+                Capivara* pJog = static_cast<Capivara*>(atirador);
+                pJog->operator++();
+            }
+        }
+        break;
+
+        case IDs::chefeMafia:
+        {
+
+        }
+
+        case IDs::plataforma:
+        {
+
+        }
+        break;
+
+        case IDs::canto:
+        {
+
+        }
+        break;
+
+        default: {
+            cout << "Erro Colisao Projetil" << endl;
+        }
+               break;
         }
     }
-    break;
-
-    default: {
-        cout << "Erro Colisao Projetil" << endl;
-    }
-           break;
+    else
+    {
+        cout << "Erro - Projetil sem atirador" << endl;
     }
 }
 
 void Projetil::mover()
 {
+    //Efeito Gravidade
+
+    if (velocidade.y <= MAX_VEL)
+    {
+        tempo = relogio.getElapsedTime();
+        velocidade.y += (GRAVIDADE * (tempo.asSeconds() / (float)100.0));
+    }
+    corpo.move(0.f, velocidade.y);
+
     corpo.move(velocidade);
     posicao = corpo.getPosition();
 }
@@ -98,5 +125,5 @@ void Projetil::mover()
 void Projetil::executar()
 {
     desenhar_se();
-    //Mover é chamado pelo atirador.
+    mover();
 }
