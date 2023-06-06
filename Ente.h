@@ -19,7 +19,11 @@ public:
 	~Ente();
 
 	const IDs getID() const;
+
 	static Gerenciador_Grafico* getManager();
+
+	static void setCont(const int con);
+	static int getCont();
 
 	virtual void executar() = 0;
 };

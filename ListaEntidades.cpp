@@ -103,9 +103,40 @@ Entidade* ListaEntidades::operator[](int pos)
     return listaEntidades[pos];
 }
 
-const int ListaEntidades::getTamLista() const//
+void ListaEntidades::salvarEntidades()
+{
+    for (int i = 0; i < getTamLista(); i++)
+    {
+        getEntidade(i)->salvar();
+    }
+}
+
+void ListaEntidades::recuperarEntidades()
+{
+    Capivara jogador;
+    ChefeMafia mafioso;
+    Capanga capanga;
+    Jacare crocodilo;
+    Arvore arvore;
+    Lixo lixao;
+    Bicicleta bike;
+    Chao piso;
+
+    this->operator=(*(jogador.recuperar()));
+    
+}
+
+const int ListaEntidades::getTamLista() const
 {
     return listaEntidades.size();
+}
+
+void ListaEntidades::operator=(ListaEntidades& list)
+{
+    for (int i = 0; i < list.getTamLista(); i++)
+    {
+        addEntidade(list[i]);
+    }
 }
 
 void ListaEntidades::executar()

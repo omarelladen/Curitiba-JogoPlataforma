@@ -16,8 +16,17 @@ namespace Entidades
 			~Lixo();
 
 			void inicializaAtributos();
+
+			void salvar();
+			ListaEntidades* recuperar();
+
+			void setDano(const int d);
 			const int getDano() const;
+
+			void setTempoRetardo(const int tr);
 			const int getTempoRetardo() const;
+
+			void executar();
 		};
 	}
 }

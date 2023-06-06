@@ -55,7 +55,7 @@ void Fase::adicionarJogador(Jogador* pJ)
 {
 	if (pJ)
 	{
-		construtorEntidade->setJogador(pJ);//
+		construtorEntidade->setJogador(static_cast<Capivara*>(pJ));//
 		listaPersonagens->addEntidade(pJ);
 	}
 }

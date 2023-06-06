@@ -4,13 +4,7 @@ using namespace std;
 #include"Personagem.h"
 #include"Capivara.h"
 
-namespace Entidades
-{
-	class Projetil;
-}
-using namespace Entidades;
-
-constexpr auto RAIO_PERSEGUICAO_X = static_cast<float>(100);
+#define RAIO_PERSEGUICAO_X 100.f
 
 namespace Entidades
 {
@@ -21,25 +15,25 @@ namespace Entidades
 		protected:
 			bool indo;
 			Capivara* alvo;
-			list<Projetil*> projs;
 			Vector2f pos_ini;
 			Vector2f pos_fin;
 
 		public:
-			Inimigo(const IDs id = {}, Vector2f pos = Vector2f(0.f, 0.f), Capivara* player = nullptr,
-				Vector2f pos_i = Vector2f(0.f, 0.f), Vector2f pos_f = Vector2f(0.f, 0.f));
+			Inimigo(const IDs id = {}, Vector2f pos = Vector2f(0.f, 0.f), 
+					Vector2f pos_i = Vector2f(0.f, 0.f), Vector2f pos_f = Vector2f(0.f, 0.f));
 			~Inimigo();
 
-			const int getNivelMaldade() const;
-			void operator++();
 			void formaPadraoMover();
 			void perseguirAlvo();
 
-			void setProjetil(Projetil* proj);
-			void atirar();
+			void setAlvo(Capivara* target);
+
+			void setIndo(const bool ind);
 
 			void executar();
 
+			virtual void salvar() = 0;
+			virtual ListaEntidades* recuperar() = 0;
 			void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao) = 0;
 			void mover(const char* direcao) = 0;
 		};

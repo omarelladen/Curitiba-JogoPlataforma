@@ -162,16 +162,10 @@
     <ClCompile Include="Personagem.cpp">
       <Filter>Arquivos .cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Plataforma.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Policial.cpp">
+    <ClCompile Include="Chao.cpp">
       <Filter>Arquivos .cpp</Filter>
     </ClCompile>
     <ClCompile Include="Projetil.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="SalvaJogo.cpp">
       <Filter>Arquivos .cpp</Filter>
     </ClCompile>
     <ClCompile Include="Arvore.cpp">
@@ -192,9 +186,6 @@
       <Filter>Arquivos .h</Filter>
     </ClInclude>
     <ClInclude Include="Jogo.h">
-      <Filter>Arquivos .h</Filter>
-    </ClInclude>
-    <ClInclude Include="SalvaJogo.h">
       <Filter>Arquivos .h</Filter>
     </ClInclude>
     <ClInclude Include="Bicicleta.h">
@@ -278,7 +269,7 @@
     <ClInclude Include="Projetil.h">
       <Filter>Arquivos .h\Ente\Entidade</Filter>
     </ClInclude>
-    <ClInclude Include="Plataforma.h">
+    <ClInclude Include="Chao.h">
       <Filter>Arquivos .h\Ente\Entidade\Obstaculo</Filter>
     </ClInclude>
     <ClInclude Include="Obstaculo.h">
@@ -305,17 +296,14 @@
     <ClInclude Include="Jacare.h">
       <Filter>Arquivos .h\Ente\Entidade\Personagem\Inimigo</Filter>
     </ClInclude>
-    <ClInclude Include="Policial.h">
-      <Filter>Arquivos .h\Ente\Entidade\Personagem\Jogador</Filter>
-    </ClInclude>
-    <ClInclude Include="Lixo.h">
-      <Filter>Arquivos .h</Filter>
-    </ClInclude>
     <ClInclude Include="Arvore.h">
       <Filter>Arquivos .h\Ente\Entidade\Obstaculo</Filter>
     </ClInclude>
+    <ClInclude Include="Lixo.h">
+      <Filter>Arquivos .h\Ente\Entidade\Obstaculo</Filter>
+    </ClInclude>
     <ClInclude Include="Beco.h">
-      <Filter>Arquivos .h</Filter>
+      <Filter>Arquivos .h\Ente\Fase</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

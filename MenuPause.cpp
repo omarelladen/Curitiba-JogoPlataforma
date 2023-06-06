@@ -31,14 +31,14 @@ MenuPause::~MenuPause()
 
 void MenuPause::verificaClique(Vector2f posMouse)
 {
-	if (Mouse::isButtonPressed(Mouse::Left)) //forma.getGlobalBounds().contains(posMouse))
-	{
+	//if (Mouse::isButtonPressed(Mouse::Left)) //forma.getGlobalBounds().contains(posMouse))
+	//{
 		if (botao_voltar->pressionado(posMouse))
 		{
 			Gerenciador_Eventos::getGerenciadorEventos()->desativaObservadores();
 
 			// ativar
-			Gerenciador_Eventos::getGerenciadorEventos()->ativaObservador(IDs::estadoJogar); // Obs ja existem
+			Gerenciador_Eventos::getGerenciadorEventos()->ativaObservador(IDs::jogo); // Obs ja existem
 	
 
 			// desempilha para voltar
@@ -47,12 +47,12 @@ void MenuPause::verificaClique(Vector2f posMouse)
 			
 		}
 		//else
-		if (botao_sair->pressionado(posMouse))
+		else if (botao_sair->pressionado(posMouse))
 		{
 			// Desempilha 2 estados (pause e jogo) pra voltar ao menu principal
 			Gerenciador_Estados::getGerenciadorEstados()->removerEstado(2); // desempilha o pause e o jog (n = 2)
 		}
-	}
+	//}
 }
 
 void MenuPause::desenhar_se()

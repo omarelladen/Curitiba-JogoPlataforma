@@ -1,35 +1,19 @@
 #include"Inimigo.h"
-#include"Projetil.h"
 #include<list>
 using namespace std;
 
-Inimigo::Inimigo(const IDs id, Vector2f pos, Capivara* player, Vector2f pos_i, Vector2f pos_f) :
+Inimigo::Inimigo(const IDs id, Vector2f pos, Vector2f pos_i, Vector2f pos_f) :
     Personagem(id, pos),
-    alvo(player),
-    nivel_maldade(0),
+    alvo(nullptr),
     indo(true),
-    projs(),
     pos_ini(pos_i),
     pos_fin(pos_f)
 {
-    corpo.setFillColor(Color::Red);
-    corpo.setSize(tam_corpo);
-    corpo.setPosition(pos);
 }
 
 Inimigo::~Inimigo()
 {
     alvo = nullptr;
-}
-
-const int Inimigo::getNivelMaldade() const
-{
-    return nivel_maldade;
-}
-
-void Inimigo::operator++()
-{
-    nivel_maldade++;
 }
 
 void Inimigo::formaPadraoMover()
@@ -77,29 +61,14 @@ void Inimigo::perseguirAlvo()
     }
 }
 
-void Inimigo::setProjetil(Projetil* proj)
+void Inimigo::setAlvo(Capivara* target)
 {
-    if (proj)
-        projs.push_back(proj);
+    alvo = target;
 }
 
-void Inimigo::atirar()
+void Inimigo::setIndo(const bool ind)
 {
-    list<Projetil*>::iterator it;
-    for (it = projs.begin(); it != projs.end(); it++)
-    {
-        if (*it)
-        {
-            if ((*it)->getPosicao().x >= pos_ini.x && (*it)->getPosicao().x <= pos_fin.x)
-            {
-                (*it)->executar();
-            }
-            else
-            {
-                (*it)->colisao(IDs::canto, nullptr, Vector2f(0.f, 0.f));
-            }
-        }
-    }
+    indo = ind;
 }
 
 void Inimigo::executar()

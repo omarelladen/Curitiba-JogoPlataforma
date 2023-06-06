@@ -1,6 +1,8 @@
 #pragma once
 #include "Inimigo.h"
 
+#define NUM_MAX_VIDAS 70
+
 namespace Entidades
 {
 	namespace Personagens
@@ -13,13 +15,23 @@ namespace Entidades
 			int vidas_regeneradas;
 
 		public:
-			ChefeMafia(Vector2f pos = Vector2f(0.f, 0.f), Capivara* pJ = nullptr);
+			ChefeMafia(Vector2f pos = Vector2f(0.f, 0.f));
 			~ChefeMafia();
 
 			void inicializaAtributos();
+
+			void setNivelForca(const int forca);
 			const int getNivelForca() const;
+
+			void setNivelMedo(const int medo);
 			const int getNivelMedo() const;
+
+			void setVidasRegeneradas(const int vidas);
+
 			void regeneraVida();
+
+			void salvar();
+			ListaEntidades* recuperar();
 
 			void mover(const char* direcao);
 			void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao);

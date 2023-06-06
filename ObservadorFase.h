@@ -12,7 +12,7 @@ namespace Observers
 		Fase* pFase;
 
 	public:
-		ObservadorFase(Fase* pF);
+		ObservadorFase(Fase* pF = nullptr);
 		~ObservadorFase();
 
 		//void teclaPressionada(const Keyboard::Key tecla);

@@ -6,12 +6,12 @@ Entidade::Entidade(const IDs id, Vector2f pos) : //
 	corpo(),
 	posicao(pos), // pos.x * cont
 	esta_no_chao(false),
-	tam_corpo(Vector2f(50.0f, 50.f)),
+	tam_corpo(),
 	tempo(),
-	relogio()
+	relogio(),
+	pListaEntidades(nullptr)
 {
 	corpo.setPosition(pos);
-	corpo.setSize(tam_corpo);
 	// rand
 	// lista direto de Entidade* //
 }
@@ -70,6 +70,11 @@ void Entidade::setTamanho(Vector2f tam)
 Vector2f Entidade::getTamanho() const
 {
 	return tam_corpo;
+}
+
+void Entidade::restartRelogio()
+{
+	tempo = relogio.restart();
 }
 
 const RectangleShape Entidade::getCorpo() const

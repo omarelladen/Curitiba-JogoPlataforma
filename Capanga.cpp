@@ -1,35 +1,139 @@
-#include "Capanga.h"
+#include"ListaEntidades.h"
+#include"Capanga.h"
 
-Capanga::Capanga(Vector2f pos, Capivara* pJ) :
-	Inimigo(IDs::capanga, pos, pJ),
+Capanga::Capanga(Vector2f pos) :
+	Inimigo(IDs::capanga, pos),
 	nivel_estupidez(0),
     tempo_congelado(0),
     congelado(false),
     nivel_tiro(0)
 {
+    inicializaAtributos();
 }
 
 Capanga::~Capanga()
 {
+    delete pListaEntidades;
+    pListaEntidades = nullptr;
 }
 
 void Capanga::inicializaAtributos()
 {
+    setTamanho(Vector2f(50.f, 100.f));
+
     time_t t;
     srand((unsigned)time(&t));
 
     nivel_estupidez = rand() % 20 + 1;
     tempo_congelado = rand() % 5 + 2;
     nivel_tiro = rand() % 3 + 2;
-
-    setTamanho(Vector2f(50.f, 100.f));
-
     num_vidas = rand() % 5 + 8;
 }
 
 const int Capanga::getNivelEstupidez() const
 {
 	return nivel_estupidez;
+}
+
+void Capanga::salvar()
+{
+    ofstream SalvaCapanga("SaveCapanga.dat", ios::out);
+
+    if (!SalvaCapanga)
+    {
+        cerr << "Arquivo nao pode ser aberto" << endl;
+        exit(1);
+    }
+
+    SalvaCapanga << posicao.x << ' '
+        << posicao.y << ' '
+        << num_vidas << ' '
+        << velocidade.x << ' '
+        << velocidade.y << ' '
+        << indo << ' '
+        << nivel_tiro << ' '
+        << nivel_estupidez << ' '
+        << tempo_congelado << ' ' 
+        << congelado << endl;
+
+    SalvaCapanga.close();
+}
+
+ListaEntidades* Capanga::recuperar()
+{
+    ifstream RecuperaSaveCapanga("SaveCapanga.dat", ios::in);
+
+    if (!RecuperaSaveCapanga)
+    {
+        cerr << "Arquivo nao pode ser aberto" << endl;
+        exit(1);
+    }
+
+    pListaEntidades = new ListaEntidades();
+    Capanga* pCapan = nullptr;
+    Vector2f pos;
+    int vidas;
+    Vector2f vel;
+    bool indo;
+    int tiro;
+    int estupidez;
+    int tempo_congelado;
+    bool congelado;
+
+    while (RecuperaSaveCapanga >> pos.x >> pos.y >> vidas >> vel.x >> vel.y >> 
+           indo >> tiro >> estupidez >> tempo_congelado >> congelado)
+    {
+        pCapan = new Capanga(pos);
+        if (pCapan)
+        {
+            pCapan->setNumVidas(vidas);
+            pCapan->setVelocidade(vel);
+            pCapan->setIndo(indo);
+            pCapan->setNivelTiro(tiro);
+            pCapan->setNivelEstupidez(estupidez);
+            pCapan->setTempoCongelado(tempo_congelado);
+            pCapan->setCongelado(congelado);
+            pListaEntidades->addEntidade(static_cast<Entidade*>(pCapan));
+        }
+    }
+    RecuperaSaveCapanga.close();
+
+    return pListaEntidades;
+}
+
+void Capanga::setNivelTiro(const int tiro)
+{
+    nivel_tiro = tiro;
+}
+
+const int Capanga::getNivelTiro() const
+{
+    return nivel_tiro;
+}
+
+void Capanga::setNivelEstupidez(const int estupidez)
+{
+    nivel_estupidez = estupidez;
+}
+
+void Capanga::setTempoCongelado(const int tc)
+{
+    tempo_congelado = tc;
+}
+
+const int Capanga::getTempoCongelado() const
+{
+    return tempo_congelado;
+}
+
+void Capanga::setCongelado(const bool conge)
+{
+    congelado = conge;
+}
+
+const bool Capanga::getCongelado() const
+{
+    return congelado;
 }
 
 void Capanga::mover(const char* direcao)
@@ -66,6 +170,14 @@ void Capanga::mover(const char* direcao)
         }
         posicao = corpo.getPosition();
     }
+    else
+    {
+        tempo = relogio.getElapsedTime();
+        if (tempo.asSeconds() >= tempo_congelado)
+        {
+            setCongelado(false);
+        }
+    }
 }
 
 void Capanga::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
@@ -74,7 +186,8 @@ void Capanga::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
     {
     case IDs::plataforma:
     {
-        
+        pos_ini.x = ent->getPosicao().x;
+        pos_fin.x = ent->getPosicao().x + ent->getTamanho().x;
     }
     break;
 

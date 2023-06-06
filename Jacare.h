@@ -13,11 +13,18 @@ namespace Entidades
 			//int tamanho;
 
 		public:
-			Jacare(Vector2f pos = Vector2f(0.f, 0.f), Capivara* pJogador = nullptr);
+			Jacare(Vector2f pos = Vector2f(0.f, 0.f));
 			~Jacare();
 
 			void inicializaAtributos();
+
+			void setNivelMordida(const int mordida);
 			const int getNivelMordida() const;
+
+			void setRaioSuperPulo(const int raio_pulo);
+
+			void salvar();
+			ListaEntidades* recuperar();
 
 			void mover(const char* direcao);
 			void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao);

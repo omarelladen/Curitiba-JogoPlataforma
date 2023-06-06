@@ -1,25 +1,44 @@
+#include"ListaEntidades.h"
+#include"Personagem.h"
 #include"Projetil.h"
-#include"Inimigo.h"
-#include"Capivara.h"
-using namespace Entidades::Personagens;
 
-Projetil::Projetil(Vector2f pos, Vector2f vel) :
+Projetil::Projetil(Vector2f pos) :
     Entidade(IDs::projetil, pos),
-    velocidade(vel),
+    velocidade(),
     dano(0),
     atirador(nullptr)
 {
+    inicializaAtributos();
 }
 
 Projetil::~Projetil()
 {
     atirador = nullptr;
+    delete pListaEntidades;
+    pListaEntidades = nullptr;
+}
+
+void Projetil::inicializaAtributos()
+{
+    setTamanho(Vector2f(7.f, 7.f));
+
+    time_t t;
+    srand((unsigned)time(&t));
+
+    velocidade = Vector2f((rand() % 11 + 10) / 10.f, 0.f);
+    dano = rand() % 3 + 5;
 }
 
 void Projetil::setAtirador(Personagem* atir)
 {
     atirador = atir;
 }
+
+void Projetil::setVelocidade(Vector2f vel)
+{
+    velocidade = vel;
+}
+
 
 void Projetil::setDano(const int d)
 {
@@ -31,7 +50,7 @@ const int Projetil::getDano() const
     return dano;
 }
 
-void Projetil::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
+/*void Projetil::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 {
     if (atirador)
     {
@@ -72,15 +91,21 @@ void Projetil::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
         {
             if (atirador->getID() == IDs::capivara)
             {
-                Capivara* pJog = static_cast<Capivara*>(atirador);
-                pJog->operator++();
+                Capanga* pCapa = static_cast<Capanga*>(ent);
+                pCapa->restartRelogio();
+                pCapa->setCongelado(true);
             }
         }
         break;
 
         case IDs::chefeMafia:
         {
-
+            if (atirador->getID() == IDs::capivara)
+            {
+                ChefeMafia* pCM = static_cast<ChefeMafia*>(ent);
+                Capivara* pCapi = static_cast<Capivara*>(atirador);
+                pCM->diminuirVida(pCapi->getForcaCuspe());
+            }
         }
 
         case IDs::plataforma:
@@ -105,6 +130,57 @@ void Projetil::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
     {
         cout << "Erro - Projetil sem atirador" << endl;
     }
+}*/
+
+void Projetil::salvar()
+{
+    ofstream SalvaProjetil("SaveProjetil.dat", ios::out);
+
+    if (!SalvaProjetil)
+    {
+        cerr << "Arquivo nao pode ser aberto" << endl;
+        exit(1);
+    }
+    
+    SalvaProjetil << posicao.x << ' '
+        << posicao.y << ' '
+        << velocidade.x << ' '
+        << velocidade.y << ' '
+        << dano << endl;
+
+    SalvaProjetil.close();
+}
+
+ListaEntidades* Projetil::recuperar()
+{
+    ifstream RecuperaSaveProjetil("SaveProjetil.dat", ios::in);
+
+    if (!RecuperaSaveProjetil)
+    {
+        cerr << "Arquivo nao pode ser aberto" << endl;
+        exit(1);
+    }
+
+    pListaEntidades = new ListaEntidades();
+    Projetil* pProj = nullptr;
+    Vector2f pos;
+    Vector2f vel;
+    int dano;
+
+    //FALTA RECUPERAR A RELACAO COM ATIRADOR
+    while (RecuperaSaveProjetil >> pos.x >> pos.y >> vel.x >> vel.y >> dano)
+    {
+        pProj = new Projetil(pos);
+        if (pProj)
+        {
+            pProj->setVelocidade(vel);
+            pProj->setDano(dano);
+            pListaEntidades->addEntidade(static_cast<Entidade*>(pProj));
+        }
+    }
+    RecuperaSaveProjetil.close();
+
+    return pListaEntidades;
 }
 
 void Projetil::mover()

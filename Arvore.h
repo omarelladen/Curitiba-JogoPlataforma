@@ -16,6 +16,15 @@ namespace Entidades
 			~Arvore();
 
 			void inicializaAtributos();
+
+			void salvar();
+			ListaEntidades* recuperar();
+
+			void setAltura(const int alt);
+			const int getAltura() const;
+
+			RectangleShape getTronco();
+
 			void executar();
 		};
 	}

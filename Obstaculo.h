@@ -15,8 +15,11 @@ namespace Entidades
 			Obstaculo(const IDs id = {}, Vector2f pos = Vector2f(0.f, 0.f));
 			~Obstaculo();
 
-			virtual void executar() = 0;
 			const bool getDanoso() const;
+
+			virtual void salvar() = 0;
+			virtual ListaEntidades* recuperar() = 0;
+			virtual void executar() = 0;
 		};
 	}
 }

@@ -30,7 +30,12 @@ void Jogador::operator++()
     pontos++;
 }
 
-const int Jogador::getPontos()
+void Jogador::setPontos(const int pon)
+{
+    pontos = pon;
+}
+
+const int Jogador::getPontos() const
 {
     return pontos;
 }

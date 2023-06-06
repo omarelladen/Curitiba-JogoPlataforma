@@ -58,10 +58,8 @@
     <ClCompile Include="ObservadorMenuPrincipal.cpp" />
     <ClCompile Include="Obstaculo.cpp" />
     <ClCompile Include="Personagem.cpp" />
-    <ClCompile Include="Plataforma.cpp" />
-    <ClCompile Include="Policial.cpp" />
+    <ClCompile Include="Chao.cpp" />
     <ClCompile Include="Projetil.cpp" />
-    <ClCompile Include="SalvaJogo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arvore.h" />
@@ -104,10 +102,8 @@
     <ClInclude Include="ObservadorMenuPrincipal.h" />
     <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="Personagem.h" />
-    <ClInclude Include="Plataforma.h" />
-    <ClInclude Include="Policial.h" />
+    <ClInclude Include="Chao.h" />
     <ClInclude Include="Projetil.h" />
-    <ClInclude Include="SalvaJogo.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -17,6 +17,16 @@ namespace Entidades
 			~Bicicleta();
 
 			void inicializaAtributos();
+
+			void salvar();
+			ListaEntidades* recuperar();
+
+			void setVelocidade(Vector2f vel);
+			const Vector2f getVelocidade() const;
+
+			void setNivelRicochete(const int ricochete);
+			const int getNivelRicochete() const;
+
 			void mover();
 			void executar();
 		};

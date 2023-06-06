@@ -1,17 +1,19 @@
-#include "ChefeMafia.h"
+#include"ListaEntidades.h"
+#include"ChefeMafia.h"
 
-#define NUM_MAX_VIDAS 70
-
-ChefeMafia::ChefeMafia(Vector2f pos, Capivara* pJ) :
-	Inimigo(IDs::chefeMafia, pos, pJ),
+ChefeMafia::ChefeMafia(Vector2f pos) :
+	Inimigo(IDs::chefeMafia, pos),
 	nivel_forca(0),
 	nivel_medo(0),
     vidas_regeneradas(0)
 {
+    inicializaAtributos();
 }
 
 ChefeMafia::~ChefeMafia()
 {
+    delete pListaEntidades;
+    pListaEntidades = nullptr;
 }
 
 void ChefeMafia::inicializaAtributos()
@@ -28,9 +30,19 @@ void ChefeMafia::inicializaAtributos()
     num_vidas = NUM_MAX_VIDAS;
 }
 
+void ChefeMafia::setNivelForca(const int forca)
+{
+    nivel_forca = forca;
+}
+
 const int ChefeMafia::getNivelForca() const
 {
 	return nivel_forca;
+}
+
+void ChefeMafia::setNivelMedo(const int medo)
+{
+    nivel_medo = medo;
 }
 
 const int ChefeMafia::getNivelMedo() const
@@ -38,9 +50,14 @@ const int ChefeMafia::getNivelMedo() const
 	return nivel_medo;
 }
 
+void ChefeMafia::setVidasRegeneradas(const int vidas)
+{
+    vidas_regeneradas = vidas;
+}
+
 void ChefeMafia::regeneraVida()
 {
-    int tempo = relogio.getElapsedTime().asSeconds();
+    int tempo = (int) relogio.getElapsedTime().asSeconds();
     if (tempo % 10 == 0)
     {
         if ((num_vidas + vidas_regeneradas) < NUM_MAX_VIDAS)
@@ -52,6 +69,69 @@ void ChefeMafia::regeneraVida()
             num_vidas = NUM_MAX_VIDAS;
         }
     }
+}
+
+void ChefeMafia::salvar()
+{
+    ofstream SalvaChefeMafia("SaveChefeMafia.dat", ios::out);
+
+    if (!SalvaChefeMafia)
+    {
+        cerr << "Arquivo nao pode ser aberto" << endl;
+        exit(1);
+    }
+
+    SalvaChefeMafia << posicao.x << ' '
+        << posicao.y << ' '
+        << num_vidas << ' '
+        << velocidade.x << ' '
+        << velocidade.y << ' '
+        << indo << ' '
+        << nivel_forca << ' '
+        << nivel_medo << ' '
+        << vidas_regeneradas << endl;
+
+    SalvaChefeMafia.close();
+}
+
+ListaEntidades* ChefeMafia::recuperar()
+{
+    ifstream RecuperaSaveChefeMafia("SaveChefeMafia.dat", ios::in);
+
+    if (!RecuperaSaveChefeMafia)
+    {
+        cerr << "Arquivo nao pode ser aberto" << endl;
+        exit(1);
+    }
+
+    pListaEntidades = new ListaEntidades();
+    ChefeMafia* pCM = nullptr;
+    Vector2f pos;
+    int vidas;
+    Vector2f vel;
+    bool indo;
+    int forca; //força
+    int medo;
+    int vidas_rege;
+
+    while (RecuperaSaveChefeMafia >> pos.x >> pos.y >> vidas >> vel.x >> vel.y >>
+        indo >> forca >> medo >> vidas_rege)
+    {
+        pCM = new ChefeMafia(pos);
+        if (pCM)
+        {
+            pCM->setNumVidas(vidas);
+            pCM->setVelocidade(vel);
+            pCM->setIndo(indo);
+            pCM->setNivelForca(forca);
+            pCM->setNivelMedo(medo);
+            pCM->setVidasRegeneradas(vidas_rege);
+            pListaEntidades->addEntidade(static_cast<Entidade*>(pCM));
+        }
+    }
+    RecuperaSaveChefeMafia.close();
+
+    return pListaEntidades;
 }
 
 void ChefeMafia::mover(const char* direcao)

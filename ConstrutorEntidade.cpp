@@ -10,7 +10,7 @@ ConstrutorEntidade::~ConstrutorEntidade()
     pJogador = nullptr;
 }
 
-void ConstrutorEntidade::setJogador(Jogador* pJ)
+void ConstrutorEntidade::setJogador(Capivara* pJ)
 {
     if (pJ)
         pJogador = pJ;
@@ -18,14 +18,14 @@ void ConstrutorEntidade::setJogador(Jogador* pJ)
         cout << "Setando ponteiro Jogador nulo em ContrutorEntidade" << endl;
 }
 
-Jogador* ConstrutorEntidade::getJogador()
+Capivara* ConstrutorEntidade::getJogador()
 {
     return pJogador;
 }
 
 Entidade* ConstrutorEntidade::criarPlataforma(Vector2f pos) // criar derivadas da plataforma
 {
-    Plataforma* pP = new Plataforma(Vector2f(pos.x * 50.f, pos.y * 50));
+    Chao* pP = new Chao(Vector2f(pos.x * 50.f, pos.y * 50));
     if(pP)
         return static_cast<Entidade*>(pP);
     else
@@ -60,9 +60,12 @@ Entidade* ConstrutorEntidade::criarPolicial(Vector2f(pos))
 
 Entidade* ConstrutorEntidade::criarJacare(Vector2f pos)
 {
-    Jacare* pJ = new Jacare(Vector2f(pos.x * 50.f, pos.y * 50), static_cast<Capivara*>(pJogador));
+    Jacare* pJ = new Jacare(Vector2f(pos.x * 50.f, pos.y * 50));
     if (pJ)
+    {
+        pJ->setAlvo(pJogador);
         return static_cast<Entidade*>(pJ);
+    }
     else
     {
         cout << "Entidade nula" << endl;
@@ -72,9 +75,12 @@ Entidade* ConstrutorEntidade::criarJacare(Vector2f pos)
 
 Entidade* ConstrutorEntidade::criarCapanga(Vector2f(pos))
 {
-    Capanga* pC = new Capanga(Vector2f(pos.x * 50.f, pos.y * 50), static_cast<Capivara*>(pJogador));
+    Capanga* pC = new Capanga(Vector2f(pos.x * 50.f, pos.y * 50));
     if (pC)
+    {
+        pC->setAlvo(pJogador);
         return static_cast<Entidade*>(pC);
+    }
     else
     {
         cout << "Entidade nula" << endl;
@@ -84,9 +90,12 @@ Entidade* ConstrutorEntidade::criarCapanga(Vector2f(pos))
 
 Entidade* ConstrutorEntidade::criarChefeMafia(Vector2f(pos))
 {
-    ChefeMafia* pCM = new ChefeMafia(Vector2f(pos.x * 50.f, pos.y * 50), static_cast<Capivara*>(pJogador));
+    ChefeMafia* pCM = new ChefeMafia(Vector2f(pos.x * 50.f, pos.y * 50));
     if (pCM)
+    {
+        pCM->setAlvo(pJogador);
         return static_cast<Entidade*>(pCM);
+    }
     else
     {
         cout << "Entidade nula" << endl;

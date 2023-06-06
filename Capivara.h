@@ -1,6 +1,6 @@
 #pragma once
-#include "Jogador.h"
-#include"Projetil.h"
+#include"Jogador.h"
+using namespace Personagens;
 
 namespace Entidades
 {
@@ -11,7 +11,6 @@ namespace Entidades
 		private:
 			int forca_cuspe;
 			int golpe_especial;
-			Projetil* pProje;
 
 		public:
 			Capivara(Vector2f pos = Vector2f(0.f, 0.f));
@@ -20,9 +19,16 @@ namespace Entidades
 			void inicializaAtributos();
 			void AtirarCuspe();
 
-			void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao);
+			void setForcaCuspe(const int cuspe);
+			const int getForcaCuspe() const;
 
-			const int getNivelCuspe() const;
+			void setGolpeEspecial(const int especial);
+			const int getGolpeEspecial() const;
+
+			void salvar();
+			ListaEntidades* recuperar();
+
+			void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao);
 		};
 	}
 }

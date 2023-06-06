@@ -2,7 +2,6 @@
 #include <SFML/Graphics.hpp>
 using namespace sf;
 #include "Ente.h"
-#include"SalvaJogo.h"
 
 namespace Menus
 {
@@ -12,7 +11,6 @@ namespace Menus
 		// botoes
 
 		Text texto;
-		SalvaJogo load;
 
 	public:
 		Menu(const IDs id = {});

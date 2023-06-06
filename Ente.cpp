@@ -22,3 +22,13 @@ Gerenciador_Grafico* Ente::getManager()
 {
 	return window_manager;
 }
+
+void Ente::setCont(const int con)
+{
+	cont = con;
+}
+
+int Ente::getCont()
+{
+	return cont;
+}
