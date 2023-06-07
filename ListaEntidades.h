@@ -1,38 +1,3 @@
-/*#pragma once
-#include"Lista.h"
-#include"Entidade.h"
-using namespace Entidades;
-
-namespace Listas
-{
-	class ListaEntidades
-	{
-	private:
-		Lista<Entidade> listaEntidades;
-
-	public:
-		ListaEntidades();
-		~ListaEntidades();
-
-		void clear();
-
-		void addEntidade(Entidade* entid);
-		//void deleteEntidade(Entidade* entid);
-		//void deleteEntidade(int pos);
-
-		Entidade* getEntidade(int pos);
-		Entidade* operator[](int pos);
-
-		const int getTamLista() const;
-
-		Entidade* search(const int RG);
-
-		void operator=(ListaEntidades& list);
-
-		void executar();
-	};
-}*/
-
 #pragma once
 #include"Lista.h"
 #include"Projetil.h"
@@ -45,14 +10,12 @@ namespace Listas
 #include"Lixo.h"
 #include"Bicicleta.h"
 
-#include <vector>//
-
 namespace Listas
 {
 	class ListaEntidades
 	{
 	private:
-		vector<Entidade*> listaEntidades;
+		Lista<Entidade> listaEntidades;
 
 	public:
 		ListaEntidades();

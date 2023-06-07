@@ -36,7 +36,7 @@ namespace Listas
 
 		Elemento<TypeL>* pPrimeiro;
 		Elemento<TypeL>* pUltimo;
-		static int tam;
+		int tam;
 
 	public:
 		Lista();
@@ -50,7 +50,7 @@ namespace Listas
 		TypeL* getClassOrigin(int pos);
 		TypeL* operator[] (int pos);
 
-		static const int getTam(); //const; da problema por algum motivo
+		const int getTam() const;
 	};
 }
 using namespace Listas;
@@ -62,12 +62,10 @@ using namespace Listas;
 //Lista
 
 template<class TypeL>
-int Lista<TypeL>::tam(0);
-
-template<class TypeL>
 Lista<TypeL>::Lista() :
 	pPrimeiro(nullptr),
-	pUltimo(nullptr)
+	pUltimo(nullptr),
+	tam(0)
 {
 }
 
@@ -194,13 +192,11 @@ TypeL* Lista<TypeL>::getClassOrigin(int pos)
 		{
 			for (int i = 0; i < pos; i++)
 			{
-				//cout << i << " " << pos << " " << tam << endl;
 				if (temp)
 				{
 					temp = temp->getPProx();
 				}
 			}
-			//if(temp)
 			return temp->getClassOrigin();
 		}
 		else
@@ -223,7 +219,7 @@ TypeL* Lista<TypeL>::operator[](int pos)
 }
 
 template<class TypeL>
-const int Lista<TypeL>::getTam()
+const int Lista<TypeL>::getTam() const
 {
 	return tam;
 }

@@ -19,8 +19,6 @@ void Gerenciador_Colisoes::GerenciarColisoes()
 	Entidade* pEnt1 = nullptr;
 	Entidade* pEnt2 = nullptr;
 
-	//cout << listaPersonagens->getEntidade(3)->getTamanho().x << " " << listaPersonagens->getEntidade(3)->getTamanho().y << endl;
-
 	if (listaPersonagens && listaObstaculos)
 	{
 		//Calcula colisao Personagem e Obstaculos
@@ -31,23 +29,24 @@ void Gerenciador_Colisoes::GerenciarColisoes()
 			for (int j = 0; j < listaObstaculos->getTamLista(); j++)
 			{
 				pEnt2 = listaObstaculos->getEntidade(j);
-
-				CalculaColisao(pEnt1, pEnt2);
-				
+					
+				CalculaColisao(pEnt1, pEnt2);	
 			}
+			
 		}
-		//cout << "Passei" << endl; // n passa por aqui
-		// 
+
 		//Calcula colisao Personagem e Personagem
 
 		for (int i = 0; i < listaPersonagens->getTamLista(); i++)
 		{
 			pEnt1 = listaPersonagens->getEntidade(i);
-			for (int j = i + 1; j < listaPersonagens->getTamLista(); j++) // j=i ou i+1?
+			for (int j = i + 1; j < listaPersonagens->getTamLista(); j++)
 			{
 				pEnt2 = listaPersonagens->getEntidade(j);
 
+					
 				CalculaColisao(pEnt1, pEnt2);
+					
 			}
 		}
 	}
@@ -63,7 +62,7 @@ void Gerenciador_Colisoes::CalculaColisao(Entidade* ent1, Entidade* ent2)
 	//cout << ent1->getTamanho().x << " " << ent1->getTamanho().y << " Foi " << ent2->getTamanho().x << " " << ent2->getTamanho().y << endl;
 	if (ent1 == nullptr || ent2 == nullptr)
 	{
-		cout << "Entidade NUlA" << endl;
+		cout << "Entidade NULA" << endl;
 		exit(1);
 	}
 
@@ -90,11 +89,13 @@ void Gerenciador_Colisoes::CalculaColisao(Entidade* ent1, Entidade* ent2)
 		cout << ent1->getPosicao().x << " " << ent1->getPosicao().y << endl;
 	}*/
 
-	ent1->setEstaNoChao(false);
+	//ent1->setEstaNoChao(false);
 
 	//Testa se teve colisao
 	if (distancia_colisao.x < 0.f && distancia_colisao.y < 0.f) 
 	{
+		ent1->setEstaNoChao(false);
+
 		//Colisao em x
 		if (distancia_colisao.x > distancia_colisao.y)
 		{
@@ -122,7 +123,6 @@ void Gerenciador_Colisoes::CalculaColisao(Entidade* ent1, Entidade* ent2)
 			if (ent1->getPosicao().y < ent2->getPosicao().y)
 			{
 				ent1->setEstaNoChao(true);
-				ent1->executar();
 				ent1->setPosicao(ent1->getPosicao() + distancia_colisao);
 			}
 

@@ -44,23 +44,17 @@ void Jogador::mover(const char* direcao)
 {
     if (!esta_no_chao)
     {
-        //Efeito da Gravidade
-        tempo = relogio.getElapsedTime();
-        if (velocidade.y <= MAX_VEL_AR)
-        {
-            velocidade.y += GRAVIDADE * (tempo.asSeconds() / (float)100.0);
-
-            //Mergulho para baixo no Ar
-
-            if (direcao == "Baixo")
-            {
-                velocidade.y += INCRE_VEL;
-            }
-        }
-        corpo.move(0.f, velocidade.y);
-
         if (direcao != "")
         {
+            if (velocidade.y <= MAX_VEL_AR)
+            {
+                if (direcao == "Baixo")
+                {
+                    velocidade.y += INCRE_VEL;
+                }
+            }
+            corpo.move(0.f, velocidade.y);
+
             if (velocidade.x <= MAX_VEL && velocidade.x >= (-1) * MAX_VEL)
             {
                 if (direcao == "Direita")
@@ -81,7 +75,7 @@ void Jogador::mover(const char* direcao)
     }
     else
     {
-        tempo = relogio.restart();
+        restartRelogio();
         if (direcao != "")
         {
             if (direcao == "Cima++")
@@ -127,7 +121,7 @@ void Jogador::parar()
 
 void Jogador::executar()
 {
-    if (!esta_no_chao)
-        mover("");
+    cout << esta_no_chao << endl;
+    efeitoGravidade();
     desenhar_se();
 }

@@ -7,7 +7,7 @@ enum class IDs
 	chefeMafia,
 	capanga,
 	jacare,
-	plataforma,
+	chao,
 	caixa,
 	bicicleta,
 	arvore,

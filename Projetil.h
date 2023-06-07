@@ -13,7 +13,6 @@ namespace Entidades
 	{
 	private:
 		Personagem* atirador;
-		Vector2f velocidade;
 		int dano;
 
 	public:
@@ -23,7 +22,6 @@ namespace Entidades
 		void inicializaAtributos();
 
 		void setAtirador(Personagem* atir);
-		void setVelocidade(Vector2f vel);
 
 		void setDano(const int d);
 		const int getDano() const;

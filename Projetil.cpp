@@ -4,7 +4,6 @@
 
 Projetil::Projetil(Vector2f pos) :
     Entidade(IDs::projetil, pos),
-    velocidade(),
     dano(0),
     atirador(nullptr)
 {
@@ -33,12 +32,6 @@ void Projetil::setAtirador(Personagem* atir)
 {
     atirador = atir;
 }
-
-void Projetil::setVelocidade(Vector2f vel)
-{
-    velocidade = vel;
-}
-
 
 void Projetil::setDano(const int d)
 {
@@ -185,15 +178,6 @@ ListaEntidades* Projetil::recuperar()
 
 void Projetil::mover()
 {
-    //Efeito Gravidade
-
-    if (velocidade.y <= MAX_VEL)
-    {
-        tempo = relogio.getElapsedTime();
-        velocidade.y += (GRAVIDADE * (tempo.asSeconds() / (float)100.0));
-    }
-    corpo.move(0.f, velocidade.y);
-
     corpo.move(velocidade);
     posicao = corpo.getPosition();
 }
@@ -201,5 +185,6 @@ void Projetil::mover()
 void Projetil::executar()
 {
     desenhar_se();
+    efeitoGravidade();
     mover();
 }

@@ -74,5 +74,6 @@ void Inimigo::setIndo(const bool ind)
 void Inimigo::executar()
 {
     desenhar_se();
+    efeitoGravidade();
     mover("");
 }

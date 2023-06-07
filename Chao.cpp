@@ -3,7 +3,7 @@
 using namespace Obstaculos;
 
 Chao::Chao(Vector2f pos) :
-	Obstaculo(IDs::plataforma, pos),
+	Obstaculo(IDs::chao, pos),
 	atrito(0.0)
 {
     inicializaAtributos();

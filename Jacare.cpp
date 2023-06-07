@@ -133,17 +133,6 @@ void Jacare::mover(const char* direcao)
         formaPadraoMover();
         corpo.move(velocidade);
     }
-    else
-    {
-        //Efeito Gravidade
-
-        if (velocidade.y <= MAX_VEL)
-        {
-            tempo = relogio.getElapsedTime();
-            velocidade.y += (GRAVIDADE * (tempo.asSeconds() / (float)100.0));
-        }
-        corpo.move(0.f, velocidade.y);
-    }
     posicao = corpo.getPosition();
 }
 
@@ -151,7 +140,7 @@ void Jacare::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 {
     switch (id)
     {
-    case IDs::plataforma:
+    case IDs::chao:
     {
         pos_ini.x = ent->getPosicao().x;
         pos_fin.x = ent->getPosicao().x + ent->getTamanho().x;
@@ -160,11 +149,8 @@ void Jacare::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 
     case IDs::capivara:
     {
-        if (nivel_mordida >= 10)
-        {
-            Jogador* pJog = static_cast<Jogador*>(ent);
-            pJog->operator--();
-        }
+        Jogador* pJog = static_cast<Jogador*>(ent);
+        pJog->diminuirVida(nivel_mordida);
     }
     break;
 

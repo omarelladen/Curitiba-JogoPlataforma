@@ -5,10 +5,11 @@ Entidade::Entidade(const IDs id, Vector2f pos) : //
 	Ente(id),
 	corpo(),
 	posicao(pos), // pos.x * cont
-	esta_no_chao(false),
-	tam_corpo(),
+	tam_corpo(Vector2f(10.f, 10.f)),
+	velocidade(Vector2f(0.f, 0.f)),
 	tempo(),
 	relogio(),
+	esta_no_chao(false),
 	pListaEntidades(nullptr)
 {
 	corpo.setPosition(pos);
@@ -32,6 +33,18 @@ const bool Entidades::Entidade::getEstaNoChao()
 
 void Entidade::mover(const char* direcao)
 {
+}
+
+void Entidade::efeitoGravidade()
+{
+	if (velocidade.y <= MAX_VEL)
+	{
+		tempo = relogio.getElapsedTime();
+		velocidade.y += (GRAVIDADE * (tempo.asSeconds()/100.f));
+	}
+
+	corpo.move(velocidade);
+	posicao = corpo.getPosition();
 }
 
 void Entidade::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
@@ -70,6 +83,11 @@ void Entidade::setTamanho(Vector2f tam)
 Vector2f Entidade::getTamanho() const
 {
 	return tam_corpo;
+}
+
+void Entidade::setVelocidade(Vector2f vel)
+{
+	velocidade = vel;
 }
 
 void Entidade::restartRelogio()

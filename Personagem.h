@@ -2,10 +2,6 @@
 #include"Entidade.h"
 #include"Projetil.h"
 
-#define MAX_VEL 16.f
-#define MAX_VEL_AR 1.f
-#define INCRE_VEL 8.f
-
 namespace Entidades
 {
 	namespace Personagens
@@ -14,14 +10,11 @@ namespace Entidades
 		{
 		protected:
 			int num_vidas;
-			Vector2f velocidade;
 			Projetil* projetil;
 
 		public:
 			Personagem(const IDs id = {}, Vector2f pos = Vector2f(0.f, 0.f));
 			~Personagem();
-
-			void operator--();
 
 			void setNumVidas(const int vidas);
 			const int getNumVidas() const;
@@ -32,8 +25,6 @@ namespace Entidades
 			void atirar();
 
 			void diminuirVida(int dano);
-
-			void setVelocidade(Vector2f vel);
 
 			// Funcoes exclusivamente para polimorfismo
 			virtual void salvar() = 0;

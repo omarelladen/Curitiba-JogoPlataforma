@@ -153,17 +153,6 @@ void ChefeMafia::mover(const char* direcao)
         formaPadraoMover();
         corpo.move(velocidade);
     }
-    else
-    {
-        //Efeito Gravidade
-
-        if (velocidade.y <= MAX_VEL)
-        {
-            tempo = relogio.getElapsedTime();
-            velocidade.y += (GRAVIDADE * (tempo.asSeconds() / (float)100.0));
-        }
-        corpo.move(0.f, velocidade.y);
-    }
     posicao = corpo.getPosition();
 }
 
@@ -171,7 +160,7 @@ void ChefeMafia::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao
 {
     switch (id)
     {
-    case IDs::plataforma:
+    case IDs::chao:
     {
         
     }
@@ -179,10 +168,10 @@ void ChefeMafia::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao
 
     case IDs::capivara:
     {
-        if (nivel_medo >= 10)
+        if (nivel_medo >= 5)
         {
             Jogador* pJog = static_cast<Jogador*>(ent);
-            pJog->operator--();
+            pJog->diminuirVida(nivel_forca);
         }
     }
     break;

@@ -76,7 +76,9 @@ void Fase::criarEntidade(const char simbolo, Vector2f pos)
 		break;
 
 	case 'j':
+	{
 		listaPersonagens->addEntidade(construtorEntidade->criarJacare(pos));
+	}
 		break;
 
 	// Fonte de erros
@@ -89,15 +91,21 @@ void Fase::criarEntidade(const char simbolo, Vector2f pos)
 		break;*/
 
 	case 'b':
+	{
 		listaObstaculos->addEntidade(construtorEntidade->criarBicicleta(pos));
+	}
 		break;
 
 	case 'c':
+	{
 		listaPersonagens->addEntidade(construtorEntidade->criarCapanga(pos));
+	}
 		break;
 
 	case 'B':
+	{
 		listaPersonagens->addEntidade(construtorEntidade->criarChefeMafia(pos));
+	}
 		break;
 	default:
 		break;

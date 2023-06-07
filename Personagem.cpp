@@ -3,7 +3,6 @@ using namespace Entidades;
 
 Personagem::Personagem(const IDs id, Vector2f pos) :
     Entidade(id, pos),
-    velocidade(Vector2f(0.f, 0.f)),
     num_vidas(0),
     projetil(nullptr)
 {
@@ -12,11 +11,6 @@ Personagem::Personagem(const IDs id, Vector2f pos) :
 Personagem::~Personagem()
 {
     projetil = nullptr;
-}
-
-void Personagem::operator--()
-{
-    num_vidas--;
 }
 
 void Personagem::setNumVidas(const int vidas)
@@ -51,9 +45,4 @@ void Personagem::atirar()
 void Personagem::diminuirVida(int dano)
 {
     num_vidas -= dano;
-}
-
-void Personagem::setVelocidade(Vector2f vel)
-{
-    velocidade = vel;
 }

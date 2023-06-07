@@ -119,7 +119,7 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
     }
     break;
 
-    case IDs::plataforma:
+    case IDs::chao:
     {
         
     }
@@ -133,8 +133,6 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 
     case IDs::projetil:
     {
-        this->operator--();
-
     }
 
     case IDs::canto:

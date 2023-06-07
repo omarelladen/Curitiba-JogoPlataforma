@@ -4,6 +4,9 @@ using namespace std;
 #include"Ente.h"
 
 #define GRAVIDADE 9.81f
+#define MAX_VEL 2.f
+#define MAX_VEL_AR 1.f
+#define INCRE_VEL 0.5f
 
 namespace Listas
 {
@@ -19,6 +22,7 @@ namespace Entidades
 		RectangleShape corpo;
 		Vector2f posicao;
 		Vector2f tam_corpo;
+		Vector2f velocidade;
 		Time tempo;
 		Clock relogio;
 		bool esta_no_chao;
@@ -38,10 +42,13 @@ namespace Entidades
 		void setTamanho(Vector2f tam);
 		Vector2f getTamanho() const;
 
-		void restartRelogio();
+		void setVelocidade(Vector2f vel);
 
 		const RectangleShape getCorpo() const;
 
+		void restartRelogio();
+
+		void efeitoGravidade();
 		virtual void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao);
 		virtual void mover(const char* direcao);
 		void desenhar_se();

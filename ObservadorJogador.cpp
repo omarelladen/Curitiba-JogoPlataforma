@@ -22,7 +22,6 @@ void ObservadorJogador::teclaPressionada(const Keyboard::Key tecla)
 	// Pular
 	case (Keyboard::W):
 	{
-		//cout << pJogador->getEstaNoChao() << endl;
 		if (pJogador->getEstaNoChao())
 		{
 			if (Keyboard::isKeyPressed(Keyboard::LShift))
