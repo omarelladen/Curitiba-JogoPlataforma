@@ -8,11 +8,12 @@ Entidade::Entidade(const IDs id, Vector2f pos) : //
 	tam_corpo(Vector2f(10.f, 10.f)),
 	velocidade(Vector2f(0.f, 0.f)),
 	tempo(),
-	relogio(),
+	relogio_gravidade(),
 	esta_no_chao(false),
 	pListaEntidades(nullptr)
 {
 	corpo.setPosition(pos);
+	relogio_gravidade.restart();
 	// rand
 	// lista direto de Entidade* //
 }
@@ -31,15 +32,11 @@ const bool Entidades::Entidade::getEstaNoChao()
 	return esta_no_chao;
 }
 
-void Entidade::mover(const char* direcao)
-{
-}
-
 void Entidade::efeitoGravidade()
 {
 	if (velocidade.y <= MAX_VEL)
 	{
-		tempo = relogio.getElapsedTime();
+		tempo = relogio_gravidade.getElapsedTime();
 		velocidade.y += (GRAVIDADE * (tempo.asSeconds()/100.f));
 	}
 
@@ -90,9 +87,14 @@ void Entidade::setVelocidade(Vector2f vel)
 	velocidade = vel;
 }
 
+const Vector2f Entidades::Entidade::getVelocidade() const
+{
+	return velocidade;
+}
+
 void Entidade::restartRelogio()
 {
-	tempo = relogio.restart();
+	tempo = relogio_gravidade.restart();
 }
 
 const RectangleShape Entidade::getCorpo() const

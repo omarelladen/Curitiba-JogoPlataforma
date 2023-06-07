@@ -8,9 +8,9 @@ namespace Entidades
 		class Jacare : public Inimigo
 		{
 		private:
-			int nivel_mordida;
-			int raio_super_pulo; // Pula até o jogador
-			//int tamanho;
+			int forca_mordida;
+			int raio_super_pulo;
+			int rapidez_mordida;// Pula até o jogador
 
 		public:
 			Jacare(Vector2f pos = Vector2f(0.f, 0.f));
@@ -18,16 +18,21 @@ namespace Entidades
 
 			void inicializaAtributos();
 
-			void setNivelMordida(const int mordida);
-			const int getNivelMordida() const;
+			void setForcaMordida(const int mordida);
+			const int getForcaMordida() const;
 
 			void setRaioSuperPulo(const int raio_pulo);
+			const int getRaioSuperPulo();
+
+			void setRapidezMordida(const int tempo);
+			const int getRapidezMordida();
 
 			void salvar();
 			ListaEntidades* recuperar();
 
-			void mover(const char* direcao);
+			void mover();
 			void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao);
+			void executar();
 		};
 	}
 }

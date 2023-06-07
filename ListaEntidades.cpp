@@ -24,6 +24,11 @@ void ListaEntidades::addEntidade(Entidade* entid)
     }
 }
 
+void ListaEntidades::deleteEntidade(Entidade* entid)
+{
+    listaEntidades.deleteElemento(entid);
+}
+
 Entidade* ListaEntidades::getEntidade(int pos)
 {
     return listaEntidades[pos];
@@ -56,13 +61,13 @@ void ListaEntidades::recuperarEntidades()
     ListaEntidades* pListJog = jogador.recuperar();
 
     ListaEntidades* pListInim = mafioso.recuperar();
-    pListInim = capanga.recuperar();
-    pListInim = crocodilo.recuperar();
+    pListInim->operator=(capanga.recuperar());
+    pListInim->operator=(crocodilo.recuperar());
 
     ListaEntidades* pListObsts = arvore.recuperar();
-    pListObsts = lixao.recuperar();
-    pListObsts = bike.recuperar();
-    pListObsts = piso.recuperar();
+    pListObsts->operator=(lixao.recuperar());
+    pListObsts->operator=(bike.recuperar());
+    pListObsts->operator=(piso.recuperar());
 
     for (int i = 0; i < pListInim->getTamLista(); i++)
     {
@@ -83,11 +88,11 @@ const int ListaEntidades::getTamLista() const
     return listaEntidades.getTam();
 }
 
-void ListaEntidades::operator=(ListaEntidades& list)
+void ListaEntidades::operator=(ListaEntidades* list)
 {
-    for (int i = 0; i < list.getTamLista(); i++)
+    for (int i = 0; i < list->getTamLista(); i++)
     {
-        addEntidade(list[i]);
+        addEntidade(list->getEntidade(i));
     }
 }
 

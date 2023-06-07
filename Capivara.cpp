@@ -23,19 +23,7 @@ void Capivara::inicializaAtributos()
     srand((unsigned)time(&t));
     forca_cuspe = rand() % 5 + 1;
 
-    projetil = new Projetil(Vector2f(posicao.x + tam_corpo.x, posicao.y + tam_corpo.y / 2.f));
-    if (projetil)
-    {
-        projetil->setDano(forca_cuspe);
-        projetil->setAtirador(this);
-    }
-
     num_vidas = 50;
-}
-
-void Capivara::AtirarCuspe()
-{
-    projetil->executar();
 }
 
 void Capivara::salvar()
@@ -103,19 +91,31 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
     {
     case IDs::capanga:
     {
-        
     }
     break;
 
     case IDs::jacare:
     {
-        
+        Jacare* pJac = static_cast<Jacare*>(ent);
+
+        tempo = relogio_gravidade.getElapsedTime();
+        if (tempo.asSeconds() >=  pJac->getRapidezMordida())
+        {
+            diminuirVida(pJac->getForcaMordida());
+
+            relogio_gravidade.restart();
+        }
     }
     break;
 
     case IDs::chefeMafia:
     {
-        
+        ChefeMafia* pCM = static_cast<ChefeMafia*>(ent);
+
+        if (pCM->getNivelMedo() >= 5)
+        {
+            diminuirVida(pCM->getNivelForca());
+        }
     }
     break;
 
@@ -127,19 +127,19 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 
     case IDs::bicicleta:
     {
-        
+        // Eh jogado para cima
+        Bicicleta* pB = static_cast<Bicicleta*>(ent);
+        velocidade.y = (-1.f) * pB->getNivelRicochete();
+
+        // Perde vida
+        diminuirVida(pB->getDano());
+
     }
     break;
 
     case IDs::projetil:
     {
     }
-
-    case IDs::canto:
-    {
-        setPosicao(posicao - distancia_colisao);
-    }
-    break;
 
     default: {
         cout << "Erro Colisao Jogador" << endl;

@@ -31,12 +31,5 @@ void FaseParqueBarigui::criarMapa()
 
 void FaseParqueBarigui::executar()
 {
-	// erro por aqui
-	gerenciadorColisoes->GerenciarColisoes();
-	
-	if (listaPersonagens)
-		listaPersonagens->executar();
-	if (listaObstaculos)
-		listaObstaculos->executar();
-
+	gerenciadorColisoes->executar();
 }

@@ -17,7 +17,6 @@ namespace Entidades
 			~Capivara();
 
 			void inicializaAtributos();
-			void AtirarCuspe();
 
 			void setForcaCuspe(const int cuspe);
 			const int getForcaCuspe() const;

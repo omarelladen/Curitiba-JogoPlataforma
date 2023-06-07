@@ -1,10 +1,14 @@
 #include "Gerenciador_Colisoes.h"
+#include"Entidade.h"
 using namespace Gerenciadores;
 #include<math.h>
 
-Gerenciador_Colisoes::Gerenciador_Colisoes(ListaEntidades* LPs, ListaEntidades* LOs) :
-	listaObstaculos(LOs),
-	listaPersonagens(LPs)
+Gerenciador_Colisoes* Gerenciador_Colisoes::pGerenciadorColisoes(nullptr);
+
+Gerenciador_Colisoes::Gerenciador_Colisoes() :
+	listaObstaculos(nullptr),
+	listaPersonagens(nullptr),
+	listaProjeteis(new ListaEntidades())
 {
 }
 
@@ -14,39 +18,87 @@ Gerenciador_Colisoes::~Gerenciador_Colisoes()
 	listaPersonagens = nullptr;
 }
 
+Gerenciador_Colisoes* Gerenciador_Colisoes::getGerenciadorColisoes()
+{
+	if (pGerenciadorColisoes == nullptr)
+	{
+		return new Gerenciador_Colisoes();
+	}
+	return pGerenciadorColisoes;
+}
+
+void Gerenciador_Colisoes::setListaPersonagens(ListaEntidades* list)
+{
+	if (list)
+	{
+		listaPersonagens = list;
+	}
+}
+
+void Gerenciador_Colisoes::setListaObstaculos(ListaEntidades* list)
+{
+	if (list)
+	{
+		listaObstaculos = list;
+	}
+}
+
+void Gerenciador_Colisoes::addProjetil(Entidade* proj)
+{
+	if(listaProjeteis == nullptr)
+	{
+		listaProjeteis = new ListaEntidades();
+	}
+	listaProjeteis->addEntidade(proj);
+}
+
 void Gerenciador_Colisoes::GerenciarColisoes()
 {
 	Entidade* pEnt1 = nullptr;
 	Entidade* pEnt2 = nullptr;
+	Entidade* pEnt3 = nullptr;
 
-	if (listaPersonagens && listaObstaculos)
+	if (listaPersonagens && listaObstaculos && listaProjeteis)
 	{
-		//Calcula colisao Personagem e Obstaculos
-
 		for (int i = 0; i < listaPersonagens->getTamLista(); i++)
 		{
 			pEnt1 = listaPersonagens->getEntidade(i);
+
+			//Calcula colisao Personagem e Obstaculos
+
 			for (int j = 0; j < listaObstaculos->getTamLista(); j++)
 			{
 				pEnt2 = listaObstaculos->getEntidade(j);
-					
-				CalculaColisao(pEnt1, pEnt2);	
+
+				CalculaColisao(pEnt1, pEnt2);
+
+				//Calcula colisao Obstaculos e Projeteis
+
+				for (int k = 0; k < listaProjeteis->getTamLista(); j++)
+				{
+					pEnt3 = listaProjeteis->getEntidade(j);
+
+					CalculaColisao(pEnt2, pEnt3);
+				}
 			}
-			
-		}
 
-		//Calcula colisao Personagem e Personagem
+			//Calcula colisao Personagem e Personagem
 
-		for (int i = 0; i < listaPersonagens->getTamLista(); i++)
-		{
-			pEnt1 = listaPersonagens->getEntidade(i);
 			for (int j = i + 1; j < listaPersonagens->getTamLista(); j++)
 			{
 				pEnt2 = listaPersonagens->getEntidade(j);
 
-					
 				CalculaColisao(pEnt1, pEnt2);
-					
+			}
+
+			//Calcula colisao Personagem e Projeteis
+
+			for (int j = 0; j < listaProjeteis->getTamLista(); j++)
+			{
+				pEnt2 = listaProjeteis->getEntidade(j);
+
+				if (pEnt2)
+					CalculaColisao(pEnt1, pEnt2);
 			}
 		}
 	}
@@ -59,12 +111,6 @@ void Gerenciador_Colisoes::GerenciarColisoes()
 void Gerenciador_Colisoes::CalculaColisao(Entidade* ent1, Entidade* ent2)
 {
 	//Calcula colisao usando os centros das entidades
-	//cout << ent1->getTamanho().x << " " << ent1->getTamanho().y << " Foi " << ent2->getTamanho().x << " " << ent2->getTamanho().y << endl;
-	if (ent1 == nullptr || ent2 == nullptr)
-	{
-		cout << "Entidade NULA" << endl;
-		exit(1);
-	}
 
 	Vector2f tam_ent1 = ent1->getTamanho();
 	Vector2f tam_ent2 = ent2->getTamanho();
@@ -88,8 +134,6 @@ void Gerenciador_Colisoes::CalculaColisao(Entidade* ent1, Entidade* ent2)
 			<< "Distancia colisao: " << distancia_colisao.x << " " << distancia_colisao.y << endl;
 		cout << ent1->getPosicao().x << " " << ent1->getPosicao().y << endl;
 	}*/
-
-	//ent1->setEstaNoChao(false);
 
 	//Testa se teve colisao
 	if (distancia_colisao.x < 0.f && distancia_colisao.y < 0.f) 
@@ -134,26 +178,23 @@ void Gerenciador_Colisoes::CalculaColisao(Entidade* ent1, Entidade* ent2)
 		}
 
 		ent1->colisao(ent2->getID(), ent2, distancia_colisao);
-	}
 
-	//Testa se teve colisao entre Entidade e Cantos
-	const RenderWindow* janela = Ente::getManager()->getJanela();
 
-	if (pos_ent1.y < 0.f)
-	{
-		ent1->colisao(IDs::canto, nullptr, Vector2f(0.f, pos_ent1.y));
+		if (ent2->getID() == IDs::projetil)
+		{
+			listaProjeteis->deleteEntidade(ent2);
+		}
 	}
-	else if (pos_ent1.x < 0.f)
-	{
-		ent1->colisao(IDs::canto, nullptr, Vector2f(pos_ent1.x, 0.f));
-	}
-	else if (pos_ent1.x >= janela->getSize().x - ent1->getTamanho().x)
-	{
-		ent1->colisao(IDs::canto, nullptr, Vector2f(pos_ent1.x - (janela->getSize().x - ent1->getTamanho().x), 0.f));
-		//cout << "Passei" << endl;
-	}
-	else if (pos_ent1.y >= janela->getSize().y - ent1->getTamanho().y)
-	{
-		ent1->colisao(IDs::canto, nullptr, Vector2f(0.f, pos_ent1.y - (janela->getSize().x - ent1->getTamanho().x)));
-	}
+}
+
+void Gerenciador_Colisoes::executar()
+{
+	if (listaPersonagens)
+		listaPersonagens->executar();
+	if (listaObstaculos)
+		listaObstaculos->executar();
+	if (listaProjeteis)
+		listaProjeteis->executar();
+
+	GerenciarColisoes();
 }

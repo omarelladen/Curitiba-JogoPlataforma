@@ -25,12 +25,16 @@ void Projetil::inicializaAtributos()
     srand((unsigned)time(&t));
 
     velocidade = Vector2f((rand() % 11 + 10) / 10.f, 0.f);
-    dano = rand() % 3 + 5;
 }
 
 void Projetil::setAtirador(Personagem* atir)
 {
     atirador = atir;
+}
+
+Personagem* Projetil::getAtirador()
+{
+    return atirador;
 }
 
 void Projetil::setDano(const int d)

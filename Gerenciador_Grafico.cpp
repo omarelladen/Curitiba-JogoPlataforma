@@ -6,7 +6,8 @@ using namespace std;
 Gerenciador_Grafico* Gerenciador_Grafico::pGerenciadorGrafico(nullptr);
 
 Gerenciador_Grafico::Gerenciador_Grafico() :
-	janela(nullptr)
+	janela(nullptr),
+	camera()
 {
 	janela = new RenderWindow(VideoMode(1000, 900), "Jogo");////
 	if (janela == nullptr)
@@ -37,6 +38,12 @@ Gerenciador_Grafico* Gerenciador_Grafico::getGerenciadorGrafico()
 RenderWindow* Gerenciador_Grafico::getJanela()
 {
 	return janela;
+}
+
+void Gerenciador_Grafico::setCentro(Vector2f pos_jog)
+{
+	janela->setView(camera);
+	camera.setCenter(pos_jog);
 }
 
 void Gerenciador_Grafico::limpaJanela()

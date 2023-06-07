@@ -34,8 +34,9 @@ namespace Entidades
 			void setCongelado(const bool conge);
 			const bool getCongelado() const;
 
-			void mover(const char* direcao);
+			void mover();
 			void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao);
+			void executar();
 		};
 	}
 }

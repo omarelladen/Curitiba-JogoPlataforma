@@ -44,72 +44,54 @@ void Jogador::mover(const char* direcao)
 {
     if (!esta_no_chao)
     {
-        if (direcao != "")
+        if (velocidade.y <= MAX_VEL_AR)
         {
-            if (velocidade.y <= MAX_VEL_AR)
+            if (direcao == "Baixo")
             {
-                if (direcao == "Baixo")
-                {
-                    velocidade.y += INCRE_VEL;
-                }
+                velocidade.y += INCRE_VEL;
             }
-            corpo.move(0.f, velocidade.y);
+        }
+        corpo.move(0.f, velocidade.y);
 
-            if (velocidade.x <= MAX_VEL && velocidade.x >= (-1) * MAX_VEL)
-            {
-                if (direcao == "Direita")
-                {
-                    velocidade.x += INCRE_VEL;
-                }
-                if (direcao == "Esquerda")
-                {
-                    velocidade.x -= INCRE_VEL;
-                }
-            }
-            corpo.move(velocidade.x, 0.f);
-        }
-        else
+        if (velocidade.x <= MAX_VEL / 2.f && velocidade.x >= -MAX_VEL / 2.f)
         {
-            velocidade.x = 0.f;
+            if (direcao == "Direita")
+            {
+                velocidade.x += INCRE_VEL;
+            }
+            if (direcao == "Esquerda")
+            {
+                velocidade.x -= INCRE_VEL;
+            }
         }
+        corpo.move(velocidade.x, 0.f);
     }
     else
     {
         restartRelogio();
-        if (direcao != "")
+        if (direcao == "Cima++")
         {
-            if (direcao == "Cima++")
-            {
-                velocidade.y = -2.5f;
-            }
-            else if (direcao == "Cima")
-            {
-                velocidade.y = -1.5f;
-            }
-            corpo.move(0.f, velocidade.y);
+            velocidade.y = -2.5f;
+        }
+        else if (direcao == "Cima")
+        {
+            velocidade.y = -1.5f;
+        }
+        corpo.move(0.f, velocidade.y);
 
 
-            if (velocidade.x <= MAX_VEL && velocidade.x >= -MAX_VEL)
-            {
-                if (direcao == "Direita")
-                {
-                    velocidade.x += INCRE_VEL;
-                }
-                if (direcao == "Esquerda")
-                {
-                    velocidade.x -= INCRE_VEL;
-                }
-            }
-            else
-            {
-                velocidade.x = 0.f;
-            }
-            corpo.move(velocidade.x, 0.f);
-        }
-        else
+        if (velocidade.x <= MAX_VEL && velocidade.x >= -MAX_VEL)
         {
-            parar();
+            if (direcao == "Direita")
+            {
+                velocidade.x += INCRE_VEL;
+            }
+            if (direcao == "Esquerda")
+            {
+                velocidade.x -= INCRE_VEL;
+            }
         }
+        corpo.move(velocidade.x, 0.f);
     }
     posicao = corpo.getPosition();
 }
@@ -122,6 +104,7 @@ void Jogador::parar()
 void Jogador::executar()
 {
     cout << esta_no_chao << endl;
+    window_manager->setCentro(posicao);
     efeitoGravidade();
     desenhar_se();
 }

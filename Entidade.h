@@ -24,7 +24,7 @@ namespace Entidades
 		Vector2f tam_corpo;
 		Vector2f velocidade;
 		Time tempo;
-		Clock relogio;
+		Clock relogio_gravidade;
 		bool esta_no_chao;
 
 		ListaEntidades* pListaEntidades;
@@ -43,6 +43,7 @@ namespace Entidades
 		Vector2f getTamanho() const;
 
 		void setVelocidade(Vector2f vel);
+		const Vector2f getVelocidade() const;
 
 		const RectangleShape getCorpo() const;
 
@@ -50,7 +51,6 @@ namespace Entidades
 
 		void efeitoGravidade();
 		virtual void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao);
-		virtual void mover(const char* direcao);
 		void desenhar_se();
 
 		virtual void salvar() = 0;

@@ -9,6 +9,7 @@ namespace Gerenciadores
 	{
 	private:
 		RenderWindow* janela;
+		View camera;
 		static Gerenciador_Grafico* pGerenciadorGrafico;
 
 		Gerenciador_Grafico();
@@ -19,6 +20,7 @@ namespace Gerenciadores
 
 		RenderWindow* getJanela();
 
+		void setCentro(Vector2f pos_jog);
 		void limpaJanela();
 		void desenhaEnte(RectangleShape body);
 		void mostraEnte();

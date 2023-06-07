@@ -35,6 +35,8 @@ namespace Fases
 
 		void criarEntidade(const char simbolo, Vector2f pos);
 
+		void salvar();
+
 		virtual void criarMapa() = 0;
 		virtual void executar() = 0;
 	};

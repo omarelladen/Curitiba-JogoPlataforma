@@ -24,7 +24,7 @@ namespace Listas
 		void clear();
 
 		void addEntidade(Entidade* entid);
-		//void deleteEntidade(Entidade* entid);
+		void deleteEntidade(Entidade* entid);
 		//void deleteEntidade(int pos);
 
 		Entidade* getEntidade(int pos);
@@ -35,7 +35,7 @@ namespace Listas
 
 		const int getTamLista() const;
 
-		void operator=(ListaEntidades& list);
+		void operator=(ListaEntidades* list);
 
 		void executar();
 	};

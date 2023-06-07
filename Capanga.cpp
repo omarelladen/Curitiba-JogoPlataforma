@@ -1,5 +1,6 @@
 #include"ListaEntidades.h"
 #include"Capanga.h"
+#include"Capivara.h"
 
 Capanga::Capanga(Vector2f pos) :
 	Inimigo(IDs::capanga, pos),
@@ -50,7 +51,7 @@ void Capanga::salvar()
         << num_vidas << ' '
         << velocidade.x << ' '
         << velocidade.y << ' '
-        << indo << ' '
+        << direita << ' '
         << nivel_tiro << ' '
         << nivel_estupidez << ' '
         << tempo_congelado << ' ' 
@@ -74,21 +75,21 @@ ListaEntidades* Capanga::recuperar()
     Vector2f pos;
     int vidas;
     Vector2f vel;
-    bool indo;
+    bool dir;
     int tiro;
     int estupidez;
     int tempo_congelado;
     bool congelado;
 
     while (RecuperaSaveCapanga >> pos.x >> pos.y >> vidas >> vel.x >> vel.y >> 
-           indo >> tiro >> estupidez >> tempo_congelado >> congelado)
+           dir >> tiro >> estupidez >> tempo_congelado >> congelado)
     {
         pCapan = new Capanga(pos);
         if (pCapan)
         {
             pCapan->setNumVidas(vidas);
             pCapan->setVelocidade(vel);
-            pCapan->setIndo(indo);
+            pCapan->setDireita(dir);
             pCapan->setNivelTiro(tiro);
             pCapan->setNivelEstupidez(estupidez);
             pCapan->setTempoCongelado(tempo_congelado);
@@ -136,23 +137,28 @@ const bool Capanga::getCongelado() const
     return congelado;
 }
 
-void Capanga::mover(const char* direcao)
+void Capanga::mover()
 {
     if (!congelado)
     {
-        //atirar();
-
         Vector2f pos_alvo = alvo->getPosicao() + alvo->getTamanho() / 2.f;
         Vector2f pos_perseguidor = posicao + tam_corpo / 2.f;
 
-        if (fabs(pos_alvo.x - pos_perseguidor.x) < RAIO_PERSEGUICAO_X && nivel_tiro >= 10)
+        if (fabs(pos_alvo.x - pos_perseguidor.x) < raio_ataque)
         {
             perseguirAlvo();
+
+            tempo = relogio_ataque.getElapsedTime();
+            if (tempo.asSeconds() >= nivel_estupidez)
+            {
+                atirar(nivel_tiro);
+                relogio_ataque.restart();
+            }
         }
 
         if (esta_no_chao)
         {
-            tempo = relogio.restart();
+            tempo = relogio_gravidade.restart();
             velocidade.y = 0.f;
             formaPadraoMover();
             corpo.move(velocidade);
@@ -161,7 +167,7 @@ void Capanga::mover(const char* direcao)
     }
     else
     {
-        tempo = relogio.getElapsedTime();
+        tempo = relogio_gravidade.getElapsedTime();
         if (tempo.asSeconds() >= tempo_congelado)
         {
             setCongelado(false);
@@ -173,6 +179,8 @@ void Capanga::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 {
     switch (id)
     {
+
+    //Arrumar: Chao é varios blocos
     case IDs::chao:
     {
         pos_ini.x = ent->getPosicao().x;
@@ -180,24 +188,29 @@ void Capanga::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
     }
     break;
 
-    case IDs::capivara:
+    case IDs::projetil:
     {
-        if (nivel_estupidez < 15)
+        Projetil* pProj = static_cast<Projetil*>(ent);
+        if (pProj)
         {
-            Capivara* pJog = static_cast<Capivara*>(ent);
-            pJog->diminuirVida(nivel_tiro);
+            if (pProj->getAtirador()->getID() == IDs::capivara)
+            {
+                diminuirVida(pProj->getDano());
+            }
         }
     }
     break;
-
-    case IDs::canto:
-    {
-        setPosicao(posicao - distancia_colisao);
-    }
 
     default: {
         cout << "Erro Colisao Capanga" << endl;
     }
            break;
     }
+}
+
+void Capanga::executar()
+{
+    desenhar_se();
+    efeitoGravidade();
+    mover();
 }

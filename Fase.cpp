@@ -22,7 +22,10 @@ Fase::Fase(const IDs id):
 	listaObstaculos = new ListaEntidades();
 
 	//Cria Gerenciador
-	gerenciadorColisoes = new Gerenciador_Colisoes(listaPersonagens, listaObstaculos);
+	gerenciadorColisoes = Gerenciador_Colisoes::getGerenciadorColisoes();
+
+	gerenciadorColisoes->setListaObstaculos(listaObstaculos);
+	gerenciadorColisoes->setListaPersonagens(listaPersonagens);
 
 	//Cria Construtor de Entidades
 	construtorEntidade = new ConstrutorEntidade();
@@ -110,4 +113,10 @@ void Fase::criarEntidade(const char simbolo, Vector2f pos)
 	default:
 		break;
 	}
+}
+
+void Fase::salvar()
+{
+	listaObstaculos->salvarEntidades();
+	listaPersonagens->salvarEntidades();
 }

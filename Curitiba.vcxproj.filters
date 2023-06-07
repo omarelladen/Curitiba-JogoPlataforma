@@ -52,130 +52,169 @@
     <Filter Include="Arquivos .h\Ente\Entidade\Personagem\Inimigo">
       <UniqueIdentifier>{51f47900-2029-4375-81ba-06bb2b69c5c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Arquivos .cpp\Construtor">
+      <UniqueIdentifier>{a5214995-f1fe-4158-83f0-5b69836072f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .cpp\Ente">
+      <UniqueIdentifier>{5cfc5b91-3d0b-4425-b870-c6c7e7d7a810}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .cpp\Lista">
+      <UniqueIdentifier>{d8a1d4b8-8f77-47b2-b8ea-0f172eba32b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .cpp\Gerenciadores">
+      <UniqueIdentifier>{b5a0c02a-394a-4b0e-868b-aa8f8f738512}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .cpp\Ente\Entidade">
+      <UniqueIdentifier>{f72b1627-a996-4f41-a005-4f3e8cf8180e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .cpp\Ente\Menu">
+      <UniqueIdentifier>{8f6c3826-e54f-4b1a-9a6c-33ad04bc88b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .cpp\Ente\Fase">
+      <UniqueIdentifier>{06ff33da-bb0f-402d-9944-47f522664d5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .cpp\Ente\Observador">
+      <UniqueIdentifier>{1e02611f-bdda-4c5d-9c51-ac1bfa6c02bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .cpp\Ente\Estado">
+      <UniqueIdentifier>{0355d6ed-b075-424f-bf8f-fab9e4448e56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .cpp\Ente\Entidade\Obstaculo">
+      <UniqueIdentifier>{47031057-5c95-4279-a2b9-c9ea19e31c02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .cpp\Ente\Entidade\Personagem">
+      <UniqueIdentifier>{d1abdacc-3841-4036-aa5b-c142aab0352a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .cpp\Ente\Entidade\Personagem\Inimigo">
+      <UniqueIdentifier>{a0d2f807-988c-4f12-90e2-7d0c56528912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Arquivos .cpp\Ente\Entidade\Personagem\Jogador">
+      <UniqueIdentifier>{0974715e-76dc-402d-8121-665e1592b9ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Curitiba.cpp">
       <Filter>Arquivos .cpp</Filter>
     </ClCompile>
-    <ClCompile Include="Bicicleta.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
     <ClCompile Include="Botao.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Capanga.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Capivara.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="ChefeMafia.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="ConstrutorEntidade.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="ConstrutorFase.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Ente.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Entidade.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Estado.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="EstadoJogar.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="EstadoMenuPause.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="EstadoMenuPrincipal.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Fase.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="FaseParqueBarigui.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Gerenciador_Colisoes.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Gerenciador_Estados.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Gerenciador_Eventos.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Gerenciador_Grafico.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Inimigo.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Jacare.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Jogador.cpp">
       <Filter>Arquivos .cpp</Filter>
     </ClCompile>
     <ClCompile Include="Jogo.cpp">
       <Filter>Arquivos .cpp</Filter>
     </ClCompile>
-    <ClCompile Include="ListaEntidades.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="ListaObservadores.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Menu.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuPause.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuPrincipal.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Observador.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="ObservadorFase.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="ObservadorJogador.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="ObservadorMenuPause.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="ObservadorMenuPrincipal.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Obstaculo.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Personagem.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Chao.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Projetil.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
     <ClCompile Include="Arvore.cpp">
-      <Filter>Arquivos .cpp</Filter>
-    </ClCompile>
-    <ClCompile Include="Lixo.cpp">
-      <Filter>Arquivos .cpp</Filter>
+      <Filter>Arquivos .cpp\Ente\Entidade\Obstaculo</Filter>
     </ClCompile>
     <ClCompile Include="Beco.cpp">
-      <Filter>Arquivos .cpp</Filter>
+      <Filter>Arquivos .cpp\Ente\Fase</Filter>
+    </ClCompile>
+    <ClCompile Include="Bicicleta.cpp">
+      <Filter>Arquivos .cpp\Ente\Entidade\Obstaculo</Filter>
+    </ClCompile>
+    <ClCompile Include="Capanga.cpp">
+      <Filter>Arquivos .cpp\Ente\Entidade\Personagem\Inimigo</Filter>
+    </ClCompile>
+    <ClCompile Include="Capivara.cpp">
+      <Filter>Arquivos .cpp\Ente\Entidade\Personagem\Jogador</Filter>
+    </ClCompile>
+    <ClCompile Include="Chao.cpp">
+      <Filter>Arquivos .cpp\Ente\Entidade\Obstaculo</Filter>
+    </ClCompile>
+    <ClCompile Include="ChefeMafia.cpp">
+      <Filter>Arquivos .cpp\Ente\Entidade\Personagem\Inimigo</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstrutorEntidade.cpp">
+      <Filter>Arquivos .cpp\Construtor</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstrutorFase.cpp">
+      <Filter>Arquivos .cpp\Construtor</Filter>
+    </ClCompile>
+    <ClCompile Include="Ente.cpp">
+      <Filter>Arquivos .cpp\Ente</Filter>
+    </ClCompile>
+    <ClCompile Include="Estado.cpp">
+      <Filter>Arquivos .cpp\Ente\Estado</Filter>
+    </ClCompile>
+    <ClCompile Include="EstadoJogar.cpp">
+      <Filter>Arquivos .cpp\Ente\Estado</Filter>
+    </ClCompile>
+    <ClCompile Include="Entidade.cpp">
+      <Filter>Arquivos .cpp\Ente\Entidade</Filter>
+    </ClCompile>
+    <ClCompile Include="EstadoMenuPause.cpp">
+      <Filter>Arquivos .cpp\Ente\Estado</Filter>
+    </ClCompile>
+    <ClCompile Include="EstadoMenuPrincipal.cpp">
+      <Filter>Arquivos .cpp\Ente\Estado</Filter>
+    </ClCompile>
+    <ClCompile Include="Gerenciador_Colisoes.cpp">
+      <Filter>Arquivos .cpp\Gerenciadores</Filter>
+    </ClCompile>
+    <ClCompile Include="Gerenciador_Estados.cpp">
+      <Filter>Arquivos .cpp\Gerenciadores</Filter>
+    </ClCompile>
+    <ClCompile Include="Gerenciador_Eventos.cpp">
+      <Filter>Arquivos .cpp\Gerenciadores</Filter>
+    </ClCompile>
+    <ClCompile Include="Gerenciador_Grafico.cpp">
+      <Filter>Arquivos .cpp\Gerenciadores</Filter>
+    </ClCompile>
+    <ClCompile Include="Fase.cpp">
+      <Filter>Arquivos .cpp\Ente\Fase</Filter>
+    </ClCompile>
+    <ClCompile Include="FaseParqueBarigui.cpp">
+      <Filter>Arquivos .cpp\Ente\Fase</Filter>
+    </ClCompile>
+    <ClCompile Include="Jogador.cpp">
+      <Filter>Arquivos .cpp\Ente\Entidade\Personagem\Jogador</Filter>
+    </ClCompile>
+    <ClCompile Include="ListaEntidades.cpp">
+      <Filter>Arquivos .cpp\Lista</Filter>
+    </ClCompile>
+    <ClCompile Include="ListaObservadores.cpp">
+      <Filter>Arquivos .cpp\Lista</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuPause.cpp">
+      <Filter>Arquivos .cpp\Ente\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuPrincipal.cpp">
+      <Filter>Arquivos .cpp\Ente\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Arquivos .cpp\Ente\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Observador.cpp">
+      <Filter>Arquivos .cpp\Ente\Observador</Filter>
+    </ClCompile>
+    <ClCompile Include="ObservadorFase.cpp">
+      <Filter>Arquivos .cpp\Ente\Observador</Filter>
+    </ClCompile>
+    <ClCompile Include="ObservadorJogador.cpp">
+      <Filter>Arquivos .cpp\Ente\Observador</Filter>
+    </ClCompile>
+    <ClCompile Include="ObservadorMenuPause.cpp">
+      <Filter>Arquivos .cpp\Ente\Observador</Filter>
+    </ClCompile>
+    <ClCompile Include="ObservadorMenuPrincipal.cpp">
+      <Filter>Arquivos .cpp\Ente\Observador</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstaculo.cpp">
+      <Filter>Arquivos .cpp\Ente\Entidade\Obstaculo</Filter>
+    </ClCompile>
+    <ClCompile Include="Lixo.cpp">
+      <Filter>Arquivos .cpp\Ente\Entidade\Obstaculo</Filter>
+    </ClCompile>
+    <ClCompile Include="Inimigo.cpp">
+      <Filter>Arquivos .cpp\Ente\Entidade\Personagem\Inimigo</Filter>
+    </ClCompile>
+    <ClCompile Include="Jacare.cpp">
+      <Filter>Arquivos .cpp\Ente\Entidade\Personagem\Inimigo</Filter>
+    </ClCompile>
+    <ClCompile Include="Projetil.cpp">
+      <Filter>Arquivos .cpp\Ente\Entidade</Filter>
+    </ClCompile>
+    <ClCompile Include="Personagem.cpp">
+      <Filter>Arquivos .cpp\Ente\Entidade\Personagem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,7 @@
 Bicicleta::Bicicleta(Vector2f pos) :
 	Obstaculo(IDs::bicicleta, pos),
 	nivel_ricochete(0),
-	velocidade()
+    dano(0)
 {
     inicializaAtributos();
 }
@@ -22,6 +22,7 @@ void Bicicleta::inicializaAtributos()
 	time_t t;
 	srand((unsigned)time(&t));
 
+    dano = rand() % 3 + 5;
 	nivel_ricochete = rand() % 101 + 150;
 	velocidade = Vector2f((rand() % 5 + 1) / -10.f, 0.f);
 }
@@ -40,7 +41,8 @@ void Bicicleta::salvar()
         << posicao.y << ' '
         << velocidade.x << ' '
         << velocidade.y << ' '
-        << nivel_ricochete << endl;
+        << nivel_ricochete << ' '
+        << dano << endl;
 
     SalvaBicicleta.close();
 }
@@ -60,30 +62,22 @@ ListaEntidades* Bicicleta::recuperar()
     Vector2f pos;
     Vector2f vel;
     int ricochete;
+    int damage;
 
-    while (RecuperaSaveBicicleta >> pos.x >> pos.y >> vel.x >> vel.y >> ricochete)
+    while (RecuperaSaveBicicleta >> pos.x >> pos.y >> vel.x >> vel.y >> ricochete >> damage)
     {
         pBike = new Bicicleta(pos);
         if (pBike)
         {
             pBike->setVelocidade(vel);
             pBike->setNivelRicochete(ricochete);
+            pBike->setDano(damage);
             pListaEntidades->addEntidade(static_cast<Entidade*>(pBike));
         }
     }
     RecuperaSaveBicicleta.close();
 
     return pListaEntidades;
-}
-
-void Bicicleta::setVelocidade(Vector2f vel)
-{
-    velocidade = vel;
-}
-
-const Vector2f Bicicleta::getVelocidade() const
-{
-    return velocidade;
 }
 
 void Bicicleta::setNivelRicochete(const int ricochete)
@@ -94,6 +88,15 @@ void Bicicleta::setNivelRicochete(const int ricochete)
 const int Bicicleta::getNivelRicochete() const
 {
     return nivel_ricochete;
+}
+
+void Entidades::Obstaculos::Bicicleta::setDano(const int damage)
+{
+}
+
+const int Entidades::Obstaculos::Bicicleta::getDano() const
+{
+    return 0;
 }
 
 void Bicicleta::mover()

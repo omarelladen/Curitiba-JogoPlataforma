@@ -1,10 +1,12 @@
 #include"ListaEntidades.h"
 #include"Jacare.h"
+#include"Capivara.h"
 
 Jacare::Jacare(Vector2f pos):
-	Inimigo(IDs::jacare, pos, Vector2f(0.f, 0.f), Vector2f((float) Ente::getManager()->getJanela()->getSize().x, 0.f)),
-	nivel_mordida(0),
-    raio_super_pulo(0)
+	Inimigo(IDs::jacare, pos),
+	forca_mordida(0),
+    raio_super_pulo(0),
+    rapidez_mordida(0)
 {
     inicializaAtributos();
 }
@@ -19,39 +21,43 @@ void Jacare::inicializaAtributos()
 {
     setTamanho(Vector2f(100.f, 50.f));
 
-    //Esquerda
-    projetil = new Projetil(Vector2f(posicao.x - 7.f, posicao.y + tam_corpo.y / 2.f));
-    if (projetil)
-    {
-        projetil->setAtirador(this);
-        projetil->setTamanho(Vector2f(5.f, 5.f));
-    }
-    else
-    {
-        cout << "Erro de alocacao de Projetil em Jacare" << endl;
-    }
-
     time_t t;
     srand((unsigned)time(&t));
 
-    nivel_mordida = rand() % 3 + 5;
+    forca_mordida = rand() % 3 + 5;
     raio_super_pulo = rand() % 101 + 100;
     num_vidas = rand() % 6 + 15;
+    rapidez_mordida = rand() % 4 + 3;
 }
 
-void Jacare::setNivelMordida(const int mordida)
+void Jacare::setForcaMordida(const int mordida)
 {
-    nivel_mordida = mordida;
+    forca_mordida = mordida;
 }
 
-const int Jacare::getNivelMordida() const
+const int Jacare::getForcaMordida() const
 {
-	return nivel_mordida;
+	return forca_mordida;
 }
 
 void Jacare::setRaioSuperPulo(const int raio_pulo)
 {
     raio_super_pulo = raio_pulo;
+}
+
+const int Jacare::getRaioSuperPulo()
+{
+    return raio_super_pulo;
+}
+
+void Jacare::setRapidezMordida(const int tempo)
+{
+    rapidez_mordida = tempo;
+}
+
+const int Jacare::getRapidezMordida()
+{
+    return rapidez_mordida;
 }
 
 void Jacare::salvar()
@@ -69,8 +75,8 @@ void Jacare::salvar()
         << num_vidas << ' '
         << velocidade.x << ' '
         << velocidade.y << ' '
-        << indo << ' '
-        << nivel_mordida << ' '
+        << direita << ' '
+        << forca_mordida << ' '
         << raio_super_pulo << endl;
 
     SalvaJacare.close();
@@ -91,20 +97,20 @@ ListaEntidades* Jacare::recuperar()
     Vector2f pos;
     int vidas;
     Vector2f vel;
-    bool indo;
+    bool dir;
     int mordida;
     int raio_pulo;
 
     while (RecuperaSaveJacare >> pos.x >> pos.y >> vidas >> vel.x >> vel.y >>
-        indo >> mordida >> raio_pulo)
+        dir >> mordida >> raio_pulo)
     {
         pJac = new Jacare(pos);
         if (pJac)
         {
             pJac->setNumVidas(vidas);
             pJac->setVelocidade(vel);
-            pJac->setIndo(indo);
-            pJac->setNivelMordida(mordida);
+            pJac->setDireita(dir);
+            pJac->setForcaMordida(mordida);
             pJac->setRaioSuperPulo(raio_pulo);
             pListaEntidades->addEntidade(static_cast<Entidade*>(pJac));
         }
@@ -114,21 +120,33 @@ ListaEntidades* Jacare::recuperar()
     return pListaEntidades;
 }
 
-void Jacare::mover(const char* direcao)
+void Jacare::mover()
 {
-    atirar();
-
     Vector2f pos_alvo = alvo->getPosicao() + alvo->getTamanho() / 2.f;
     Vector2f pos_perseguidor = posicao + tam_corpo / 2.f;
 
-    if (fabs(pos_alvo.x - pos_perseguidor.x) < RAIO_PERSEGUICAO_X && nivel_mordida >= 10)
+    if (fabs(pos_alvo.x - pos_perseguidor.x) < raio_ataque)
     {
         perseguirAlvo();
+
+        if (fabs(pos_alvo.x - pos_perseguidor.x) < raio_super_pulo)
+        {
+            if (pos_alvo.x > pos_perseguidor.x)
+            {
+                tempo = relogio_ataque.getElapsedTime();
+                if (tempo.asSeconds() >= 5.f)
+                {
+                    velocidade.x = 3.f;
+                    velocidade.y = 0.1f;
+                    relogio_ataque.restart();
+                }
+            }
+        }
     }
 
     if (esta_no_chao)
     {
-        tempo = relogio.restart();
+        tempo = relogio_gravidade.restart();
         velocidade.y = 0.f;
         formaPadraoMover();
         corpo.move(velocidade);
@@ -149,24 +167,40 @@ void Jacare::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 
     case IDs::capivara:
     {
-        Jogador* pJog = static_cast<Jogador*>(ent);
-        pJog->diminuirVida(nivel_mordida);
+        tempo = relogio_ataque.getElapsedTime();
+        if (tempo.asSeconds() >= rapidez_mordida)
+        {
+            Jogador* pJog = static_cast<Jogador*>(ent);
+            pJog->diminuirVida(forca_mordida);
+
+            relogio_ataque.restart();
+        }
     }
     break;
 
     case IDs::projetil:
     {
-        
+        Projetil* pProj = static_cast<Projetil*>(ent);
+        if (pProj)
+        {
+            if (pProj->getAtirador()->getID() == IDs::capivara)
+            {
+                diminuirVida(pProj->getDano());
+            }
+        }
     }
-
-    case IDs::canto:
-    {
-        setPosicao(posicao - distancia_colisao);
-    }
+    break;
 
     default: {
         cout << "Erro Colisao Jacare" << endl;
     }
            break;
     }
+}
+
+void Jacare::executar()
+{
+    desenhar_se();
+    efeitoGravidade();
+    mover();
 }

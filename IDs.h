@@ -3,7 +3,6 @@ enum class IDs
 {
 	empty = 0,
 	capivara,
-	policial,
 	chefeMafia,
 	capanga,
 	jacare,
@@ -14,12 +13,9 @@ enum class IDs
 	lixo,
 	projetil,
 
-	canto,
-
 	// Botao:
 	normal,
 	em_cima,
-
 
 	jogo,
 	menuPrincipal,

@@ -9,8 +9,8 @@ namespace Entidades
 		class Bicicleta : public Obstaculo
 		{
 		private:
-			Vector2f velocidade;
 			int nivel_ricochete;
+			int dano;
 
 		public:
 			Bicicleta(Vector2f pos = Vector2f(0.f, 0.f));
@@ -21,11 +21,11 @@ namespace Entidades
 			void salvar();
 			ListaEntidades* recuperar();
 
-			void setVelocidade(Vector2f vel);
-			const Vector2f getVelocidade() const;
-
 			void setNivelRicochete(const int ricochete);
 			const int getNivelRicochete() const;
+
+			void setDano(const int damage);
+			const int getDano() const;
 
 			void mover();
 			void executar();

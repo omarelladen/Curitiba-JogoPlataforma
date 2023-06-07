@@ -22,6 +22,7 @@ namespace Entidades
 		void inicializaAtributos();
 
 		void setAtirador(Personagem* atir);
+		Personagem* getAtirador();
 
 		void setDano(const int d);
 		const int getDano() const;

@@ -1,5 +1,6 @@
 #include"ListaEntidades.h"
 #include"ChefeMafia.h"
+#include"Capivara.h"
 
 ChefeMafia::ChefeMafia(Vector2f pos) :
 	Inimigo(IDs::chefeMafia, pos),
@@ -55,9 +56,14 @@ void ChefeMafia::setVidasRegeneradas(const int vidas)
     vidas_regeneradas = vidas;
 }
 
+const int ChefeMafia::getVidasRegeneradas()
+{
+    return vidas_regeneradas;
+}
+
 void ChefeMafia::regeneraVida()
 {
-    int tempo = (int) relogio.getElapsedTime().asSeconds();
+    int tempo = (int) relogio_gravidade.getElapsedTime().asSeconds();
     if (tempo % 10 == 0)
     {
         if ((num_vidas + vidas_regeneradas) < NUM_MAX_VIDAS)
@@ -86,7 +92,7 @@ void ChefeMafia::salvar()
         << num_vidas << ' '
         << velocidade.x << ' '
         << velocidade.y << ' '
-        << indo << ' '
+        << direita << ' '
         << nivel_forca << ' '
         << nivel_medo << ' '
         << vidas_regeneradas << endl;
@@ -109,20 +115,20 @@ ListaEntidades* ChefeMafia::recuperar()
     Vector2f pos;
     int vidas;
     Vector2f vel;
-    bool indo;
+    bool dir;
     int forca; //força
     int medo;
     int vidas_rege;
 
     while (RecuperaSaveChefeMafia >> pos.x >> pos.y >> vidas >> vel.x >> vel.y >>
-        indo >> forca >> medo >> vidas_rege)
+        dir >> forca >> medo >> vidas_rege)
     {
         pCM = new ChefeMafia(pos);
         if (pCM)
         {
             pCM->setNumVidas(vidas);
             pCM->setVelocidade(vel);
-            pCM->setIndo(indo);
+            pCM->setDireita(dir);
             pCM->setNivelForca(forca);
             pCM->setNivelMedo(medo);
             pCM->setVidasRegeneradas(vidas_rege);
@@ -134,21 +140,21 @@ ListaEntidades* ChefeMafia::recuperar()
     return pListaEntidades;
 }
 
-void ChefeMafia::mover(const char* direcao)
+void ChefeMafia::mover()
 {
     //atirar();
 
     Vector2f pos_alvo = alvo->getPosicao() + alvo->getTamanho() / 2.f;
     Vector2f pos_perseguidor = posicao + tam_corpo / 2.f;
 
-    if (fabs(pos_alvo.x - pos_perseguidor.x) < RAIO_PERSEGUICAO_X && nivel_medo >= 10)
+    if (fabs(pos_alvo.x - pos_perseguidor.x) < raio_ataque)
     {
         perseguirAlvo();
     }
 
     if (esta_no_chao)
     {
-        tempo = relogio.restart();
+        tempo = relogio_gravidade.restart();
         velocidade.y = 0.f;
         formaPadraoMover();
         corpo.move(velocidade);
@@ -176,14 +182,29 @@ void ChefeMafia::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao
     }
     break;
 
-    case IDs::canto:
+    case IDs::projetil:
     {
-        setPosicao(posicao - distancia_colisao);
+        Projetil* pProj = static_cast<Projetil*>(ent);
+        if (pProj)
+        {
+            if (pProj->getAtirador()->getID() == IDs::capivara)
+            {
+                diminuirVida(pProj->getDano());
+            }
+        }
     }
+    break;
 
     default: {
         cout << "Erro Colisao ChefeMafia" << endl;
     }
            break;
     }
+}
+
+void ChefeMafia::executar()
+{
+    desenhar_se();
+    efeitoGravidade();
+    mover();
 }

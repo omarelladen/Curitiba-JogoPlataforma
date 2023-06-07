@@ -1,14 +1,18 @@
 #include"Inimigo.h"
+#include"Capivara.h"
 #include<list>
 using namespace std;
 
-Inimigo::Inimigo(const IDs id, Vector2f pos, Vector2f pos_i, Vector2f pos_f) :
+Inimigo::Inimigo(const IDs id, Vector2f pos) :
     Personagem(id, pos),
     alvo(nullptr),
-    indo(true),
-    pos_ini(pos_i),
-    pos_fin(pos_f)
+    //Arrumar
+    pos_ini(pos),
+    pos_fin(pos + tam_corpo),
+    //
+    relogio_ataque()
 {
+    relogio_ataque.restart();
 }
 
 Inimigo::~Inimigo()
@@ -21,7 +25,7 @@ void Inimigo::formaPadraoMover()
     if (posicao.x >= pos_ini.x + 1.f
         && (posicao.x + tam_corpo.x) <= pos_fin.x - 1.f)
     {
-        if (indo)
+        if (direita)
         {
             velocidade.x = 0.2f;
         }
@@ -32,7 +36,7 @@ void Inimigo::formaPadraoMover()
     }
     else
     {
-        indo = !indo;
+        direita = !direita;
         if (posicao.x <= pos_ini.x + 1.f)
         {
             posicao.x = pos_ini.x + 2.f;
@@ -64,16 +68,4 @@ void Inimigo::perseguirAlvo()
 void Inimigo::setAlvo(Capivara* target)
 {
     alvo = target;
-}
-
-void Inimigo::setIndo(const bool ind)
-{
-    indo = ind;
-}
-
-void Inimigo::executar()
-{
-    desenhar_se();
-    efeitoGravidade();
-    mover("");
 }
