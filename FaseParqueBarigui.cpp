@@ -15,7 +15,7 @@ void FaseParqueBarigui::criarMapa()
 	ifstream arquivo;
 	string linha;
 
-	arquivo.open("C:/Users/felpi/Documents/Jogo_Simao/Curitiba/Mapas/MapaParqueBarigui.txt");
+	arquivo.open("Mapas/MapaParqueBarigui.txt");
 
 	
 	if (!arquivo.is_open())

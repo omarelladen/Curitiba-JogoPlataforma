@@ -49,6 +49,10 @@ void MenuPause::verificaClique(Vector2f posMouse)
 		//else
 		else if (botao_sair->pressionado(posMouse))
 		{
+			Gerenciador_Eventos::getGerenciadorEventos()->desativaObservadores();
+
+			Gerenciador_Eventos::getGerenciadorEventos()->ativaObservador(IDs::menuPrincipal);
+
 			// Desempilha 2 estados (pause e jogo) pra voltar ao menu principal
 			Gerenciador_Estados::getGerenciadorEstados()->removerEstado(2); // desempilha o pause e o jog (n = 2)
 		}

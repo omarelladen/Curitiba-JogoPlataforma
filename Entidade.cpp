@@ -5,7 +5,7 @@ Entidade::Entidade(const IDs id, Vector2f pos) : //
 	Ente(id),
 	corpo(),
 	posicao(pos), // pos.x * cont
-	tam_corpo(Vector2f(10.f, 10.f)),
+	tam_corpo(Vector2f(100.f, 100.f)),
 	velocidade(Vector2f(0.f, 0.f)),
 	tempo(),
 	relogio_gravidade(),
@@ -20,6 +20,14 @@ Entidade::Entidade(const IDs id, Vector2f pos) : //
 
 Entidade::~Entidade()
 {
+}
+
+void Entidades::Entidade::setTextura(const char* caminho_textura)
+{
+	if (!textura.loadFromFile(caminho_textura))
+		cout << "Erro ao carregar a textura";
+	else
+		corpo.setTexture(&textura);
 }
 
 void Entidade::setEstaNoChao(const bool c)

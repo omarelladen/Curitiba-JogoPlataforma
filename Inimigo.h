@@ -22,7 +22,7 @@ namespace Entidades
 			Inimigo(const IDs id = {}, Vector2f pos = Vector2f(0.f, 0.f));
 			~Inimigo();
 
-			void formaPadraoMover();
+			//void formaPadraoMover();
 			void perseguirAlvo();
 
 			void setAlvo(Capivara* target);

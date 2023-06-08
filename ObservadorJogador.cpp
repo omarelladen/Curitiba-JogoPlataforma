@@ -37,6 +37,8 @@ void ObservadorJogador::teclaPressionada(const Keyboard::Key tecla)
 	// Andar para a esquerda
 	case (Keyboard::A):
 	{
+		pJogador->setDireita(false);
+		pJogador->setTextura("Texturas/Sprite-capivara-esquerda.png");
 		pJogador->mover("Esquerda");
 	}
 		break;
@@ -51,6 +53,8 @@ void ObservadorJogador::teclaPressionada(const Keyboard::Key tecla)
 	// Andar para a direita
 	case (Keyboard::D):
 	{
+		pJogador->setDireita(true);
+		pJogador->setTextura("Texturas/Sprite-capivara-direita.png");
 		pJogador->mover("Direita");
 	}
 		break;

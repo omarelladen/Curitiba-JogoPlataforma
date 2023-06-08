@@ -17,7 +17,13 @@ Capivara::~Capivara()
 
 void Capivara::inicializaAtributos()
 {
-    setTamanho(Vector2f(100.f, 75.f));
+    // Textura da Capivara
+    if (!textura.loadFromFile("Texturas/sprite-capivara-direita.png"))
+        cout << "Erro ao carregar a textura";
+    else
+        corpo.setTexture(&textura);
+
+    setTamanho(Vector2f(100.f, 100.f));
 
     time_t t;
     srand((unsigned)time(&t));

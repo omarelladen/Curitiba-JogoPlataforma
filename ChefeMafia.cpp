@@ -156,7 +156,7 @@ void ChefeMafia::mover()
     {
         tempo = relogio_gravidade.restart();
         velocidade.y = 0.f;
-        formaPadraoMover();
+        //formaPadraoMover();
         corpo.move(velocidade);
     }
     posicao = corpo.getPosition();

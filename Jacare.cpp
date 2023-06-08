@@ -19,13 +19,19 @@ Jacare::~Jacare()
 
 void Jacare::inicializaAtributos()
 {
-    setTamanho(Vector2f(100.f, 50.f));
+    // Textura do Jacare
+    if (!textura.loadFromFile("Texturas/sprite-jacare-esquerda.png"))
+        cout << "Erro ao carregar a textura";
+    else
+        corpo.setTexture(&textura);
+
+    setTamanho(Vector2f(100.f, 100.f));
 
     time_t t;
     srand((unsigned)time(&t));
 
     forca_mordida = rand() % 3 + 5;
-    raio_super_pulo = rand() % 101 + 100;
+    raio_super_pulo = 200; //rand() % 101 + 100;
     num_vidas = rand() % 6 + 15;
     rapidez_mordida = rand() % 4 + 3;
 }
@@ -122,33 +128,55 @@ ListaEntidades* Jacare::recuperar()
 
 void Jacare::mover()
 {
+
     Vector2f pos_alvo = alvo->getPosicao() + alvo->getTamanho() / 2.f;
     Vector2f pos_perseguidor = posicao + tam_corpo / 2.f;
 
-    if (fabs(pos_alvo.x - pos_perseguidor.x) < raio_ataque)
+    if (fabs(pos_alvo.x - pos_perseguidor.x) <= raio_ataque) // Perseguir
     {
-        perseguirAlvo();
-
-        if (fabs(pos_alvo.x - pos_perseguidor.x) < raio_super_pulo)
+        if (fabs(pos_alvo.y - pos_perseguidor.y) < 50) // tem q ter a memsa altura ou proxima
         {
-            if (pos_alvo.x > pos_perseguidor.x)
+            perseguirAlvo();
+
+            if (fabs(pos_alvo.x - pos_perseguidor.x) < raio_super_pulo) // Pular
             {
-                tempo = relogio_ataque.getElapsedTime();
-                if (tempo.asSeconds() >= 5.f)
+                if (pos_alvo.x > pos_perseguidor.x) // Direita
                 {
-                    velocidade.x = 3.f;
-                    velocidade.y = 0.1f;
-                    relogio_ataque.restart();
+                    tempo = relogio_ataque.getElapsedTime();
+                    if (tempo.asSeconds() >= 3.f)
+                    {
+                        cout << "Ataca a direita" << endl;
+                        velocidade.x = 50.f;
+                        velocidade.y = 1.f;
+                        relogio_ataque.restart();
+                        //corpo.move(velocidade);
+                    }
+                }
+                else // Esquerda
+                {
+                    tempo = relogio_ataque.getElapsedTime();
+                    if (tempo.asSeconds() >= 3.f)
+                    {
+                        cout << "Ataca a esquerda" << endl;
+                        velocidade.x = -50.f;
+                        velocidade.y = 1.f;
+                        relogio_ataque.restart();
+                        //corpo.move(velocidade);
+                    }
                 }
             }
+           
+                
+          
         }
+        
     }
 
-    if (esta_no_chao)
+    if (esta_no_chao) // else
     {
         tempo = relogio_gravidade.restart();
         velocidade.y = 0.f;
-        formaPadraoMover();
+        //formaPadraoMover();
         corpo.move(velocidade);
     }
     posicao = corpo.getPosition();
@@ -203,4 +231,27 @@ void Jacare::executar()
     desenhar_se();
     efeitoGravidade();
     mover();
+    //corpo.move(velocidade);
+    //corpo.setPosition(posicao);
+    
+    if (velocidade.x > 0)
+        direita = true;
+    else if (velocidade.x < 0)
+        direita = false;
+
+    // Atualizar textura
+    if (direita)
+    {
+        if (!textura.loadFromFile("Texturas/sprite-jacare-direita.png"))
+            cout << "Erro ao carregar a textura";
+        else
+            corpo.setTexture(&textura);
+    }
+    else
+    {
+        if (!textura.loadFromFile("Texturas/sprite-jacare-esquerda.png"))
+            cout << "Erro ao carregar a textura";
+        else
+            corpo.setTexture(&textura);
+    }
 }

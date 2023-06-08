@@ -27,11 +27,15 @@ namespace Entidades
 		Clock relogio_gravidade;
 		bool esta_no_chao;
 
+		Texture textura;
+
 		ListaEntidades* pListaEntidades;
 
 	public:
 		Entidade(const IDs id = {}, Vector2f pos = Vector2f(0.f, 0.f));
 		~Entidade();
+
+		void setTextura(const char* caminho_textura);
 
 		void setEstaNoChao(const bool c);
 		const bool getEstaNoChao();

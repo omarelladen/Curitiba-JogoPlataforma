@@ -8,7 +8,7 @@ Jogador::Jogador(const IDs id, Vector2f pos) :
     observadorJogador(nullptr)
 {
     Vector2f pos_ini_player(100.f, 300.f);
-    corpo.setFillColor(Color::Blue);
+    //corpo.setFillColor(Color::Blue);
     corpo.setSize(tam_corpo);
     corpo.setPosition(pos_ini_player);
     posicao = pos_ini_player;
@@ -103,7 +103,7 @@ void Jogador::parar()
 
 void Jogador::executar()
 {
-    cout << esta_no_chao << endl;
+    //cout << esta_no_chao << endl;
     window_manager->setCentro(posicao);
     efeitoGravidade();
     desenhar_se();
