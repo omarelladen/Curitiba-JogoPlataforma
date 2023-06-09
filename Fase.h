@@ -27,11 +27,19 @@ namespace Fases
 
 		ObservadorFase* observadorFase;
 
+
+
+		Jogador* pJogador;
+
 	public:
 		Fase(const IDs id = {});
 		~Fase();
 
 		void adicionarJogador(Jogador* pJ);
+
+
+		void setJogador(Jogador* pJ);
+
 
 		void criarEntidade(const char simbolo, Vector2f pos);
 

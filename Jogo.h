@@ -19,7 +19,6 @@ private:
 	Gerenciador_Grafico* gerenciador_grafico;
 	Gerenciador_Estados* gerenciador_estados;
 
-
 public:
 	Jogo();
 	~Jogo();

@@ -25,7 +25,7 @@ Entidade::~Entidade()
 void Entidades::Entidade::setTextura(const char* caminho_textura)
 {
 	if (!textura.loadFromFile(caminho_textura))
-		cout << "Erro ao carregar a textura";
+		cout << "Erro ao carregar a textura " << caminho_textura << endl;
 	else
 		corpo.setTexture(&textura);
 }

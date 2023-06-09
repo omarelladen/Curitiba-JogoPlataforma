@@ -20,10 +20,7 @@ Capanga::~Capanga()
 
 void Capanga::inicializaAtributos()
 {
-    if (!textura.loadFromFile("Texturas/sprite-capanga-direita.png"))
-        cout << "Erro ao carregar a textura";
-    else
-        corpo.setTexture(&textura);
+    setTextura("Texturas/sprite-capanga-direita.png");
 
     setTamanho(Vector2f(50.f, 100.f));
 

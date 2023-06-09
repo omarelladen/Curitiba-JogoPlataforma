@@ -194,7 +194,9 @@ void Gerenciador_Colisoes::executar()
 	if (listaObstaculos)
 		listaObstaculos->executar();
 	if (listaProjeteis)
+	{
 		listaProjeteis->executar();
+	}
 
 	GerenciarColisoes();
 }

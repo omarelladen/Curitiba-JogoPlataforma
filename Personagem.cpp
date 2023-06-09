@@ -35,12 +35,17 @@ const bool Personagem::getDireita()
 
 void Personagem::atirar(const int dano)
 {
+    
     Projetil* pProj = nullptr;
 
     if (direita)
     {
         pProj = new Projetil(Vector2f(posicao.x + tam_corpo.x + 2.f, posicao.y + tam_corpo.y / 2.f));
-        if(pProj == nullptr)
+        if (pProj)
+        {
+            pProj->setVelocidade(Vector2f(pProj->getVelocidade().x, pProj->getVelocidade().y));
+        }
+        else
         {
             cout << "Erro alocacao de Projetil em Personagem" << endl;
             exit(1);

@@ -4,6 +4,14 @@ using namespace Fases;
 FaseParqueBarigui::FaseParqueBarigui() :
 	Fase(IDs::fase_barigui)
 {
+	// Textura Fundo
+	if (!textura_fundo.loadFromFile("Fundo/fundo-barigui.jpg"))
+	{
+		cout << "Erro ao carregar a textura do fundo" << endl;
+		exit(1);
+	}
+	fundo.setTexture(textura_fundo);
+	
 }
 
 FaseParqueBarigui::~FaseParqueBarigui()
@@ -31,5 +39,8 @@ void FaseParqueBarigui::criarMapa()
 
 void FaseParqueBarigui::executar()
 {
+	fundo.setPosition(Vector2f(pJogador->getPosicao().x - 500, 50)); 
+	Gerenciador_Grafico::getGerenciadorGrafico()->getJanela()->draw(fundo);
+
 	gerenciadorColisoes->executar();
 }
