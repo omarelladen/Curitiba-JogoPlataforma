@@ -99,7 +99,7 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
         tempo = relogio_ataque.getElapsedTime();
         if (tempo.asSeconds() >= intervalo_ataque)
         {
-            diminuirVida(-1);
+            diminuirVida(1);
 
             relogio_ataque.restart();
         }

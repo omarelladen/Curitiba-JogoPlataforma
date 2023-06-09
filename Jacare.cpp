@@ -241,6 +241,8 @@ void Jacare::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 
 void Jacare::executar()
 {
+    imprimirBarraVidas();
+
     desenhar_se();
     efeitoGravidade();
     mover();

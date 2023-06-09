@@ -5,7 +5,7 @@ FaseParqueBarigui::FaseParqueBarigui() :
 	Fase(IDs::fase_barigui)
 {
 	// Textura Fundo
-	if (!textura_fundo.loadFromFile("Fundo/fundo-barigui.jpg"))
+	if (!textura_fundo.loadFromFile("Fundo/parque-generico.jpg"))
 	{
 		cout << "Erro ao carregar a textura do fundo" << endl;
 		exit(1);
@@ -38,7 +38,7 @@ void FaseParqueBarigui::criarMapa()
 
 void FaseParqueBarigui::executar()
 {
-	fundo.setPosition(Vector2f(pJogador->getPosicao().x - 500, 50));
+	fundo.setPosition(Vector2f(pJogador->getPosicao().x - 490, 100));
 	Gerenciador_Grafico::getGerenciadorGrafico()->getJanela()->draw(fundo);
 
 	gerenciadorColisoes->executar();

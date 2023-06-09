@@ -126,9 +126,6 @@
     <ClCompile Include="ConstrutorEntidade.cpp">
       <Filter>Arquivos .cpp\Construtor</Filter>
     </ClCompile>
-    <ClCompile Include="ConstrutorFase.cpp">
-      <Filter>Arquivos .cpp\Construtor</Filter>
-    </ClCompile>
     <ClCompile Include="Ente.cpp">
       <Filter>Arquivos .cpp\Ente</Filter>
     </ClCompile>
@@ -231,9 +228,6 @@
       <Filter>Arquivos .h\Ente\Entidade\Obstaculo</Filter>
     </ClInclude>
     <ClInclude Include="ConstrutorEntidade.h">
-      <Filter>Arquivos .h\Construtor</Filter>
-    </ClInclude>
-    <ClInclude Include="ConstrutorFase.h">
       <Filter>Arquivos .h\Construtor</Filter>
     </ClInclude>
     <ClInclude Include="Entidade.h">

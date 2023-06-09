@@ -10,7 +10,7 @@ Inimigo::Inimigo(const IDs id, Vector2f pos) :
     pos_ini(pos),
     pos_fin(pos + tam_corpo + Vector2f(1000.f, 0.f)),
     //
-    raio_ataque(300)
+    raio_ataque(3000)
 {
 }
 
@@ -56,12 +56,12 @@ void Inimigo::perseguirAlvo()
 
     if (pos_alvo.x > pos_perseguidor.x)
     {
-        velocidade.x = 0.2f;
+        velocidade.x = 0.05f;
         //corpo.move(0.1f, 0.f);
     }
     else
     {
-        velocidade.x = -0.2f;
+        velocidade.x = -0.05f;
         //corpo.move(-0.1f, 0.f);
     }
 }
