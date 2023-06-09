@@ -17,8 +17,8 @@ Capivara::~Capivara()
 
 void Capivara::inicializaAtributos()
 {
-    // Textura da Capivara
     setTextura("Texturas/sprite-capivara-direita.png");
+
     setTamanho(Vector2f(100.f, 100.f));
 
     time_t t;
@@ -141,6 +141,7 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 
     case IDs::projetil:
     {
+        cout << " Capivara Colisao com Projetil" << endl;
     }
 
     default: {

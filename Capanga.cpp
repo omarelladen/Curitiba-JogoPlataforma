@@ -21,6 +21,7 @@ Capanga::~Capanga()
 void Capanga::inicializaAtributos()
 {
     setTextura("Texturas/sprite-capanga-direita.png");
+
     setTamanho(Vector2f(50.f, 100.f));
 
     time_t t;
@@ -145,9 +146,12 @@ void Capanga::mover()
         Vector2f pos_alvo = alvo->getPosicao() + alvo->getTamanho() / 2.f;
         Vector2f pos_perseguidor = posicao + tam_corpo / 2.f;
 
-        if (fabs(pos_alvo.y - pos_perseguidor.y) <= 50) // tem q ter a memsa altura ou proxima
+        float dis_alvo_x = fabs(pos_alvo.x - pos_perseguidor.x);
+        float dis_alvo_y = fabs(pos_alvo.y - pos_perseguidor.y);
+
+        if (dis_alvo_y < 50) // tem q ter a memsa altura ou proxima
         {
-            if (fabs(pos_alvo.x - pos_perseguidor.x) <= raio_ataque)
+            if (dis_alvo_x <= raio_ataque)
             {
                 perseguirAlvo();
 

@@ -25,6 +25,7 @@ namespace Entidades
 		Vector2f velocidade;
 		Time tempo;
 		Clock relogio_gravidade;
+
 		Texture textura;
 		bool esta_no_chao;
 

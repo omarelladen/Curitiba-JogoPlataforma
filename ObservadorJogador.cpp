@@ -1,4 +1,5 @@
 #include"ObservadorJogador.h"
+#include "Capivara.h"
 using namespace Observers;
 
 ObservadorJogador::ObservadorJogador(Jogador* pJ):
@@ -115,6 +116,13 @@ void ObservadorJogador::teclaSolta(const Keyboard::Key tecla)
 	case (Keyboard::D):
 	{
 		pJogador->parar();
+	}
+	break;
+
+	case (Keyboard::F):
+	{
+		Capivara* pC = static_cast<Capivara*>(pJogador);
+		pC->atirar(pC->getForcaCuspe());
 	}
 	break;
 

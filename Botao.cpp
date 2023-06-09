@@ -11,7 +11,7 @@ Botao::Botao(Vector2f pos, Vector2f tam, string t, Color c):
 
 	fonte = new Font();
 
-	fonte->loadFromFile("Fonte/SparkyStonesRegular-BW6ld.ttf");
+	fonte->loadFromFile("Fonte/SparkyStonesRegular-BW6ld.ttf"); //
 
 	texto.setFont(*fonte);
 	texto.setString(t);
