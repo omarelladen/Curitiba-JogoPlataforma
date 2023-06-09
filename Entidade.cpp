@@ -10,7 +10,8 @@ Entidade::Entidade(const IDs id, Vector2f pos) : //
 	tempo(),
 	relogio_gravidade(),
 	esta_no_chao(false),
-	pListaEntidades(nullptr)
+	pListaEntidades(nullptr),
+	textura()
 {
 	corpo.setPosition(pos);
 	relogio_gravidade.restart();
@@ -22,10 +23,10 @@ Entidade::~Entidade()
 {
 }
 
-void Entidades::Entidade::setTextura(const char* caminho_textura)
+void Entidade::setTextura(const char* caminho_textura)
 {
 	if (!textura.loadFromFile(caminho_textura))
-		cout << "Erro ao carregar a textura " << caminho_textura << endl;
+		cout << "Erro ao carregar a textura";
 	else
 		corpo.setTexture(&textura);
 }

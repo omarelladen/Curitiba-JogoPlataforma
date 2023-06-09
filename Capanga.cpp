@@ -21,7 +21,6 @@ Capanga::~Capanga()
 void Capanga::inicializaAtributos()
 {
     setTextura("Texturas/sprite-capanga-direita.png");
-
     setTamanho(Vector2f(50.f, 100.f));
 
     time_t t;
@@ -146,7 +145,7 @@ void Capanga::mover()
         Vector2f pos_alvo = alvo->getPosicao() + alvo->getTamanho() / 2.f;
         Vector2f pos_perseguidor = posicao + tam_corpo / 2.f;
 
-        if (fabs(pos_alvo.y - pos_perseguidor.y) < 50) // tem q ter a memsa altura ou proxima
+        if (fabs(pos_alvo.y - pos_perseguidor.y) <= 50) // tem q ter a memsa altura ou proxima
         {
             if (fabs(pos_alvo.x - pos_perseguidor.x) <= raio_ataque)
             {
@@ -228,16 +227,10 @@ void Capanga::executar()
     // Atualizar textura
     if (direita)
     {
-        if (!textura.loadFromFile("Texturas/sprite-capanga-direita.png"))
-            cout << "Erro ao carregar a textura";
-        else
-            corpo.setTexture(&textura);
+        setTextura("Texturas/sprite-capanga-direita.png");
     }
     else
     {
-        if (!textura.loadFromFile("Texturas/sprite-capanga-esquerda.png"))
-            cout << "Erro ao carregar a textura";
-        else
-            corpo.setTexture(&textura);
+        setTextura("Texturas/sprite-capanga-esquerda.png");
     }
 }

@@ -18,7 +18,6 @@ Chao::~Chao()
 void Chao::inicializaAtributos()
 {
     setTextura("Texturas/Sprite-chao-parque.png");
-
     setTamanho(Vector2f(50.f, 50.f));
 
 	time_t t;
@@ -29,26 +28,26 @@ void Chao::inicializaAtributos()
 
 void Chao::salvar()
 {
-    ofstream SalvaPlataforma("SavePlataforma.dat", ios::out);
+    ofstream SalvaChao("SaveChao.dat", ios::out);
 
-    if (!SalvaPlataforma)
+    if (!SalvaChao)
     {
         cerr << "Arquivo nao pode ser aberto" << endl;
         exit(1);
     }
     
-    SalvaPlataforma << posicao.x << ' '
+    SalvaChao << posicao.x << ' '
         << posicao.y << ' '
         << atrito << endl;
 
-    SalvaPlataforma.close();
+    SalvaChao.close();
 }
 
 ListaEntidades* Chao::recuperar()
 {
-    ifstream RecuperaSavePlataforma("SavePlataforma.dat", ios::in);
+    ifstream RecuperaSaveChao("SaveChao.dat", ios::in);
 
-    if (!RecuperaSavePlataforma)
+    if (!RecuperaSaveChao)
     {
         cerr << "Arquivo nao pode ser aberto" << endl;
         exit(1);
@@ -59,7 +58,7 @@ ListaEntidades* Chao::recuperar()
     Vector2f pos;
     double atrito;
 
-    while (RecuperaSavePlataforma >> pos.x >> pos.y >> atrito)
+    while (RecuperaSaveChao >> pos.x >> pos.y >> atrito)
     {
         pPlat = new Chao(pos);
         if (pPlat)
@@ -68,7 +67,7 @@ ListaEntidades* Chao::recuperar()
             pListaEntidades->addEntidade(static_cast<Entidade*>(pPlat));
         }
     }
-    RecuperaSavePlataforma.close();
+    RecuperaSaveChao.close();
 
     return pListaEntidades;
 }

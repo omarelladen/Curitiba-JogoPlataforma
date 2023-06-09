@@ -13,10 +13,6 @@ namespace Fases
 	private:
 		// bool 
 
-		// Fundo
-		Texture textura_fundo;
-		Sprite fundo;
-
 	public:
 		FaseParqueBarigui();
 		~FaseParqueBarigui();

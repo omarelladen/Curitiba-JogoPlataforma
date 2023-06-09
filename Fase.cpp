@@ -9,9 +9,7 @@ Fase::Fase(const IDs id):
 	listaObstaculos(nullptr),
 	gerenciadorColisoes(nullptr),
 	construtorEntidade(nullptr),
-	observadorFase(nullptr),
-
-	pJogador(nullptr)
+	observadorFase(nullptr)
 {
 	// NAO EH AQUI QUE CRIA O PERSONAGEM !!!!!
 	/*// Cria o personagem
@@ -62,17 +60,7 @@ void Fase::adicionarJogador(Jogador* pJ)
 	{
 		construtorEntidade->setJogador(static_cast<Capivara*>(pJ));//
 		listaPersonagens->addEntidade(pJ);
-
-
-		setJogador(pJ);
 	}
-	
-}
-
-void Fases::Fase::setJogador(Jogador* pJ)
-{
-	if (pJ)
-		pJogador = pJ;
 }
 
 void Fase::criarEntidade(const char simbolo, Vector2f pos)

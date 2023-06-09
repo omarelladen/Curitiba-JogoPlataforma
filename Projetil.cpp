@@ -7,8 +7,6 @@ Projetil::Projetil(Vector2f pos) :
     dano(0),
     atirador(nullptr)
 {
-    //Textura
-
     inicializaAtributos();
 }
 
@@ -21,9 +19,7 @@ Projetil::~Projetil()
 
 void Projetil::inicializaAtributos()
 {
-    // Cor do tiro
-    corpo.setFillColor(sf::Color::Red);//
-    setTamanho(Vector2f(20.f, 20.f));//
+    setTamanho(Vector2f(7.f, 7.f));
 
     time_t t;
     srand((unsigned)time(&t));
@@ -192,7 +188,6 @@ void Projetil::mover()
 
 void Projetil::executar()
 {
-    cout << posicao.x << " / " << posicao.y << endl;
     desenhar_se();
     efeitoGravidade();
     mover();

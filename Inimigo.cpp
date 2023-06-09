@@ -4,17 +4,16 @@
 using namespace std;
 
 Inimigo::Inimigo(const IDs id, Vector2f pos) :
-    raio_ataque(0),
     Personagem(id, pos),
     alvo(nullptr),
     //Arrumar
     pos_ini(pos),
-    pos_fin(pos + tam_corpo + Vector2f(1000, 0)),
+    pos_fin(pos + tam_corpo + Vector2f(1000.f, 0.f)),
     //
-    relogio_ataque()
+    relogio_ataque(),
+    raio_ataque(300)
 {
     relogio_ataque.restart();
-    raio_ataque = 10000;//
 }
 
 Inimigo::~Inimigo()
@@ -24,9 +23,8 @@ Inimigo::~Inimigo()
 
 /*void Inimigo::formaPadraoMover()
 {
-    cout << "Padrao" << endl;
     if (posicao.x >= pos_ini.x + 1.f
-        && (posicao.x + tam_corpo.x) <= pos_fin.x - 1.f) // ((posicao.x + tam_corpo.x) >= pos_fin.x - 1.f)
+        && (posicao.x + tam_corpo.x) <= pos_fin.x - 1.f)
     {
         if (direita)
         {
@@ -60,12 +58,12 @@ void Inimigo::perseguirAlvo()
 
     if (pos_alvo.x > pos_perseguidor.x)
     {
-        velocidade.x = 0.02f;
+        velocidade.x = 0.2f;
         //corpo.move(0.1f, 0.f);
     }
     else
     {
-        velocidade.x = -0.02f;
+        velocidade.x = -0.2f;
         //corpo.move(-0.1f, 0.f);
     }
 }
