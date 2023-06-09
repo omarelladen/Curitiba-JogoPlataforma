@@ -20,6 +20,11 @@ Capanga::~Capanga()
 
 void Capanga::inicializaAtributos()
 {
+    if (!textura.loadFromFile("Texturas/sprite-capanga-direita.png"))
+        cout << "Erro ao carregar a textura";
+    else
+        corpo.setTexture(&textura);
+
     setTamanho(Vector2f(50.f, 100.f));
 
     time_t t;
@@ -144,26 +149,29 @@ void Capanga::mover()
         Vector2f pos_alvo = alvo->getPosicao() + alvo->getTamanho() / 2.f;
         Vector2f pos_perseguidor = posicao + tam_corpo / 2.f;
 
-        if (fabs(pos_alvo.x - pos_perseguidor.x) < raio_ataque)
+        if (fabs(pos_alvo.y - pos_perseguidor.y) < 50) // tem q ter a memsa altura ou proxima
         {
-            perseguirAlvo();
-
-            tempo = relogio_ataque.getElapsedTime();
-            if (tempo.asSeconds() >= nivel_estupidez)
+            if (fabs(pos_alvo.x - pos_perseguidor.x) <= raio_ataque)
             {
-                atirar(nivel_tiro);
-                relogio_ataque.restart();
-            }
-        }
+                perseguirAlvo();
 
-        if (esta_no_chao)
-        {
-            tempo = relogio_gravidade.restart();
-            velocidade.y = 0.f;
-            //formaPadraoMover();
-            corpo.move(velocidade);
+                tempo = relogio_ataque.getElapsedTime();
+                if (tempo.asSeconds() >= nivel_estupidez)
+                {
+                    atirar(nivel_tiro);
+                    relogio_ataque.restart();
+                }
+            }
+
+            if (esta_no_chao)
+            {
+                tempo = relogio_gravidade.restart();
+                velocidade.y = 0.f;
+                //formaPadraoMover();
+                corpo.move(velocidade);
+            }
+            posicao = corpo.getPosition();
         }
-        posicao = corpo.getPosition();
     }
     else
     {
@@ -213,4 +221,26 @@ void Capanga::executar()
     desenhar_se();
     efeitoGravidade();
     mover();
+
+
+    if (velocidade.x > 0)
+        direita = true;
+    else if (velocidade.x < 0)
+        direita = false;
+
+    // Atualizar textura
+    if (direita)
+    {
+        if (!textura.loadFromFile("Texturas/sprite-capanga-direita.png"))
+            cout << "Erro ao carregar a textura";
+        else
+            corpo.setTexture(&textura);
+    }
+    else
+    {
+        if (!textura.loadFromFile("Texturas/sprite-capanga-esquerda.png"))
+            cout << "Erro ao carregar a textura";
+        else
+            corpo.setTexture(&textura);
+    }
 }

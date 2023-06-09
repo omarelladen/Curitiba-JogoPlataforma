@@ -17,6 +17,11 @@ Chao::~Chao()
 
 void Chao::inicializaAtributos()
 {
+    if (!textura.loadFromFile("Texturas/Sprite-chao-parque.png"))
+        cout << "Erro ao carregar a textura";
+    else
+        corpo.setTexture(&textura);
+
     setTamanho(Vector2f(50.f, 50.f));
 
 	time_t t;
