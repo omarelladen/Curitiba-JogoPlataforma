@@ -26,7 +26,7 @@ Entidade::~Entidade()
 void Entidade::setTextura(const char* caminho_textura)
 {
 	if (!textura.loadFromFile(caminho_textura))
-		cout << "Erro ao carregar a textura " << endl;
+		cout << "Erro ao carregar a textura" << endl;
 	else
 		corpo.setTexture(&textura);
 }
@@ -43,10 +43,21 @@ const bool Entidades::Entidade::getEstaNoChao()
 
 void Entidade::efeitoGravidade()
 {
-	if (velocidade.y <= MAX_VEL)
+	if (esta_no_chao)
 	{
-		tempo = relogio_gravidade.getElapsedTime();
-		velocidade.y += (GRAVIDADE * (tempo.asSeconds()/100.f));
+		if (velocidade.y <= MAX_VEL)
+		{
+			tempo = relogio_gravidade.getElapsedTime();
+			velocidade.y += (GRAVIDADE * (tempo.asSeconds() / 100.f));
+		}
+	}
+	else
+	{
+		if (velocidade.y <= MAX_VEL)
+		{
+			tempo = relogio_gravidade.getElapsedTime();
+			velocidade.y += (GRAVIDADE * (tempo.asSeconds() / 100.f));
+		}
 	}
 
 	corpo.move(velocidade);

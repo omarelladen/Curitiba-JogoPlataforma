@@ -192,7 +192,6 @@ void Projetil::mover()
 
 void Projetil::executar()
 {
-    cout << "Projetil executar()" << endl;
     desenhar_se();
     efeitoGravidade();
     mover();

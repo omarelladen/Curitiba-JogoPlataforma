@@ -55,20 +55,18 @@ Fase::~Fase()
 	observadorFase = nullptr;
 }
 
-void Fase::adicionarJogador(Jogador* pJ)
+void Fase::addJogador(Jogador* pJ)
 {
 	if (pJ)
 	{
 		construtorEntidade->setJogador(static_cast<Capivara*>(pJ));//
 		listaPersonagens->addEntidade(pJ);
 
-
 		setJogador(pJ);
 	}
-	
 }
 
-void Fases::Fase::setJogador(Jogador* pJ)
+void Fase::setJogador(Jogador* pJ)
 {
 	if (pJ)
 		pJogador = pJ;

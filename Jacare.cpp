@@ -129,48 +129,38 @@ void Jacare::mover()
     float dis_alvo_x = fabs(pos_alvo.x - pos_perseguidor.x);
     float dis_alvo_y = fabs(pos_alvo.y - pos_perseguidor.y);
 
-    if (dis_alvo_y < 50) // tem q ter a memsa altura ou proxima
+    if (dis_alvo_y <= 50 && dis_alvo_x <= raio_ataque) //Perseguir se tem que ter a memsa altura ou proxima e esta dentro do raio
     {
-        if (dis_alvo_x <= raio_ataque) // Perseguir
+        perseguirAlvo();
+
+        if (dis_alvo_x < raio_super_pulo) //Pular
         {
-            perseguirAlvo();
-
-            if (dis_alvo_x < raio_super_pulo) // Pular
+            if (pos_alvo.x > pos_perseguidor.x) //Jogador na Direita
             {
-                if (pos_alvo.x > pos_perseguidor.x) // Direita
+                tempo = relogio_ataque.getElapsedTime();
+                if (tempo.asSeconds() >= 3.f)
                 {
-                    tempo = relogio_ataque.getElapsedTime();
-                    if (tempo.asSeconds() >= 3.f)
-                    {
-                        // Ataque / pulo
-                        velocidade.x = 50.f;
-                        velocidade.y = 1.f;
+                    // Ataque / pulo
+                    posicao.x = pos_alvo.x - tam_corpo.x + 1.f;
 
-                        relogio_ataque.restart();
-                        //corpo.move(velocidade);
-                    }
-                }
-                else // Esquerda
-                {
-                    tempo = relogio_ataque.getElapsedTime();
-                    if (tempo.asSeconds() >= 3.f)
-                    {
-                        // Ataque / pulo
-                        velocidade.x = -50.f;
-                        velocidade.y = 1.f;
-
-                        relogio_ataque.restart();
-                        //corpo.move(velocidade);
-                    }
+                    relogio_ataque.restart();
                 }
             }
-           
-                
-          
+            else //Jogador na Esquerda
+            {
+                tempo = relogio_ataque.getElapsedTime();
+                if (tempo.asSeconds() >= 3.f)
+                {
+                    posicao.x = pos_alvo.x + alvo->getTamanho().x - 1.f;
+                    relogio_ataque.restart();
+                }
+            }
         }
-        
     }
-    // continua seguindo com sua velocidade != 0
+    else
+    {
+        velocidade.x = 0.f;
+    }
 
     if (esta_no_chao) // else
     {
@@ -188,8 +178,31 @@ void Jacare::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
     {
     case IDs::chao:
     {
-        pos_ini.x = ent->getPosicao().x;
-        pos_fin.x = ent->getPosicao().x + ent->getTamanho().x;
+        /*pos_ini.x = ent->getPosicao().x;
+        pos_fin.x = ent->getPosicao().x + ent->getTamanho().x;*/
+
+
+        //o if de distancia_colisao tá ao contrario pq umas das distancia_colisao é zerada no gerenciador de colisoes, asssim mudando quem é maior
+        //Colisao Cima 
+        if (ent->getPosicao().y >= posicao.y + tam_corpo.y && distancia_colisao.x > distancia_colisao.y)
+        {
+            setEstaNoChao(true);
+
+            //Forca de atrito
+            Chao* pChao = static_cast<Chao*>(ent);
+            if (velocidade.x > 0.f)
+            {
+                velocidade.x -= (float) pChao->getAtrito() / 100.f;
+            }
+            else if (velocidade.x < 0.f)
+            {
+                velocidade.x += (float) pChao->getAtrito() / 100.f;
+            }
+        }
+        else
+        {
+            setEstaNoChao(false);
+        }
     }
     break;
 
@@ -231,9 +244,10 @@ void Jacare::executar()
     desenhar_se();
     efeitoGravidade();
     mover();
+
     //corpo.move(velocidade);
     //corpo.setPosition(posicao);
-    
+
     if (velocidade.x > 0)
         direita = true;
     else if (velocidade.x < 0)
@@ -242,16 +256,10 @@ void Jacare::executar()
     // Atualizar textura
     if (direita)
     {
-        if (!textura.loadFromFile("Texturas/sprite-jacare-direita.png"))
-            cout << "Erro ao carregar a textura";
-        else
-            corpo.setTexture(&textura);
+        setTextura("Texturas/sprite-jacare-direita.png");
     }
     else
     {
-        if (!textura.loadFromFile("Texturas/sprite-jacare-esquerda.png"))
-            cout << "Erro ao carregar a textura";
-        else
-            corpo.setTexture(&textura);
+        setTextura("Texturas/sprite-jacare-esquerda.png");
     }
 }

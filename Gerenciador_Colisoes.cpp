@@ -138,8 +138,6 @@ void Gerenciador_Colisoes::CalculaColisao(Entidade* ent1, Entidade* ent2)
 	//Testa se teve colisao
 	if (distancia_colisao.x < 0.f && distancia_colisao.y < 0.f) 
 	{
-		ent1->setEstaNoChao(false);
-
 		//Colisao em x
 		if (distancia_colisao.x > distancia_colisao.y)
 		{
@@ -166,7 +164,6 @@ void Gerenciador_Colisoes::CalculaColisao(Entidade* ent1, Entidade* ent2)
 			//Colisao Cima
 			if (ent1->getPosicao().y < ent2->getPosicao().y)
 			{
-				ent1->setEstaNoChao(true);
 				ent1->setPosicao(ent1->getPosicao() + distancia_colisao);
 			}
 
@@ -191,12 +188,12 @@ void Gerenciador_Colisoes::executar()
 {
 	if (listaPersonagens)
 		listaPersonagens->executar();
+
 	if (listaObstaculos)
 		listaObstaculos->executar();
+
 	if (listaProjeteis)
-	{
 		listaProjeteis->executar();
-	}
 
 	GerenciarColisoes();
 }

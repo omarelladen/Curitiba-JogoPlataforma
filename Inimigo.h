@@ -16,7 +16,6 @@ namespace Entidades
 			Capivara* alvo;
 			Vector2f pos_ini;
 			Vector2f pos_fin;
-			Clock relogio_ataque;
 
 		public:
 			Inimigo(const IDs id = {}, Vector2f pos = Vector2f(0.f, 0.f));

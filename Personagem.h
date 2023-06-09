@@ -11,6 +11,7 @@ namespace Entidades
 		protected:
 			int num_vidas;
 			bool direita;
+			Clock relogio_ataque;
 
 		public:
 			Personagem(const IDs id = {}, Vector2f pos = Vector2f(0.f, 0.f));

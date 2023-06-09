@@ -18,8 +18,7 @@ Capivara::~Capivara()
 void Capivara::inicializaAtributos()
 {
     setTextura("Texturas/sprite-capivara-direita.png");
-
-    setTamanho(Vector2f(100.f, 100.f));
+    setTamanho(Vector2f(70.f, 70.f));
 
     time_t t;
     srand((unsigned)time(&t));
@@ -93,6 +92,38 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
     {
     case IDs::capanga:
     {
+        Capanga* pCap = static_cast<Capanga*>(ent);
+
+        float intervalo_ataque = (float) pCap->getNivelEstupidez();
+
+        tempo = relogio_ataque.getElapsedTime();
+        if (tempo.asSeconds() >= intervalo_ataque)
+        {
+            diminuirVida(-1);
+
+            relogio_ataque.restart();
+        }
+
+
+        //Para ricochetear
+        //Colisao em x
+        if (distancia_colisao.x < distancia_colisao.y)
+        {
+            //Jogador na Esquerda
+            if (ent->getPosicao().x > posicao.x)
+            {
+                velocidade.x = -2.f;
+            }
+            else //Jogador na Direita
+            {
+                velocidade.x = 2.f;
+            }
+        }
+        else //Colisao em y
+        {
+            velocidade.y = -5.f;
+            velocidade.x = 2.f;
+        }
     }
     break;
 
@@ -100,12 +131,34 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
     {
         Jacare* pJac = static_cast<Jacare*>(ent);
 
-        tempo = relogio_gravidade.getElapsedTime();
-        if (tempo.asSeconds() >=  pJac->getRapidezMordida())
+        float intervalo_ataque = (float) pJac->getRapidezMordida();
+
+        tempo = relogio_ataque.getElapsedTime();
+        if (tempo.asSeconds() >= intervalo_ataque)
         {
             diminuirVida(pJac->getForcaMordida());
 
-            relogio_gravidade.restart();
+            relogio_ataque.restart();
+        }
+
+        //Para ricochetear
+        //Colisao em x
+        if (distancia_colisao.x < distancia_colisao.y)
+        {
+            //Jogador na Esquerda
+            if (ent->getPosicao().x > posicao.x)
+            {
+                velocidade.x = -2.f;
+            }
+            else //Jogador na Direita
+            {
+                velocidade.x = 2.f;
+            }
+        }
+        else //Colisao em y
+        {
+            velocidade.y = -5.f;
+            velocidade.x = 2.f;
         }
     }
     break;
@@ -114,16 +167,61 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
     {
         ChefeMafia* pCM = static_cast<ChefeMafia*>(ent);
 
-        if (pCM->getNivelMedo() >= 5)
+        float intervalo_ataque = 100.f / pCM->getNivelMedo();
+
+        tempo = relogio_ataque.getElapsedTime();
+        if (tempo.asSeconds() >= intervalo_ataque)
         {
             diminuirVida(pCM->getNivelForca());
+
+            relogio_ataque.restart();
+        }
+
+        //Para ricochetear
+        //Colisao em x
+        if (distancia_colisao.x < distancia_colisao.y)
+        {
+            //Jogador na Esquerda
+            if (ent->getPosicao().x > posicao.x)
+            {
+                velocidade.x = -2.f;
+            }
+            else //Jogador na Direita
+            {
+                velocidade.x = 2.f;
+            }
+        }
+        else //Colisao em y
+        {
+            velocidade.y = -5.f;
+            velocidade.x = 2.f;
         }
     }
     break;
 
     case IDs::chao:
     {
-        
+        //o if de distancia_colisao tá ao contrario pq umas das distancia_colisao é zerada no gerenciador de colisoes, asssim mudando quem é maior
+        //Colisao Cima 
+        if (ent->getPosicao().y >= posicao.y + tam_corpo.y && distancia_colisao.x > distancia_colisao.y) 
+        {
+            setEstaNoChao(true);
+
+            //Forca de atrito
+            Chao* pChao = static_cast<Chao*>(ent);
+            if (velocidade.x > 0.f)
+            {
+                velocidade.x -= (float) pChao->getAtrito() / 50.f;
+            }
+            else if (velocidade.x < 0.f)
+            {
+                velocidade.x += (float) pChao->getAtrito() / 50.f;
+            }
+        }
+        else
+        {
+            setEstaNoChao(false);
+        }
     }
     break;
 

@@ -168,7 +168,27 @@ void ChefeMafia::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao
     {
     case IDs::chao:
     {
-        
+        //o if de distancia_colisao tá ao contrario pq umas das distancia_colisao é zerada no gerenciador de colisoes, asssim mudando quem é maior
+        //Colisao Cima 
+        if (ent->getPosicao().y >= posicao.y + tam_corpo.y && distancia_colisao.x > distancia_colisao.y)
+        {
+            setEstaNoChao(true);
+
+            //Forca de atrito
+            Chao* pChao = static_cast<Chao*>(ent);
+            if (velocidade.x > 0.f)
+            {
+                velocidade.x -= (float) pChao->getAtrito() / 100.f;
+            }
+            else if (velocidade.x < 0.f)
+            {
+                velocidade.x += (float) pChao->getAtrito() / 100.f;
+            }
+        }
+        else
+        {
+            setEstaNoChao(false);
+        }
     }
     break;
 

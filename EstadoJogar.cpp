@@ -11,10 +11,10 @@ EstadoJogar::EstadoJogar(const IDs id_fase): //(, bool dupla) - default false
 	// Cria a Fase
 	if (id_fase == IDs::fase_barigui)
 	{
-		jogador1 = new Capivara();
+		jogador1 = new Capivara(Vector2f(200.f, 100.f));
 		fase = new FaseParqueBarigui();
 
-		fase->adicionarJogador(jogador1);
+		fase->addJogador(jogador1);
 		fase->criarMapa();
 
 		//if(dupla)

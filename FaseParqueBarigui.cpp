@@ -11,7 +11,6 @@ FaseParqueBarigui::FaseParqueBarigui() :
 		exit(1);
 	}
 	fundo.setTexture(textura_fundo);
-	
 }
 
 FaseParqueBarigui::~FaseParqueBarigui()
@@ -39,7 +38,7 @@ void FaseParqueBarigui::criarMapa()
 
 void FaseParqueBarigui::executar()
 {
-	fundo.setPosition(Vector2f(pJogador->getPosicao().x - 500, 50)); 
+	fundo.setPosition(Vector2f(pJogador->getPosicao().x - 500, 50));
 	Gerenciador_Grafico::getGerenciadorGrafico()->getJanela()->draw(fundo);
 
 	gerenciadorColisoes->executar();

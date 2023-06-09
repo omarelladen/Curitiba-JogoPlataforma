@@ -1,5 +1,4 @@
 #include"ObservadorJogador.h"
-#include "Capivara.h"
 using namespace Observers;
 
 ObservadorJogador::ObservadorJogador(Jogador* pJ):
@@ -61,9 +60,7 @@ void ObservadorJogador::teclaPressionada(const Keyboard::Key tecla)
 		break;
 
 	default:
-	{
-		//cout << "Erro Movimento Jogador no ObservadorJogador" << endl;
-	}
+		//cout << "Tecla que nao faz nada" << endl;
 		break;
 	}
 
@@ -127,7 +124,7 @@ void ObservadorJogador::teclaSolta(const Keyboard::Key tecla)
 	break;
 
 	default:
-		pJogador->mover("");
+		//cout << "Tecla que nao faz nada" << endl;
 		break;
 	}
 }

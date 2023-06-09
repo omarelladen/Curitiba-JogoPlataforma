@@ -1,6 +1,6 @@
 #include "ConstrutorEntidade.h"
 
-ConstrutorEntidade::ConstrutorEntidade() :
+    ConstrutorEntidade::ConstrutorEntidade() :
     pJogador(nullptr)
 {
 }

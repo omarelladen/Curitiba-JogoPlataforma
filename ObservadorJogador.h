@@ -1,7 +1,6 @@
 #pragma once
 #include"Observador.h"
-#include"IDs.h"
-#include"Jogador.h"
+#include"Capivara.h"
 
 namespace Observers
 {

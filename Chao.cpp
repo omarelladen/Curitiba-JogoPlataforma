@@ -18,7 +18,6 @@ Chao::~Chao()
 void Chao::inicializaAtributos()
 {
     setTextura("Texturas/Sprite-chao-parque.png");
-
     setTamanho(Vector2f(50.f, 50.f));
 
 	time_t t;
@@ -36,7 +35,7 @@ void Chao::salvar()
         cerr << "Arquivo nao pode ser aberto" << endl;
         exit(1);
     }
-
+    
     SalvaChao << posicao.x << ' '
         << posicao.y << ' '
         << atrito << endl;

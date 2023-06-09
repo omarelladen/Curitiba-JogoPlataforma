@@ -7,11 +7,7 @@ Jogador::Jogador(const IDs id, Vector2f pos) :
     pontos(0),
     observadorJogador(nullptr)
 {
-    Vector2f pos_ini_player(200.f, 100.f);
     //corpo.setFillColor(Color::Blue);
-    corpo.setSize(tam_corpo);
-    corpo.setPosition(pos_ini_player);
-    posicao = pos_ini_player;
 
     // Cria seu Observador:
     observadorJogador = new ObservadorJogador(this); // this para setar la tambem
