@@ -2,7 +2,6 @@
 #include"ListaEntidades.h"
 #include"Gerenciador_Colisoes.h"
 #include"Gerenciador_Eventos.h"
-#include"ConstrutorEntidade.h"
 #include"Jogador.h"
 
 namespace Observers
@@ -21,10 +20,6 @@ namespace Fases
 
 		Gerenciador_Colisoes* gerenciadorColisoes;
 
-		ConstrutorEntidade* construtorEntidade;
-
-		// fundo - imagem/camada
-
 		ObservadorFase* observadorFase;
 
 		Jogador* pJogador;
@@ -36,8 +31,6 @@ namespace Fases
 		void addJogador(Jogador* pJ);
 
 		void setJogador(Jogador* pJ);
-
-		void criarEntidade(const char simbolo, Vector2f pos);
 
 		void salvar();
 

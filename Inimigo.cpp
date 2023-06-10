@@ -10,7 +10,7 @@ Inimigo::Inimigo(const IDs id, Vector2f pos) :
     pos_ini(pos),
     pos_fin(pos + tam_corpo + Vector2f(1000.f, 0.f)),
     //
-    raio_ataque(300)
+    raio_ataque(3000)
 {
 }
 

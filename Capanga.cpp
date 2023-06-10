@@ -26,7 +26,7 @@ void Capanga::inicializaAtributos()
     time_t t;
     srand((unsigned)time(&t));
 
-    nivel_estupidez = rand() % 20 + 1;
+    nivel_estupidez = rand() % 15 + 1;//
     tempo_congelado = rand() % 5 + 2;
     nivel_tiro = rand() % 3 + 2;
     num_vidas = rand() % 5 + 8;
@@ -188,7 +188,11 @@ void Capanga::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
     switch (id)
     {
 
-    //Arrumar: Chao é varios blocos
+    case IDs::capivara:
+    {
+
+    }
+
     case IDs::chao:
     {
         /*pos_ini.x = ent->getPosicao().x;
@@ -253,6 +257,8 @@ void Capanga::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 
 void Capanga::executar()
 {
+    imprimirBarraVidas();
+
     desenhar_se();
     efeitoGravidade();
     mover();

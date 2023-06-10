@@ -8,14 +8,19 @@ Gerenciador_Colisoes* Gerenciador_Colisoes::pGerenciadorColisoes(nullptr);
 Gerenciador_Colisoes::Gerenciador_Colisoes() :
 	listaObstaculos(nullptr),
 	listaPersonagens(nullptr),
-	listaProjeteis(new ListaEntidades())
+	listaProjeteis(new ListaEntidades()),
+	pJogador(nullptr)
 {
 }
 
 Gerenciador_Colisoes::~Gerenciador_Colisoes()
 {
+	delete listaProjeteis;
+
 	listaObstaculos = nullptr;
 	listaPersonagens = nullptr;
+	listaProjeteis = nullptr;
+	pJogador = nullptr;
 }
 
 Gerenciador_Colisoes* Gerenciador_Colisoes::getGerenciadorColisoes()
@@ -41,6 +46,19 @@ void Gerenciador_Colisoes::setListaObstaculos(ListaEntidades* list)
 	{
 		listaObstaculos = list;
 	}
+}
+
+void Gerenciador_Colisoes::setJogador(Jogador* pJ)
+{
+	if (pJ)
+		pJogador = pJ;
+}
+
+void Gerenciador_Colisoes::salvar()
+{
+	listaObstaculos->salvarEntidades();
+	listaPersonagens->salvarEntidades();
+	listaProjeteis->salvarEntidades();
 }
 
 void Gerenciador_Colisoes::addProjetil(Entidade* proj)
@@ -177,23 +195,59 @@ void Gerenciador_Colisoes::CalculaColisao(Entidade* ent1, Entidade* ent2)
 		ent1->colisao(ent2->getID(), ent2, distancia_colisao);
 
 
-		if (ent2->getID() == IDs::projetil)
+		/*if (ent2->getID() == IDs::projetil)
 		{
 			listaProjeteis->deleteEntidade(ent2);
-		}
+		}*/
 	}
 }
 
 void Gerenciador_Colisoes::executar()
 {
+	bool chamar_executar = true;
+
 	if (listaPersonagens)
-		listaPersonagens->executar();
+	{
+		//Verifica se os Personagens estao vivos
+		for (int i = 0; i < listaPersonagens->getTamLista(); i++)
+		{
+			Personagem* pPerso =  static_cast<Personagem*>(listaPersonagens->getEntidade(i));
+			if (pPerso)
+			{
+				if (pPerso->getNumVidas() <= 0)
+				{
+					if (pPerso->getID() != IDs::capivara)
+					{
+						//Inimigo morto
+						listaPersonagens->deleteEntidade(listaPersonagens->getEntidade(i));
+						pJogador->setPontos(pJogador->getPontos() + 1);
+					}
+					else
+					{
+						//Morte do Jogador
+						pJogador->setVelocidade(Vector2f(0.f, 0.f));
+						Gerenciador_Grafico::getGerenciadorGrafico()->setPosicaoGameOver(pJogador->getPosicao());
+						Gerenciador_Grafico::getGerenciadorGrafico()->gameOver();
+						chamar_executar = false;
+					}
+				}
+			}
+		}
+		if(chamar_executar)
+			listaPersonagens->executar();
+	}
 
-	if (listaObstaculos)
-		listaObstaculos->executar();
+	if (chamar_executar)
+	{
+		if (listaObstaculos)
+		{
+			listaObstaculos->executar();
+		}
 
-	if (listaProjeteis)
-		listaProjeteis->executar();
-
+		if (listaProjeteis)
+		{
+			listaProjeteis->executar();
+		}
+	}
 	GerenciarColisoes();
 }

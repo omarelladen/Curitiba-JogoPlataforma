@@ -28,7 +28,7 @@ void Projetil::inicializaAtributos()
     time_t t;
     srand((unsigned)time(&t));
 
-    velocidade = Vector2f((rand() % 11 + 10) / 10.f, 0.f);
+    velocidade = Vector2f(0.001f, 0.f); //(rand() % 11 + 10) / 10.f em x
 }
 
 void Projetil::setAtirador(Personagem* atir)
@@ -192,7 +192,8 @@ void Projetil::mover()
 
 void Projetil::executar()
 {
+    cout << "Oi" << endl;
     desenhar_se();
-    efeitoGravidade();
+    //efeitoGravidade();
     mover();
 }

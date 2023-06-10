@@ -43,17 +43,11 @@
     <Filter Include="Arquivos .h\Lista">
       <UniqueIdentifier>{1a92df9e-00cb-421a-b165-a679335845ac}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Arquivos .h\Construtor">
-      <UniqueIdentifier>{615d6892-c0f3-4ed4-8106-602c2110f0ff}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Arquivos .h\Ente\Entidade\Personagem\Jogador">
       <UniqueIdentifier>{001d9885-876b-4afd-b79c-506a5d944db5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Arquivos .h\Ente\Entidade\Personagem\Inimigo">
       <UniqueIdentifier>{51f47900-2029-4375-81ba-06bb2b69c5c8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Arquivos .cpp\Construtor">
-      <UniqueIdentifier>{a5214995-f1fe-4158-83f0-5b69836072f8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Arquivos .cpp\Ente">
       <UniqueIdentifier>{5cfc5b91-3d0b-4425-b870-c6c7e7d7a810}</UniqueIdentifier>
@@ -122,12 +116,6 @@
     </ClCompile>
     <ClCompile Include="ChefeMafia.cpp">
       <Filter>Arquivos .cpp\Ente\Entidade\Personagem\Inimigo</Filter>
-    </ClCompile>
-    <ClCompile Include="ConstrutorEntidade.cpp">
-      <Filter>Arquivos .cpp\Construtor</Filter>
-    </ClCompile>
-    <ClCompile Include="ConstrutorFase.cpp">
-      <Filter>Arquivos .cpp\Construtor</Filter>
     </ClCompile>
     <ClCompile Include="Ente.cpp">
       <Filter>Arquivos .cpp\Ente</Filter>
@@ -229,12 +217,6 @@
     </ClInclude>
     <ClInclude Include="Bicicleta.h">
       <Filter>Arquivos .h\Ente\Entidade\Obstaculo</Filter>
-    </ClInclude>
-    <ClInclude Include="ConstrutorEntidade.h">
-      <Filter>Arquivos .h\Construtor</Filter>
-    </ClInclude>
-    <ClInclude Include="ConstrutorFase.h">
-      <Filter>Arquivos .h\Construtor</Filter>
     </ClInclude>
     <ClInclude Include="Entidade.h">
       <Filter>Arquivos .h\Ente\Entidade</Filter>

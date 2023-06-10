@@ -18,13 +18,13 @@ Capivara::~Capivara()
 void Capivara::inicializaAtributos()
 {
     setTextura("Texturas/sprite-capivara-direita.png");
-    setTamanho(Vector2f(70.f, 70.f));
+    setTamanho(Vector2f(80.f, 70.f));
 
     time_t t;
     srand((unsigned)time(&t));
     forca_cuspe = rand() % 5 + 1;
 
-    num_vidas = 50;
+    num_vidas = 10;
 }
 
 void Capivara::salvar()
@@ -99,7 +99,7 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
         tempo = relogio_ataque.getElapsedTime();
         if (tempo.asSeconds() >= intervalo_ataque)
         {
-            diminuirVida(-1);
+            diminuirVida(1);
 
             relogio_ataque.restart();
         }
@@ -121,6 +121,8 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
         }
         else //Colisao em y
         {
+            /*Quanto mais estupido mais leva dano quando a capivara pula em cima
+            pCap->diminuirVida(pCap->getNivelEstupidez());*/
             velocidade.y = -5.f;
             velocidade.x = 2.f;
         }
@@ -157,6 +159,7 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
         }
         else //Colisao em y
         {
+            //pJac->diminuirVida(1);
             velocidade.y = -5.f;
             velocidade.x = 2.f;
         }
@@ -193,6 +196,8 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
         }
         else //Colisao em y
         {
+            /*Quanto maior o nivel medo, menos dano ele recebe quando a capivara pula em cima
+            pCM->diminuirVida(20/pCM->getNivelMedo());*/
             velocidade.y = -5.f;
             velocidade.x = 2.f;
         }
@@ -211,11 +216,11 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
             Chao* pChao = static_cast<Chao*>(ent);
             if (velocidade.x > 0.f)
             {
-                velocidade.x -= (float) pChao->getAtrito() / 50.f;
+                velocidade.x -= (float) pChao->getAtrito() / 20.f;
             }
             else if (velocidade.x < 0.f)
             {
-                velocidade.x += (float) pChao->getAtrito() / 50.f;
+                velocidade.x += (float) pChao->getAtrito() / 20.f;
             }
         }
         else

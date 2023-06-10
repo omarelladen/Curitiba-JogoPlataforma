@@ -1,4 +1,4 @@
-/*#pragma once
+#pragma once
 #include "Lista.h"
 #include "Observador.h"
 using namespace Observers;
@@ -35,10 +35,10 @@ namespace Listas
 		//
 		void desativarObservadores();
 	};
-}*/
+}
 
 
-#pragma once
+/*#pragma once
 #include "Lista.h"
 #include "Observador.h"
 using namespace Observers;
@@ -77,4 +77,4 @@ namespace Listas
 		//
 		void desativarObservadores();
 	};
-}
+}*/

@@ -20,7 +20,7 @@ Jacare::~Jacare()
 void Jacare::inicializaAtributos()
 {
     setTextura("Texturas/sprite-jacare-esquerda.png");
-    setTamanho(Vector2f(100.f, 100.f));
+    setTamanho(Vector2f(100.f, 80.f));
 
     time_t t;
     srand((unsigned)time(&t));
@@ -241,6 +241,8 @@ void Jacare::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 
 void Jacare::executar()
 {
+    imprimirBarraVidas();
+
     desenhar_se();
     efeitoGravidade();
     mover();

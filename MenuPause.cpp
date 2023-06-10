@@ -6,27 +6,32 @@ MenuPause::MenuPause():
 	Menu(IDs::menuPause),
 	observadorMenuPause(nullptr),
 	botao_voltar(nullptr),
-	botao_sair(nullptr)
+	botao_sair(nullptr),
+	botao_salvar(nullptr)
 {
 	observadorMenuPause = new ObservadorMenuPause(this); // this para setar la tambem
 
 	Gerenciador_Eventos::getGerenciadorEventos()->adicionarObservador(observadorMenuPause);//
 
+	RenderWindow* janela = Gerenciador_Grafico::getGerenciadorGrafico()->getJanela();
+
 	// Alocacao Botoes
-	botao_voltar = new Botao(Vector2f(100.f, 100.f), Vector2f(150.f, 50.f), "Voltar", Color::Yellow);
-	botao_sair = new Botao(Vector2f(100.f, 300.f), Vector2f(150.f, 50.f), "Sair", Color::Red);
-	//botao_configuracoes = new Botao(100, 100, 150, 50, xxxxx, "Configuracoes", Color::Yellow, Color::Red);
+	botao_voltar = new Botao(Vector2f((janela->getSize().x / 2.f) - TAM_BOTOES_X / 2.f, (janela->getSize().y / 4.f) - TAM_BOTOES_Y / 2.f), Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Voltar", 25, Color::Green);
+	botao_sair = new Botao(Vector2f((janela->getSize().x / 2.f) - TAM_BOTOES_X / 2.f, (janela->getSize().y / 2.f) - TAM_BOTOES_Y / 2.f), Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Sair", 25, Color::Red);
+	botao_salvar = new Botao(Vector2f((janela->getSize().x / 2.f) - TAM_BOTOES_X / 2.f, ((janela->getSize().y * 3.f) / 4.f) - TAM_BOTOES_Y / 2.f), Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Salvar", 25, Color::Green);
 }
 
 MenuPause::~MenuPause()
 {
 	delete observadorMenuPause;
 	delete botao_voltar;
-	delete botao_voltar;
+	delete botao_sair;
+	delete botao_salvar;
 
 	observadorMenuPause = nullptr;
 	botao_sair = nullptr;
 	botao_voltar = nullptr;
+	botao_salvar = nullptr;
 }
 
 void MenuPause::verificaClique(Vector2f posMouse)
@@ -55,6 +60,12 @@ void MenuPause::verificaClique(Vector2f posMouse)
 
 			// Desempilha 2 estados (pause e jogo) pra voltar ao menu principal
 			Gerenciador_Estados::getGerenciadorEstados()->removerEstado(2); // desempilha o pause e o jog (n = 2)
+		} 
+		else if(botao_salvar->pressionado(posMouse))
+		{
+			//desempilhar menu pause
+			//Usar o salvar do estado jogar
+			//empilhar o menu pause
 		}
 	//}
 }

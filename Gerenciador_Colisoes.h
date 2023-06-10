@@ -16,6 +16,8 @@ namespace Gerenciadores
 		ListaEntidades* listaObstaculos;
 		ListaEntidades* listaProjeteis;
 
+		Jogador* pJogador;
+
 		static Gerenciador_Colisoes* pGerenciadorColisoes;
 
 		Gerenciador_Colisoes();
@@ -26,6 +28,9 @@ namespace Gerenciadores
 
 		void setListaPersonagens(ListaEntidades* list);
 		void setListaObstaculos(ListaEntidades* list);
+		void setJogador(Jogador* pJ);
+
+		void salvar();
 
 		void addProjetil(Entidade* proj);
 

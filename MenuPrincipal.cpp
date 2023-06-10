@@ -2,9 +2,6 @@
 using namespace Menus;
 #include"ObservadorMenuPrincipal.h"
 
-constexpr auto TAM_BOTOES_X = 400.f;
-constexpr auto TAM_BOTOES_Y = 100.f;
-
 MenuPrincipal::MenuPrincipal() :
 	Menu(IDs::menuPrincipal),
 	observadorMenuPrincipal(nullptr),
@@ -21,9 +18,9 @@ MenuPrincipal::MenuPrincipal() :
 	RenderWindow* janela = Gerenciador_Grafico::getGerenciadorGrafico()->getJanela();
 
 	// Alocacao Botoes
-	botao_jogarBarigui = new Botao(Vector2f((janela->getSize().x/2.f) - TAM_BOTOES_X/2.f, (janela->getSize().y / 4.f) - TAM_BOTOES_Y/2.f), Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Fase Barigui", Color::Green);
-	botao_jogarCooperativoBarigui = new Botao(Vector2f((janela->getSize().x / 2.f) - TAM_BOTOES_X / 2.f, (janela->getSize().y / 2.f) - TAM_BOTOES_Y / 2.f), Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Fase Barigui Cooperativo", Color::Green);
-	botao_sair = new Botao(Vector2f((janela->getSize().x / 2.f) - TAM_BOTOES_X / 2.f, ((janela->getSize().y*3.f) / 4.f) - TAM_BOTOES_Y / 2.f), Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Sair", Color::Red);
+	botao_jogarBarigui = new Botao(Vector2f((janela->getSize().x/2.f) - TAM_BOTOES_X/2.f, (janela->getSize().y / 4.f) - TAM_BOTOES_Y/2.f), Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Fase Barigui", 25, Color::Green);
+	botao_jogarCooperativoBarigui = new Botao(Vector2f((janela->getSize().x / 2.f) - TAM_BOTOES_X / 2.f, (janela->getSize().y / 2.f) - TAM_BOTOES_Y / 2.f), Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Fase Barigui Cooperativo", 25, Color::Green);
+	botao_sair = new Botao(Vector2f((janela->getSize().x / 2.f) - TAM_BOTOES_X / 2.f, ((janela->getSize().y*3.f) / 4.f) - TAM_BOTOES_Y / 2.f), Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Sair", 25, Color::Red);
 	//botao_configuracoes = new Botao(100, 100, 150, 50, xxxxx, "Configuracoes", Color::Yellow, Color::Red);
 }
 

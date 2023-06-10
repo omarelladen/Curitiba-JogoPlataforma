@@ -3,6 +3,9 @@
 using namespace sf;
 #include "Ente.h"
 
+#define TAM_BOTOES_X 400.f
+#define TAM_BOTOES_Y 100.f
+
 namespace Menus
 {
 	class Menu : public Ente//
