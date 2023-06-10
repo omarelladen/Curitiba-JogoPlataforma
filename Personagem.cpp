@@ -6,14 +6,8 @@ Personagem::Personagem(const IDs id, Vector2f pos) :
     Entidade(id, pos),
     num_vidas(0),
     direita(true),
-    relogio_ataque(),
-    barra_vidas()
+    relogio_ataque()
 {
-    // Barra vidas;
-    barra_vidas.setFillColor(Color::Red);
-    barra_vidas.setSize(Vector2f(num_vidas * 20, 2));
-    barra_vidas.setPosition(Vector2f(pos.x, pos.y + 100));
-
     relogio_ataque.restart();
 }
 
@@ -29,13 +23,6 @@ void Personagem::setNumVidas(const int vidas)
 const int Personagem::getNumVidas() const
 {
     return num_vidas;
-}
-
-void Personagem::imprimirBarraVidas()
-{
-    barra_vidas.setSize(Vector2f(num_vidas, 4));
-    barra_vidas.setPosition(Vector2f(posicao.x, posicao.y-10));
-    Gerenciador_Grafico::getGerenciadorGrafico()->getJanela()->draw(barra_vidas);
 }
 
 void Personagem::setDireita(const bool dir)

@@ -8,6 +8,7 @@ Fase::Fase(const IDs id):
 	listaPersonagens(nullptr),
 	listaObstaculos(nullptr),
 	gerenciadorColisoes(nullptr),
+	construtorEntidade(nullptr),
 	observadorFase(nullptr),
 	pJogador(nullptr)
 {
@@ -27,6 +28,8 @@ Fase::Fase(const IDs id):
 	gerenciadorColisoes->setListaObstaculos(listaObstaculos);
 	gerenciadorColisoes->setListaPersonagens(listaPersonagens);
 
+	//Cria Construtor de Entidades
+	construtorEntidade = new ConstrutorEntidade();
 
 	// Cria seu Observador:
 	observadorFase = new ObservadorFase(this); // this para setar la tambem Observers::
@@ -48,6 +51,7 @@ Fase::~Fase()
 	listaPersonagens = nullptr;
 	listaObstaculos = nullptr;
 	gerenciadorColisoes = nullptr;
+	construtorEntidade = nullptr;
 	observadorFase = nullptr;
 }
 
@@ -55,6 +59,7 @@ void Fase::addJogador(Jogador* pJ)
 {
 	if (pJ)
 	{
+		construtorEntidade->setJogador(static_cast<Capivara*>(pJ));//
 		listaPersonagens->addEntidade(pJ);
 
 		setJogador(pJ);
@@ -67,7 +72,57 @@ void Fase::setJogador(Jogador* pJ)
 		pJogador = pJ;
 }
 
+void Fase::criarEntidade(const char simbolo, Vector2f pos)
+{
+	
+	switch (simbolo)
+	{
+		// abstrata: x
+	/*case 'J':
+		listaObstaculos->setEntidade(construtorEntidade->criarJogador(pos));
+		break;*/
+	case '#':
+	{
+		listaObstaculos->addEntidade(construtorEntidade->criarPlataforma(pos));
+	}
+		break;
 
+	case 'j':
+	{
+		listaPersonagens->addEntidade(construtorEntidade->criarJacare(pos));
+	}
+		break;
+
+	// Fonte de erros
+	/*case 'c':
+		listaPersonagens->setEntidade(construtorEntidade->criarCapivara(pos));
+		break;
+
+	case 'p':
+		listaPersonagens->setEntidade(construtorEntidade->criarPolicial(pos));
+		break;*/
+
+	case 'b':
+	{
+		listaObstaculos->addEntidade(construtorEntidade->criarBicicleta(pos));
+	}
+		break;
+
+	case 'c':
+	{
+		listaPersonagens->addEntidade(construtorEntidade->criarCapanga(pos));
+	}
+		break;
+
+	case 'B':
+	{
+		listaPersonagens->addEntidade(construtorEntidade->criarChefeMafia(pos));
+	}
+		break;
+	default:
+		break;
+	}
+}
 
 void Fase::salvar()
 {

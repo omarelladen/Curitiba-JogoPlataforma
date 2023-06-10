@@ -11,14 +11,15 @@ namespace Fases
 	class FaseParqueBarigui : public Fase
 	{
 	private:
+		// bool 
+
+		// Fundo
 		Texture textura_fundo;
 		Sprite fundo;
 
 	public:
 		FaseParqueBarigui();
 		~FaseParqueBarigui();
-
-		void criarEntidade(const char simbolo, Vector2f pos);
 
 		void criarMapa();
 

@@ -1,28 +1,13 @@
 #pragma once
-#include"Fase.h"
-#include"ObservadorFase.h"
-#include"Gerenciador_Eventos.h"
-#include<fstream>
-#include<iostream>
-using namespace std;
 
-
-namespace Fases
+class Beco
 {
-	class Beco : public Fase
-	{
-	private:
-		Texture textura_fundo;
-		Sprite fundo;
+private:
 
-	public:
-		Beco();
-		~Beco();
 
-		void criarEntidade(const char simbolo, Vector2f pos);
+public:
+	Beco();
+	~Beco();
 
-		void criarMapa();
+};
 
-		void executar();
-	};
-}

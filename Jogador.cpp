@@ -99,8 +99,7 @@ void Jogador::parar()
 
 void Jogador::executar()
 {
-    imprimirBarraVidas();
-
+    //cout << esta_no_chao << endl;
     window_manager->setCentro(posicao);
     efeitoGravidade();
     desenhar_se();

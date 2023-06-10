@@ -13,15 +13,12 @@ namespace Entidades
 			bool direita;
 			Clock relogio_ataque;
 
-
-			RectangleShape barra_vidas;
 		public:
 			Personagem(const IDs id = {}, Vector2f pos = Vector2f(0.f, 0.f));
 			~Personagem();
 
 			void setNumVidas(const int vidas);
 			const int getNumVidas() const;
-			void imprimirBarraVidas();
 
 			void setDireita(const bool dir);
 			const bool getDireita();

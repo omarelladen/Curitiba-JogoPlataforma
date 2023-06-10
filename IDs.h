@@ -25,7 +25,6 @@ enum class IDs
 	estadoMenuPrincipal,
 	estadoMenuPause,
 
-	fase_barigui,
-	fase_beco
+	fase_barigui
 };
 

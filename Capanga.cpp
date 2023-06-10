@@ -253,8 +253,6 @@ void Capanga::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 
 void Capanga::executar()
 {
-    imprimirBarraVidas();
-
     desenhar_se();
     efeitoGravidade();
     mover();
