@@ -78,5 +78,6 @@ void MenuPause::desenhar_se()
 
 void MenuPause::executar()
 {
+	Gerenciador_Grafico::getGerenciadorGrafico()->setCentro(botao_voltar->getPosicao());
 	desenhar_se();
 }

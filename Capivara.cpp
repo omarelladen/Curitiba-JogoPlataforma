@@ -24,7 +24,7 @@ void Capivara::inicializaAtributos()
     srand((unsigned)time(&t));
     forca_cuspe = rand() % 5 + 1;
 
-    num_vidas = 10;
+    num_vidas = 50;
 }
 
 void Capivara::salvar()
@@ -234,7 +234,7 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
     {
         // Eh jogado para cima
         Bicicleta* pB = static_cast<Bicicleta*>(ent);
-        velocidade.y = (-1.f) * pB->getNivelRicochete();
+        velocidade.y = (-0.02f) * pB->getNivelRicochete();
 
         // Perde vida
         diminuirVida(pB->getDano());
@@ -248,7 +248,7 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
     }
 
     default: {
-        cout << "Erro Colisao Jogador" << endl;
+        //cout << "Erro Colisao Jogador" << endl;
     }
            break;
     }

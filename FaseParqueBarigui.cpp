@@ -5,12 +5,13 @@ FaseParqueBarigui::FaseParqueBarigui() :
 	Fase(IDs::fase_barigui)
 {
 	// Textura Fundo
-	if (!textura_fundo.loadFromFile("Fundo/parque-generico.jpg"))
+	if (!textura_fundo.loadFromFile("Fundo/parque.jpg"))
 	{
 		cout << "Erro ao carregar a textura do fundo" << endl;
 		exit(1);
 	}
 	fundo.setTexture(textura_fundo);
+	fundo.setScale(Vector2f(1.6f, 1.5f));///
 }
 
 FaseParqueBarigui::~FaseParqueBarigui()

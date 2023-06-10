@@ -84,5 +84,6 @@ void MenuPrincipal::desenhar_se()
 
 void MenuPrincipal::executar()
 {
+	Gerenciador_Grafico::getGerenciadorGrafico()->setCentro(botao_jogarCooperativoBarigui->getPosicao());
 	desenhar_se();
 }

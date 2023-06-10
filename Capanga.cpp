@@ -249,7 +249,7 @@ void Capanga::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
     break;
 
     default: {
-        cout << "Erro Colisao Capanga" << endl;
+        //cout << "Erro Colisao Capanga" << endl;
     }
            break;
     }

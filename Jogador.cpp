@@ -99,9 +99,12 @@ void Jogador::parar()
 
 void Jogador::executar()
 {
+    cout << num_vidas << endl;
     imprimirBarraVidas();
 
     window_manager->setCentro(posicao);
     efeitoGravidade();
     desenhar_se();
+
+    //corpo.move(velocidade);
 }

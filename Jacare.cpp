@@ -233,7 +233,7 @@ void Jacare::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
     break;
 
     default: {
-        cout << "Erro Colisao Jacare" << endl;
+        //cout << "Erro Colisao Jacare" << endl;
     }
            break;
     }

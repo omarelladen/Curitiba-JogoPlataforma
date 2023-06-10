@@ -21,6 +21,8 @@ public:
 	Botao(Vector2f pos = Vector2f(0.f, 0.f), Vector2f tam = Vector2f(0.f, 0.f), string t = "", const int tamTexto = 25, Color c = Color::Black);
 	~Botao();
 
+	Vector2f getPosicao();
+
 	const bool pressionado(Vector2f posMouse);
 
 	void render();

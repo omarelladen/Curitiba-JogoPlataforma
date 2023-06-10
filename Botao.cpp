@@ -27,6 +27,11 @@ Botao::~Botao()
 {
 }
 
+Vector2f Botao::getPosicao()
+{
+	return forma.getPosition();
+}
+
 const bool Botao::pressionado(Vector2f posMouse)
 {
 	return ((posMouse.x >= forma.getPosition().x && posMouse.x <= forma.getPosition().x + forma.getSize().x)

@@ -17,14 +17,15 @@ Bicicleta::~Bicicleta()
 
 void Bicicleta::inicializaAtributos()
 {
-    setTamanho(Vector2f(60.f, 40.f));
+    setTextura("Texturas/Sprite-bike-ciclista-teste.png");
+    setTamanho(Vector2f(50.f, 50.f));
 
 	time_t t;
 	srand((unsigned)time(&t));
 
-    dano = rand() % 3 + 5;
+    dano = 1; // rand() % 3 + 5;
 	nivel_ricochete = rand() % 101 + 150;
-	velocidade = Vector2f((rand() % 5 + 1) / -10.f, 0.f);
+	velocidade = Vector2f((rand() % 5 + 5) / -10.f, 0.f);
 }
 
 void Bicicleta::salvar()
@@ -96,7 +97,7 @@ void Entidades::Obstaculos::Bicicleta::setDano(const int damage)
 
 const int Entidades::Obstaculos::Bicicleta::getDano() const
 {
-    return 0;
+    return dano;
 }
 
 void Bicicleta::mover()
@@ -107,5 +108,6 @@ void Bicicleta::mover()
 
 void Bicicleta::executar()
 {
+    mover();
 	desenhar_se();
 }

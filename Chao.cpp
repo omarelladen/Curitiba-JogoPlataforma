@@ -24,7 +24,7 @@ void Chao::inicializaAtributos()
 	time_t t;
 	srand((unsigned)time(&t));
 
-	atrito = (double) (rand() % 9 + 1) / (double) 10;
+    atrito = (double)(rand() % 3 + 1) / (double)10;
 }
 
 void Chao::salvar()
