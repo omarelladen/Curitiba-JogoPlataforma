@@ -208,6 +208,8 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 
     case IDs::chao:
     {
+        esta_no_chao = true;
+
         //o if de distancia_colisao tá ao contrario pq umas das distancia_colisao é zerada no gerenciador de colisoes, asssim mudando quem é maior
         //Colisao Cima 
         if (ent->getPosicao().y >= posicao.y + tam_corpo.y && distancia_colisao.x > distancia_colisao.y) 
@@ -246,8 +248,40 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 
     case IDs::projetil:
     {
-        //cout << " Capivara Colisao com Projetil" << endl;
+        Projetil* pProj = static_cast<Projetil*>(ent);
+        if (pProj)
+        {
+            if (!(pProj->getAtirador()->getID() == IDs::capivara))
+            {
+                diminuirVida(pProj->getDano());
+            }
+        }
     }
+    break;
+
+    case IDs::lixo:
+    {
+        esta_no_chao = true;
+
+        tempo = relogio_ataque.getElapsedTime();
+        Lixo* pL = static_cast<Lixo*>(ent);
+        if (pL)
+        {
+            if (tempo.asSeconds() >= pL->getRapidezIntoxicacao())
+            {
+                diminuirVida(pL->getDano());
+                relogio_ataque.restart();
+            }
+        }
+    }
+    break;
+
+    case IDs::arvore:
+    {
+        esta_no_chao = true;
+    }
+    break;
+
 
     default: {
         //cout << "Erro Colisao Jogador" << endl;

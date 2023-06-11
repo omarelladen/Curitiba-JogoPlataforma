@@ -100,6 +100,19 @@ void FaseParqueBarigui::criarEntidade(const char simbolo, Vector2f pos)
 	}
 	break;
 
+	case 'a':
+	{
+		Arvore* pA = new Arvore(Vector2f(pos.x * 50.f, pos.y * 50));
+		if (pA)
+			listaObstaculos->addEntidade(static_cast<Entidade*>(pA));
+		else
+		{
+			cout << "Entidade nula" << endl;
+			exit(1);
+		}
+	}
+	break;
+
 	default:
 		break;
 	}

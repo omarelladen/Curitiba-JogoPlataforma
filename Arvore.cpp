@@ -1,9 +1,11 @@
 #include"ListaEntidades.h"
 #include "Arvore.h"
 
-Arvore::Arvore(Vector2f pos):
-	Obstaculo(IDs::arvore, pos),
-	altura(0)
+Arvore::Arvore(Vector2f pos) :
+    Obstaculo(IDs::arvore, pos),
+    altura(0),
+    tronco(),
+    textura_tronco()
 {
     inicializaAtributos();
 }
@@ -16,12 +18,25 @@ Arvore::~Arvore()
 
 void Arvore::inicializaAtributos()
 {
-	time_t t;
-	srand((unsigned)time(&t));
+    setTextura("Texturas/Sprite-topo-arvore.png");
+    setTamanho(Vector2f(50.f, 50.f));
 
-    setTamanho(Vector2f((float)(rand() % 41 + 30), 40.f));
-	altura = rand() % 21 + 130;
-	tronco.setSize(Vector2f((float)altura, 30.f));
+    if (!textura_tronco.loadFromFile("Texturas/Sprite-tronco-arvore.png"))
+    {
+        cout << "Erro ao carregar a textura" << endl;
+        exit(1);
+    }
+    else
+        tronco.setTexture(&textura_tronco);
+
+    time_t t;
+    srand((unsigned)time(&t));
+
+    altura = rand() % 21 + 130;
+    tronco.setSize(Vector2f(40.f, posicao.y));
+    tronco.setPosition(posicao + Vector2f(5.f, 25.f));
+    //tronco.setScale(5.f, 5.f);
+    
 }
 
 void Arvore::salvar()
@@ -66,7 +81,7 @@ ListaEntidades* Arvore::recuperar()
         {
             pArv->setTamanho(tam);
             pArv->setAltura(alt);
-            pArv->getTronco().setSize(Vector2f((float)alt, 30.f));
+            //pArv->getTronco().setSize(Vector2f((float)alt, 30.f));
             pListaEntidades->addEntidade(static_cast<Entidade*>(pArv));
         }
     }
@@ -77,21 +92,17 @@ ListaEntidades* Arvore::recuperar()
 
 void Arvore::setAltura(const int alt)
 {
-	altura = alt;
+    altura = alt;
 }
 
 const int Arvore::getAltura() const
 {
-	return altura;
+    return altura;
 }
 
-RectangleShape Arvore::getTronco()
-{
-    return tronco;
-}
 
 void Arvore::executar()
 {
-	Gerenciador_Grafico::getGerenciadorGrafico()->desenhaEnte(tronco);
-	desenhar_se();
+    Gerenciador_Grafico::getGerenciadorGrafico()->getJanela()->draw(tronco);
+    desenhar_se();
 }

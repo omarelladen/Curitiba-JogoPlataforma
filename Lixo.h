@@ -10,6 +10,7 @@ namespace Entidades
 		private:
 			int dano;
 			int tempo_retardo;
+			int rapidez_intoxicacao;
 
 		public:
 			Lixo(Vector2f pos = Vector2f(0.f, 0.f));
@@ -22,6 +23,8 @@ namespace Entidades
 
 			void setDano(const int d);
 			const int getDano() const;
+
+			int getRapidezIntoxicacao();
 
 			void setTempoRetardo(const int tr);
 			const int getTempoRetardo() const;

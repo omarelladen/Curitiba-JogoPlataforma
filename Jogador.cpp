@@ -101,7 +101,6 @@ void Jogador::parar()
 
 void Jogador::executar()
 {
-
     if (listaProjeteis != nullptr)
     {
         listaProjeteis->executar();

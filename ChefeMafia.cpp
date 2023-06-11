@@ -19,8 +19,7 @@ ChefeMafia::~ChefeMafia()
 
 void ChefeMafia::inicializaAtributos()
 {
-    setTextura("Texturas/Sprite-chefe.png");
-
+    setTextura("Texturas/Sprite-chefe-esquerda.png");
     setTamanho(Vector2f(75.f, 120.f));
 
     time_t t;
@@ -149,9 +148,24 @@ void ChefeMafia::mover()
     Vector2f pos_alvo = alvo->getPosicao() + alvo->getTamanho() / 2.f;
     Vector2f pos_perseguidor = posicao + tam_corpo / 2.f;
 
-    if (fabs(pos_alvo.x - pos_perseguidor.x) < raio_ataque)
+    float dis_alvo_x = fabs(pos_alvo.x - pos_perseguidor.x);
+    float dis_alvo_y = fabs(pos_alvo.y - pos_perseguidor.y);
+
+    if (dis_alvo_y <= 50 && dis_alvo_x <= raio_ataque) //Perseguir se tem que ter a memsa altura ou proxima e esta dentro do raio
     {
         perseguirAlvo();
+
+        tempo = relogio_ataque.getElapsedTime();
+        if (tempo.asSeconds() >= 1)//>= nivel_estupidez)
+        {
+            //cout << "Capanga atira" << endl;
+            atirar(nivel_forca);
+            relogio_ataque.restart();
+        }
+    }
+    else
+    {
+        velocidade.x = 0.f;
     }
 
     if (esta_no_chao)
@@ -196,11 +210,11 @@ void ChefeMafia::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao
 
     case IDs::capivara:
     {
-        if (nivel_medo >= 5)
+        /*if (nivel_medo >= 5)
         {
             Jogador* pJog = static_cast<Jogador*>(ent);
             pJog->diminuirVida(nivel_forca);
-        }
+        }*/
     }
     break;
 
@@ -217,8 +231,17 @@ void ChefeMafia::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao
     }
     break;
 
+    case IDs::bicicleta:
+    {
+        // Eh jogado para cima
+        Bicicleta* pB = static_cast<Bicicleta*>(ent);
+        velocidade.y = (-0.02f) * pB->getNivelRicochete();
+    }
+    break;
+
+
     default: {
-        cout << "Erro Colisao ChefeMafia" << endl;
+        //cout << "Erro Colisao ChefeMafia" << endl;
     }
            break;
     }
@@ -226,7 +249,29 @@ void ChefeMafia::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao
 
 void ChefeMafia::executar()
 {
+    if (listaProjeteis)
+    {
+        listaProjeteis->executar();
+    }
+
+    imprimirBarraVidas();
+
     desenhar_se();
     efeitoGravidade();
     mover();
+
+    if (velocidade.x > 0)
+        direita = true;
+    else if (velocidade.x < 0)
+        direita = false;
+
+    // Atualizar textura
+    if (direita)
+    {
+        setTextura("Texturas/sprite-chefe-direita.png");
+    }
+    else
+    {
+        setTextura("Texturas/sprite-chefe-esquerda.png");
+    }
 }

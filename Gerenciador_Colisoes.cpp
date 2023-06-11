@@ -221,7 +221,10 @@ void Gerenciador_Colisoes::CalculaColisao(Entidade* ent1, Entidade* ent2)
 				    (pP->getAtirador()->getID() == IDs::capanga || pP->getAtirador()->getID() == IDs::jacare || pP->getAtirador()->getID() == IDs::chefeMafia) ) )
 			{
 				if (pP)
-					pP->getAtirador()->getListaProje()->deleteEntidade(ent2);
+				{
+					ent2->setPosicao(Vector2f(0.f, 100000.f));//pP->getAtirador()->getListaProje()->deleteEntidade(ent2);
+					ent2->setVelocidade(Vector2f(0.f, 0.f));
+				}
 			}
 		}
 	}

@@ -39,11 +39,11 @@ namespace Entidades
 			void mover(const char* direcao);
 			void parar();
 
-			void executar();
-
 			virtual void salvar() = 0;
 			virtual ListaEntidades* recuperar() = 0;
 			void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao) = 0;
+			
+			void executar();
 		};
 	}
 }

@@ -74,15 +74,31 @@ void Beco::criarEntidade(const char simbolo, Vector2f pos)
 	{
 		ChefeMafia* pCM = new ChefeMafia(Vector2f(pos.x * 50.f, pos.y * 50));
 		if (pCM)
-			listaPersonagens->addEntidade(static_cast<Entidade*>(pCM));
-		else
 		{
 			pCM->setAlvo(static_cast<Capivara*>(pJogador));
+			listaPersonagens->addEntidade(static_cast<Entidade*>(pCM));
+		}
+		else
+		{
 			cout << "Entidade nula" << endl;
 			exit(1);
 		}
 	}
 	break;
+
+	case 'l':
+	{
+		Lixo* pL = new Lixo(Vector2f(pos.x * 50.f, pos.y * 50));
+		if (pL)
+			listaObstaculos->addEntidade(static_cast<Entidade*>(pL));
+		else
+		{
+			cout << "Entidade nula" << endl;
+			exit(1);
+		}
+	}
+	break;
+
 
 	default:
 		break;

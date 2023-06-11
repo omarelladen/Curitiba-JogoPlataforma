@@ -8,6 +8,7 @@ namespace Entidades
 		class Arvore : public Obstaculo
 		{
 		private:
+			Texture textura_tronco;
 			RectangleShape tronco; // Mexer no setPosition
 			int altura;
 
@@ -22,8 +23,6 @@ namespace Entidades
 
 			void setAltura(const int alt);
 			const int getAltura() const;
-
-			RectangleShape getTronco();
 
 			void executar();
 		};

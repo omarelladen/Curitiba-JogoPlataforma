@@ -27,9 +27,9 @@ void Capanga::inicializaAtributos()
     srand((unsigned)time(&t));
 
     nivel_estupidez = rand() % 15 + 1;//
-    tempo_congelado = rand() % 5 + 2;
+    tempo_congelado = rand() % 5 + 10;
     nivel_tiro = rand() % 3 + 2;
-    num_vidas = rand() % 5 + 8;
+    num_vidas = rand() % 5 + 15;
 }
 
 const int Capanga::getNivelEstupidez() const
@@ -176,6 +176,7 @@ void Capanga::mover()
     }
     else
     {
+        velocidade.x = 0.f;
         tempo = relogio_gravidade.getElapsedTime();
         if (tempo.asSeconds() >= tempo_congelado)
         {
@@ -232,6 +233,7 @@ void Capanga::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
             if (pProj->getAtirador()->getID() == IDs::capivara)
             {
                 diminuirVida(pProj->getDano());
+                setCongelado(true);
             }
         }
     }
@@ -246,6 +248,14 @@ void Capanga::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
     case IDs::chefeMafia:
     {
 
+    }
+    break;
+
+    case IDs::bicicleta:
+    {
+        // Eh jogado para cima
+        Bicicleta* pB = static_cast<Bicicleta*>(ent);
+        velocidade.y = (-0.02f) * pB->getNivelRicochete();
     }
     break;
 
@@ -273,7 +283,7 @@ void Capanga::executar()
 
     if (velocidade.x > 0)
         direita = true;
-    else if (velocidade.x < 0)
+    else if (velocidade.x <= 0)
         direita = false;
 
     // Atualizar textura
