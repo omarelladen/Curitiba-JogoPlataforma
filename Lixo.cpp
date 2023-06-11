@@ -54,23 +54,26 @@ ListaEntidades* Lixo::recuperar()
 	if (!RecuperaSaveLixo)
 	{
 		cerr << "Arquivo nao pode ser aberto" << endl;
-		exit(1);
+		salvo = false;
 	}
 
-	pListaEntidades = new ListaEntidades();
-	Lixo* pLixo = nullptr;
-	Vector2f pos;
-	int dano;
-	int tr; //tempo_retardo
-
-	while (RecuperaSaveLixo >> pos.x >> pos.y >> dano >> tr)
+	if (salvo)
 	{
-		pLixo = new Lixo(pos);
-		if (pLixo)
+		pListaEntidades = new ListaEntidades();
+		Lixo* pLixo = nullptr;
+		Vector2f pos;
+		int dano;
+		int tr; //tempo_retardo
+
+		while (RecuperaSaveLixo >> pos.x >> pos.y >> dano >> tr)
 		{
-			pLixo->setDano(dano);
-			pLixo->setTempoRetardo(tr);
-			pListaEntidades->addEntidade(static_cast<Entidade*>(pLixo));
+			pLixo = new Lixo(pos);
+			if (pLixo)
+			{
+				pLixo->setDano(dano);
+				pLixo->setTempoRetardo(tr);
+				pListaEntidades->addEntidade(static_cast<Entidade*>(pLixo));
+			}
 		}
 	}
 	RecuperaSaveLixo.close();

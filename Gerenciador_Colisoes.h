@@ -15,7 +15,6 @@ namespace Gerenciadores
 	private:
 		ListaEntidades* listaPersonagens;
 		ListaEntidades* listaObstaculos;
-		ListaEntidades* listaProjeteis;
 
 		Jogador* pJogador;
 
@@ -31,9 +30,9 @@ namespace Gerenciadores
 		void setListaObstaculos(ListaEntidades* list);
 		void setJogador(Jogador* pJ);
 
+		//NAO FUNCIONA
 		void salvar();
-
-		void addProjetil(Entidade* proj);
+		void recuperar();
 
 		void GerenciarColisoes();
 

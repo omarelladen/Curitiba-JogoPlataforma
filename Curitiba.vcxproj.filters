@@ -99,9 +99,6 @@
     <ClCompile Include="Arvore.cpp">
       <Filter>Arquivos .cpp\Ente\Entidade\Obstaculo</Filter>
     </ClCompile>
-    <ClCompile Include="Beco.cpp">
-      <Filter>Arquivos .cpp\Ente\Fase</Filter>
-    </ClCompile>
     <ClCompile Include="Bicicleta.cpp">
       <Filter>Arquivos .cpp\Ente\Entidade\Obstaculo</Filter>
     </ClCompile>
@@ -146,9 +143,6 @@
     </ClCompile>
     <ClCompile Include="Gerenciador_Grafico.cpp">
       <Filter>Arquivos .cpp\Gerenciadores</Filter>
-    </ClCompile>
-    <ClCompile Include="Fase.cpp">
-      <Filter>Arquivos .cpp\Ente\Fase</Filter>
     </ClCompile>
     <ClCompile Include="FaseParqueBarigui.cpp">
       <Filter>Arquivos .cpp\Ente\Fase</Filter>
@@ -204,14 +198,32 @@
     <ClCompile Include="Personagem.cpp">
       <Filter>Arquivos .cpp\Ente\Entidade\Personagem</Filter>
     </ClCompile>
-    <ClCompile Include="EstadoMenuGameOver.cpp">
-      <Filter>Arquivos .cpp</Filter>
+    <ClCompile Include="ObservadorRanking.cpp">
+      <Filter>Arquivos .cpp\Ente\Observador</Filter>
+    </ClCompile>
+    <ClCompile Include="Ranking.cpp">
+      <Filter>Arquivos .cpp\Ente</Filter>
+    </ClCompile>
+    <ClCompile Include="EstadoRanking.cpp">
+      <Filter>Arquivos .cpp\Ente\Estado</Filter>
     </ClCompile>
     <ClCompile Include="MenuGameOver.cpp">
-      <Filter>Arquivos .cpp</Filter>
+      <Filter>Arquivos .cpp\Ente\Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="EstadoMenuGameOver.cpp">
+      <Filter>Arquivos .cpp\Ente\Estado</Filter>
     </ClCompile>
     <ClCompile Include="ObservadorMenuGameOver.cpp">
-      <Filter>Arquivos .cpp</Filter>
+      <Filter>Arquivos .cpp\Ente\Observador</Filter>
+    </ClCompile>
+    <ClCompile Include="ObservadorInputTexto.cpp">
+      <Filter>Arquivos .cpp\Ente\Observador</Filter>
+    </ClCompile>
+    <ClCompile Include="FaseBeco.cpp">
+      <Filter>Arquivos .cpp\Ente\Fase</Filter>
+    </ClCompile>
+    <ClCompile Include="Fase.cpp">
+      <Filter>Arquivos .cpp\Ente\Fase</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -332,17 +344,29 @@
     <ClInclude Include="Lixo.h">
       <Filter>Arquivos .h\Ente\Entidade\Obstaculo</Filter>
     </ClInclude>
-    <ClInclude Include="Beco.h">
+    <ClInclude Include="FaseBeco.h">
       <Filter>Arquivos .h\Ente\Fase</Filter>
     </ClInclude>
     <ClInclude Include="EstadoMenuGameOver.h">
       <Filter>Arquivos .h\Ente\Estado</Filter>
     </ClInclude>
+    <ClInclude Include="ObservadorRanking.h">
+      <Filter>Arquivos .h\Ente\Observador</Filter>
+    </ClInclude>
+    <ClInclude Include="Ranking.h">
+      <Filter>Arquivos .h\Ente</Filter>
+    </ClInclude>
+    <ClInclude Include="EstadoRanking.h">
+      <Filter>Arquivos .h\Ente\Estado</Filter>
+    </ClInclude>
     <ClInclude Include="MenuGameOver.h">
-      <Filter>Arquivos .h</Filter>
+      <Filter>Arquivos .h\Ente\Menu</Filter>
     </ClInclude>
     <ClInclude Include="ObservadorMenuGameOver.h">
-      <Filter>Arquivos .h</Filter>
+      <Filter>Arquivos .h\Ente\Observador</Filter>
+    </ClInclude>
+    <ClInclude Include="ObservadorInputTexto.h">
+      <Filter>Arquivos .h\Ente\Observador</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

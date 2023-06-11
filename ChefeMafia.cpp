@@ -108,32 +108,35 @@ ListaEntidades* ChefeMafia::recuperar()
     if (!RecuperaSaveChefeMafia)
     {
         cerr << "Arquivo nao pode ser aberto" << endl;
-        exit(1);
+        salvo = false;
     }
 
-    pListaEntidades = new ListaEntidades();
-    ChefeMafia* pCM = nullptr;
-    Vector2f pos;
-    int vidas;
-    Vector2f vel;
-    bool dir;
-    int forca; //força
-    int medo;
-    int vidas_rege;
-
-    while (RecuperaSaveChefeMafia >> pos.x >> pos.y >> vidas >> vel.x >> vel.y >>
-        dir >> forca >> medo >> vidas_rege)
+    if (salvo)
     {
-        pCM = new ChefeMafia(pos);
-        if (pCM)
+        pListaEntidades = new ListaEntidades();
+        ChefeMafia* pCM = nullptr;
+        Vector2f pos;
+        int vidas;
+        Vector2f vel;
+        bool dir;
+        int forca; //força
+        int medo;
+        int vidas_rege;
+
+        while (RecuperaSaveChefeMafia >> pos.x >> pos.y >> vidas >> vel.x >> vel.y >>
+            dir >> forca >> medo >> vidas_rege)
         {
-            pCM->setNumVidas(vidas);
-            pCM->setVelocidade(vel);
-            pCM->setDireita(dir);
-            pCM->setNivelForca(forca);
-            pCM->setNivelMedo(medo);
-            pCM->setVidasRegeneradas(vidas_rege);
-            pListaEntidades->addEntidade(static_cast<Entidade*>(pCM));
+            pCM = new ChefeMafia(pos);
+            if (pCM)
+            {
+                pCM->setNumVidas(vidas);
+                pCM->setVelocidade(vel);
+                pCM->setDireita(dir);
+                pCM->setNivelForca(forca);
+                pCM->setNivelMedo(medo);
+                pCM->setVidasRegeneradas(vidas_rege);
+                pListaEntidades->addEntidade(static_cast<Entidade*>(pCM));
+            }
         }
     }
     RecuperaSaveChefeMafia.close();

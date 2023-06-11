@@ -1,6 +1,7 @@
 #pragma once
 #include"Menu.h"
 #include"Botao.h"
+#include"EstadoJogar.h"
 
 namespace Observers
 {

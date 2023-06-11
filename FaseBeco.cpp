@@ -1,31 +1,30 @@
-#include"FaseParqueBarigui.h"
+#include"FaseBeco.h"
 using namespace Fases;
 
-FaseParqueBarigui::FaseParqueBarigui() :
-	Fase(IDs::fase_barigui)
+FaseBeco::FaseBeco():
+	Fase(IDs::fase_beco)
 {
 	// Textura Fundo
-	if (!textura_fundo.loadFromFile("Fundo/parque.jpg"))
+	if (!textura_fundo.loadFromFile("Fundo/parque-generico.jpg"))
 	{
 		cout << "Erro ao carregar a textura do fundo" << endl;
 		exit(1);
 	}
 	fundo.setTexture(textura_fundo);
-	fundo.setScale(Vector2f(1.6f, 1.5f));///
 }
 
-FaseParqueBarigui::~FaseParqueBarigui()
+FaseBeco::~FaseBeco()
 {
 }
 
-void FaseParqueBarigui::criarMapa()
+void FaseBeco::criarMapa()
 {
 	ifstream arquivo;
 	string linha;
 
 	arquivo.open("Mapas/MapaParqueBarigui.txt");
 
-	
+
 	if (!arquivo.is_open())
 	{
 		cout << "Erro ao abrir arquivo mapa" << endl;
@@ -37,7 +36,7 @@ void FaseParqueBarigui::criarMapa()
 				criarEntidade(linha[i], Vector2f((float)i, (float)j)); // criarEntidade da classe Fase
 }
 
-void FaseParqueBarigui::criarEntidade(const char simbolo, Vector2f pos)
+void FaseBeco::criarEntidade(const char simbolo, Vector2f pos)
 {
 
 	switch (simbolo)
@@ -46,52 +45,11 @@ void FaseParqueBarigui::criarEntidade(const char simbolo, Vector2f pos)
 	{
 		Chao* pP = new Chao(Vector2f(pos.x * 50.f, pos.y * 50));
 		if (pP)
-		{
 			listaObstaculos->addEntidade(static_cast<Entidade*>(pP));
-		}
 		else
 		{
 			cout << "Entidade nula" << endl;
 			exit(1);
-		}
-	}
-	break;
-
-	case 'j':
-	{
-		if (contador_inimigos < num_inimigos)
-		{
-			Jacare* pJ = new Jacare(Vector2f(pos.x * 50.f, pos.y * 50));
-			if (pJ)
-			{
-				pJ->setAlvo(static_cast<Capivara*>(pJogador));
-				listaPersonagens->addEntidade(static_cast<Entidade*>(pJ));
-				contador_inimigos++;
-			}
-			else
-			{
-				cout << "Entidade nula" << endl;
-				exit(1);
-			}
-		}
-	}
-	break;
-
-	case 'b':
-	{
-		if (contador_obstaculos < num_obstaculos)
-		{
-			Bicicleta* pB = new Bicicleta(Vector2f(pos.x * 50.f, pos.y * 50));
-			if (pB)
-			{
-				listaObstaculos->addEntidade(static_cast<Entidade*>(pB));
-				contador_obstaculos++;
-			}
-			else
-			{
-				cout << "Entidade nula" << endl;
-				exit(1);
-			}
 		}
 	}
 	break;
@@ -116,15 +74,15 @@ void FaseParqueBarigui::criarEntidade(const char simbolo, Vector2f pos)
 	}
 	break;
 
-	case 'a':
+	case 'B':
 	{
-		if (contador_obstaculos < num_obstaculos)
+		if (contador_inimigos < num_inimigos)
 		{
-			Arvore* pA = new Arvore(Vector2f(pos.x * 50.f, pos.y * 50));
-			if (pA)
+			ChefeMafia* pCM = new ChefeMafia(Vector2f(pos.x * 50.f, pos.y * 50));
+			if (pCM)
 			{
-				listaObstaculos->addEntidade(static_cast<Entidade*>(pA));
-				contador_obstaculos++;
+				pCM->setAlvo(static_cast<Capivara*>(pJogador));
+				listaPersonagens->addEntidade(static_cast<Entidade*>(pCM));
 			}
 			else
 			{
@@ -135,16 +93,32 @@ void FaseParqueBarigui::criarEntidade(const char simbolo, Vector2f pos)
 	}
 	break;
 
+	case 'l':
+	{
+		if (contador_obstaculos < num_obstaculos)
+		{
+			Lixo* pL = new Lixo(Vector2f(pos.x * 50.f, pos.y * 50));
+			if (pL)
+				listaObstaculos->addEntidade(static_cast<Entidade*>(pL));
+			else
+			{
+				cout << "Entidade nula" << endl;
+				exit(1);
+			}
+		}
+	}
+	break;
+
+
 	default:
 		break;
 	}
 }
 
-void FaseParqueBarigui::executar()
+void FaseBeco::executar()
 {
 	fundo.setPosition(Vector2f(pJogador->getPosicao().x - 490, 100));
 	Gerenciador_Grafico::getGerenciadorGrafico()->getJanela()->draw(fundo);
 
-	if(gerenciadorColisoes)
-		gerenciadorColisoes->executar();
+	gerenciadorColisoes->executar();
 }

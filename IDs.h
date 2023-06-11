@@ -21,11 +21,14 @@ enum class IDs
 	menuPrincipal,
 	menuPause,
 	menuGameOver,
+	ranking,
+	inputTexto,
 
 	estadoJogar,
 	estadoMenuPrincipal,
 	estadoMenuPause,
 	estadoMenuGameOver,
+	estadoRanking,
 
 	fase_barigui,
 	fase_beco

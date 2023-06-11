@@ -3,6 +3,7 @@
 #include <stack>
 using namespace std;
 #include"IDs.h"
+#include"Jogador.h"
 
 class Jogo;
 
@@ -17,7 +18,7 @@ namespace Gerenciadores
 	class Gerenciador_Estados
 	{
 	private:
-		Jogo* pJogo;//
+		Jogo* pJogo;
 
 		stack<Estado*> pilhaEstados;
 
@@ -33,7 +34,8 @@ namespace Gerenciadores
 		Estado* criarEstadoJogar(IDs id_fase);
 		Estado* criarEstadoMenuPrincipal();
 		Estado* criarEstadoMenuPause();
-		Estado* criarEstadoMenuGameOver();
+		Estado* criarEstadoMenuGameOver(Jogador* jog);
+		Estado* criarEstadoRanking();
 
 		// Gestão de Estados
 		void removerEstado(int n); // pop delete e fecha janela se empty

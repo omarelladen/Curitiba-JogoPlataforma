@@ -49,6 +49,8 @@ void ListaEntidades::salvarEntidades()
 
 void ListaEntidades::recuperarEntidades()
 {
+    //Pequeno problema com desalocacao
+
     Capivara jogador;
     ChefeMafia mafioso;
     Capanga capanga;
@@ -58,16 +60,19 @@ void ListaEntidades::recuperarEntidades()
     Bicicleta bike;
     Chao piso;
 
-    ListaEntidades* pListJog = jogador.recuperar();
+    ListaEntidades* pListJog = new ListaEntidades();
+    pListJog = jogador.recuperar();
 
-    ListaEntidades* pListInim = mafioso.recuperar();
-    pListInim->operator=(capanga.recuperar());
-    pListInim->operator=(crocodilo.recuperar());
+    ListaEntidades* pListInim = new ListaEntidades();
+    pListInim = mafioso.recuperar();
+    pListInim = capanga.recuperar();
+    pListInim = crocodilo.recuperar();
 
-    ListaEntidades* pListObsts = arvore.recuperar();
-    pListObsts->operator=(lixao.recuperar());
-    pListObsts->operator=(bike.recuperar());
-    pListObsts->operator=(piso.recuperar());
+    ListaEntidades* pListObsts = new ListaEntidades();
+    pListObsts = arvore.recuperar();
+    pListObsts = lixao.recuperar();
+    pListObsts = bike.recuperar();
+    pListObsts = piso.recuperar();
 
     for (int i = 0; i < pListInim->getTamLista(); i++)
     {
@@ -90,9 +95,12 @@ const int ListaEntidades::getTamLista() const
 
 void ListaEntidades::operator=(ListaEntidades* list)
 {
-    for (int i = 0; i < list->getTamLista(); i++)
+    if (list)
     {
-        addEntidade(list->getEntidade(i));
+        for (int i = 0; i < list->getTamLista(); i++)
+        {
+            addEntidade(list->getEntidade(i));
+        }
     }
 }
 

@@ -13,8 +13,6 @@ namespace Gerenciadores
 	private:
 		RenderWindow* janela;
 		View camera;
-		Font fonte;
-		Text game_over;
 
 		static Gerenciador_Grafico* pGerenciadorGrafico;
 
@@ -28,11 +26,13 @@ namespace Gerenciadores
 
 		void setCentro(Vector2f pos_jog);
 		void limpaJanela();
-		void desenhaEnte(RectangleShape body);
+		void desenhaNaJanela(RectangleShape body);
+		void desenhaNaJanela(Text texto);
 		void printaJogo();
 		void fechaJanela();
 
-		Vector2f getCentroJanela();
+		const Vector2f getCentroJanela() const;
+		const Vector2f getTamJanela() const;
 
 		const bool VerificaSeJanelaAberta();
 	};

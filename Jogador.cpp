@@ -110,7 +110,7 @@ void Jogador::executar()
     //cout << num_vidas << endl;
     imprimirBarraVidas();
 
-    window_manager->setCentro(posicao);
+    window_manager->setCentro(Vector2f(posicao.x, 150.f));
     efeitoGravidade();
     desenhar_se();
 

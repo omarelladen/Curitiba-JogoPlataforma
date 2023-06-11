@@ -12,4 +12,3 @@ Estado::~Estado()
 {
 	pGerenciadorEstados = nullptr;
 }
-

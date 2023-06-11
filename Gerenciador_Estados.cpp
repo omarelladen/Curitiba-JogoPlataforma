@@ -4,6 +4,7 @@ using namespace Gerenciadores;
 #include"EstadoMenuPrincipal.h"
 #include"EstadoMenuPause.h"
 #include"EstadoMenuGameOver.h"
+#include"EstadoRanking.h"
 using namespace Estados;
 #include"Jogo.h"
 
@@ -56,9 +57,14 @@ Estado* Gerenciador_Estados::criarEstadoMenuPause()
 	return static_cast<Estado*>(new EstadoMenuPause());
 }
 
-Estado* Gerenciador_Estados::criarEstadoMenuGameOver()
+Estado* Gerenciador_Estados::criarEstadoMenuGameOver(Jogador* jog)
 {
-	return static_cast<Estado*>(new EstadoMenuGameOver);
+	return static_cast<Estado*>(new EstadoMenuGameOver(jog));
+}
+
+Estado* Gerenciador_Estados::criarEstadoRanking()
+{
+	return static_cast<Estado*>(new EstadoRanking());
 }
 
 
@@ -95,6 +101,6 @@ Jogo* Gerenciador_Estados::getJogo()
 
 void Gerenciador_Estados::executar()
 {
-	if (!pilhaEstados.empty())
+	if (!pilhaEstados.empty() && pilhaEstados.top())
 		pilhaEstados.top()->executar();
 }

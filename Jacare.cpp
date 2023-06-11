@@ -90,30 +90,33 @@ ListaEntidades* Jacare::recuperar()
     if (!RecuperaSaveJacare)
     {
         cerr << "Arquivo nao pode ser aberto" << endl;
-        exit(1);
+        salvo = false;
     }
 
-    pListaEntidades = new ListaEntidades();
-    Jacare* pJac = nullptr;
-    Vector2f pos;
-    int vidas;
-    Vector2f vel;
-    bool dir;
-    int mordida;
-    int raio_pulo;
-
-    while (RecuperaSaveJacare >> pos.x >> pos.y >> vidas >> vel.x >> vel.y >>
-        dir >> mordida >> raio_pulo)
+    if (salvo)
     {
-        pJac = new Jacare(pos);
-        if (pJac)
+        pListaEntidades = new ListaEntidades();
+        Jacare* pJac = nullptr;
+        Vector2f pos;
+        int vidas;
+        Vector2f vel;
+        bool dir;
+        int mordida;
+        int raio_pulo;
+
+        while (RecuperaSaveJacare >> pos.x >> pos.y >> vidas >> vel.x >> vel.y >>
+            dir >> mordida >> raio_pulo)
         {
-            pJac->setNumVidas(vidas);
-            pJac->setVelocidade(vel);
-            pJac->setDireita(dir);
-            pJac->setForcaMordida(mordida);
-            pJac->setRaioSuperPulo(raio_pulo);
-            pListaEntidades->addEntidade(static_cast<Entidade*>(pJac));
+            pJac = new Jacare(pos);
+            if (pJac)
+            {
+                pJac->setNumVidas(vidas);
+                pJac->setVelocidade(vel);
+                pJac->setDireita(dir);
+                pJac->setForcaMordida(mordida);
+                pJac->setRaioSuperPulo(raio_pulo);
+                pListaEntidades->addEntidade(static_cast<Entidade*>(pJac));
+            }
         }
     }
     RecuperaSaveJacare.close();

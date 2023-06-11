@@ -8,7 +8,6 @@ Gerenciador_Colisoes* Gerenciador_Colisoes::pGerenciadorColisoes = nullptr;
 Gerenciador_Colisoes::Gerenciador_Colisoes() :
 	listaObstaculos(nullptr),
 	listaPersonagens(nullptr),
-	listaProjeteis(new ListaEntidades()),
 	pJogador(nullptr)
 {
 
@@ -16,11 +15,8 @@ Gerenciador_Colisoes::Gerenciador_Colisoes() :
 
 Gerenciador_Colisoes::~Gerenciador_Colisoes()
 {
-	delete listaProjeteis;
-
 	listaObstaculos = nullptr;
 	listaPersonagens = nullptr;
-	listaProjeteis = nullptr;
 	pJogador = nullptr;
 }
 
@@ -60,16 +56,15 @@ void Gerenciador_Colisoes::salvar()
 {
 	listaObstaculos->salvarEntidades();
 	listaPersonagens->salvarEntidades();
-	listaProjeteis->salvarEntidades();
 }
 
-void Gerenciador_Colisoes::addProjetil(Entidade* proj)
+void Gerenciador_Colisoes::recuperar()
 {
-	if(listaProjeteis == nullptr)
-	{
-		listaProjeteis = new ListaEntidades();
-	}
-	listaProjeteis->addEntidade(proj);
+	if (listaObstaculos)
+		listaObstaculos->recuperarEntidades();
+
+	if (listaPersonagens)
+		listaPersonagens->recuperarEntidades();
 }
 
 void Gerenciador_Colisoes::GerenciarColisoes()
@@ -78,7 +73,7 @@ void Gerenciador_Colisoes::GerenciarColisoes()
 	Entidade* pEnt2 = nullptr;
 	Entidade* pEnt3 = nullptr;
 
-	if (listaPersonagens && listaObstaculos && listaProjeteis)
+	if (listaPersonagens && listaObstaculos)
 	{
 		for (int i = 0; i < listaPersonagens->getTamLista(); i++)
 		{
@@ -91,15 +86,6 @@ void Gerenciador_Colisoes::GerenciarColisoes()
 				pEnt2 = listaObstaculos->getEntidade(j);
 
 				CalculaColisao(pEnt1, pEnt2);
-
-				//Calcula colisao Obstaculos e Projeteis
-
-				/*for (int k = 0; k < listaProjeteis->getTamLista(); k++)
-				{
-					pEnt3 = listaProjeteis->getEntidade(k);
-
-					CalculaColisao(pEnt2, pEnt3);
-				}*/
 			}
 
 			//Calcula colisao Personagem e Personagem
@@ -110,13 +96,16 @@ void Gerenciador_Colisoes::GerenciarColisoes()
 
 				CalculaColisao(pEnt1, pEnt2);
 
-				//cout << pEnt2->getListaProje()->getTamLista() << endl;
+				//Calcula colisao Personagem e Projetil 1
+
 				for (int k = 0; k < pEnt2->getListaProje()->getTamLista(); k++)
 				{
 					pEnt3 = pEnt2->getListaProje()->operator[](k);
 
 					CalculaColisao(pEnt1, pEnt3);
 				}
+
+				//Calcula colisao Personagem e Projetil 2
 
 				for (int k = 0; k < pEnt1->getListaProje()->getTamLista(); k++)
 				{
@@ -126,16 +115,6 @@ void Gerenciador_Colisoes::GerenciarColisoes()
 				}
 
 			}
-
-			//Calcula colisao Personagem e Projeteis
-
-			/*for (int j = 0; j < listaProjeteis->getTamLista(); j++)
-			{
-				pEnt2 = listaProjeteis->getEntidade(j);
-
-				if (pEnt2)
-					CalculaColisao(pEnt1, pEnt2);
-			}*/
 		}
 	}
 	else
@@ -146,7 +125,6 @@ void Gerenciador_Colisoes::GerenciarColisoes()
 
 void Gerenciador_Colisoes::CalculaColisao(Entidade* ent1, Entidade* ent2)
 {
-
 	//Calcula colisao usando os centros das entidades
 
 	Vector2f tam_ent1 = ent1->getTamanho();
@@ -163,14 +141,6 @@ void Gerenciador_Colisoes::CalculaColisao(Entidade* ent1, Entidade* ent2)
 
 	Vector2f distancia_colisao = Vector2f(distancia_entre_centros.x - menor_distancia_colisao.x,
 										  distancia_entre_centros.y - menor_distancia_colisao.y);
-
-	/*if ((ent1->getID() == "Projetil"))
-	{
-		cout << "Distancia Entre centros: " << distancia_entre_centros.x << " " << distancia_entre_centros.y << " - "
-			<< "Menor distancia colisao: " << menor_distancia_colisao.x << " " << menor_distancia_colisao.y << " = "
-			<< "Distancia colisao: " << distancia_colisao.x << " " << distancia_colisao.y << endl;
-		cout << ent1->getPosicao().x << " " << ent1->getPosicao().y << endl;
-	}*/
 
 	//Testa se teve colisao
 	if (distancia_colisao.x < 0.f && distancia_colisao.y < 0.f) 
@@ -201,6 +171,7 @@ void Gerenciador_Colisoes::CalculaColisao(Entidade* ent1, Entidade* ent2)
 			//Colisao Cima
 			if (ent1->getPosicao().y < ent2->getPosicao().y)
 			{
+				ent1->setEstaNoChao(true);
 				ent1->setPosicao(ent1->getPosicao() + distancia_colisao);
 			}
 
@@ -253,7 +224,7 @@ void Gerenciador_Colisoes::executar()
 						//Morte do Jogador
 						Gerenciador_Estados::getGerenciadorEstados()->addEstado
 						(
-							Gerenciador_Estados::getGerenciadorEstados()->criarEstadoMenuGameOver()
+							Gerenciador_Estados::getGerenciadorEstados()->criarEstadoMenuGameOver(pJogador)
 						);
 					}
 				}
@@ -265,12 +236,8 @@ void Gerenciador_Colisoes::executar()
 
 	if (listaObstaculos)
 	{
-			listaObstaculos->executar();
+		listaObstaculos->executar();
 	}
 
-	/*if (listaProjeteis)
-	{
-		listaProjeteis->executar();
-	}*/
 	GerenciarColisoes();
 }

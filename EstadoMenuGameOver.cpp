@@ -1,10 +1,10 @@
 #include"EstadoMenuGameOver.h"
 using namespace Estados;
 
-EstadoMenuGameOver::EstadoMenuGameOver() :
+EstadoMenuGameOver::EstadoMenuGameOver(Jogador* jog) :
 	Estado(IDs::estadoMenuGameOver)
 {
-	menu_game_over = new MenuGameOver();
+	menu_game_over = new MenuGameOver(jog);
 }
 
 EstadoMenuGameOver::~EstadoMenuGameOver()

@@ -65,28 +65,31 @@ ListaEntidades* Arvore::recuperar()
     if (!RecuperaSaveArvore)
     {
         cerr << "Arquivo nao pode ser aberto" << endl;
-        exit(1);
+        salvo = false;
     }
 
-    pListaEntidades = new ListaEntidades();
-    Arvore* pArv = nullptr;
-    Vector2f pos;
-    Vector2f tam;
-    int alt;
-
-    while (RecuperaSaveArvore >> pos.x >> pos.y >> tam.x >> tam.y >> alt)
+    if (salvo)
     {
-        pArv = new Arvore(pos);
-        if (pArv)
+        pListaEntidades = new ListaEntidades();
+        Arvore* pArv = nullptr;
+        Vector2f pos;
+        Vector2f tam;
+        int alt;
+
+        while (RecuperaSaveArvore >> pos.x >> pos.y >> tam.x >> tam.y >> alt)
         {
-            pArv->setTamanho(tam);
-            pArv->setAltura(alt);
-            //pArv->getTronco().setSize(Vector2f((float)alt, 30.f));
-            pListaEntidades->addEntidade(static_cast<Entidade*>(pArv));
+            pArv = new Arvore(pos);
+            if (pArv)
+            {
+                pArv->setTamanho(tam);
+                pArv->setAltura(alt);
+                //pArv->getTronco().setSize(Vector2f((float)alt, 30.f));
+                pListaEntidades->addEntidade(static_cast<Entidade*>(pArv));
+            }
         }
     }
     RecuperaSaveArvore.close();
-
+    
     return pListaEntidades;
 }
 

@@ -160,24 +160,26 @@ ListaEntidades* Projetil::recuperar()
     if (!RecuperaSaveProjetil)
     {
         cerr << "Arquivo nao pode ser aberto" << endl;
-        exit(1);
+        salvo = false;
     }
 
-    pListaEntidades = new ListaEntidades();
-    Projetil* pProj = nullptr;
-    Vector2f pos;
-    Vector2f vel;
-    int dano;
-
-    //FALTA RECUPERAR A RELACAO COM ATIRADOR
-    while (RecuperaSaveProjetil >> pos.x >> pos.y >> vel.x >> vel.y >> dano)
+    if (salvo)
     {
-        pProj = new Projetil(pos);
-        if (pProj)
+        pListaEntidades = new ListaEntidades();
+        Projetil* pProj = nullptr;
+        Vector2f pos;
+        Vector2f vel;
+        int dano;
+
+        while (RecuperaSaveProjetil >> pos.x >> pos.y >> vel.x >> vel.y >> dano)
         {
-            pProj->setVelocidade(vel);
-            pProj->setDano(dano);
-            pListaEntidades->addEntidade(static_cast<Entidade*>(pProj));
+            pProj = new Projetil(pos);
+            if (pProj)
+            {
+                pProj->setVelocidade(vel);
+                pProj->setDano(dano);
+                pListaEntidades->addEntidade(static_cast<Entidade*>(pProj));
+            }
         }
     }
     RecuperaSaveProjetil.close();

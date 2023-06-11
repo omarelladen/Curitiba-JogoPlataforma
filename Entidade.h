@@ -31,19 +31,17 @@ namespace Entidades
 		Texture textura;
 
 		bool esta_no_chao;
+		bool salvo;
 
 		ListaEntidades* pListaEntidades;
 
-
-
-		ListaEntidades* listaProjeteis;// teste proj na mao
+		ListaEntidades* listaProjeteis;
 
 	public:
-		ListaEntidades* getListaProje();
-
-
 		Entidade(const IDs id = {}, Vector2f pos = Vector2f(0.f, 0.f));
 		~Entidade();
+
+		ListaEntidades* getListaProje();
 
 		void setTextura(const char* caminho_textura);
 

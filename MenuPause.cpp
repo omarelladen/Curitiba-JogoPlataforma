@@ -78,9 +78,19 @@ void MenuPause::selecionaBotao(const bool enter)
 
 		if (enter)
 		{
-			//desempilhar menu pause
-			//Usar o salvar do estado jogar
-			//empilhar o menu pause
+			/*pGEventos->desativaObservadores();
+
+			pGEventos->ativaObservador(IDs::jogo);
+			*/
+			pGEstados->removerEstado(1);
+
+			EstadoJogar* estado = static_cast<EstadoJogar*>(pGEstados->getEstadoAtual());
+
+			estado->salvarJogada();
+
+			pGEventos->desativaObservadores();
+
+			pGEstados->addEstado(pGEstados->criarEstadoMenuPause());
 		}
 	}
 	else if (opcao == 3)

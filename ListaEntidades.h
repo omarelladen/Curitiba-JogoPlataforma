@@ -30,6 +30,7 @@ namespace Listas
 		Entidade* getEntidade(int pos);
 		Entidade* operator[](int pos);
 
+		//NAO FUNCIONA
 		void salvarEntidades();
 		void recuperarEntidades();
 

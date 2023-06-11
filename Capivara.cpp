@@ -26,7 +26,7 @@ void Capivara::inicializaAtributos()
     srand((unsigned)time(&t));
     forca_cuspe = rand() % 5 + 1;
 
-    num_vidas = 50;
+    num_vidas = 5;
 }
 
 void Capivara::salvar()
@@ -58,29 +58,32 @@ ListaEntidades* Capivara::recuperar()
     if (!RecuperaSaveJacare)
     {
         cerr << "Arquivo nao pode ser aberto" << endl;
-        exit(1);
+        salvo = false;
     }
 
-    pListaEntidades = new ListaEntidades();
-    Capivara* pCapi = nullptr;
-    Vector2f pos;
-    int vidas;
-    Vector2f vel;
-    int pontos;
-    int cuspe;
-    int especial;
-
-    while (RecuperaSaveJacare >> pos.x >> pos.y >> vidas >> vel.x >> vel.y >> pontos >> cuspe >> especial)
+    if (salvo)
     {
-        pCapi = new Capivara(pos);
-        if (pCapi)
+        pListaEntidades = new ListaEntidades();
+        Capivara* pCapi = nullptr;
+        Vector2f pos;
+        int vidas;
+        Vector2f vel;
+        int pontos;
+        int cuspe;
+        int especial;
+
+        while (RecuperaSaveJacare >> pos.x >> pos.y >> vidas >> vel.x >> vel.y >> pontos >> cuspe >> especial)
         {
-            pCapi->setNumVidas(vidas);
-            pCapi->setVelocidade(vel);
-            pCapi->setPontos(pontos);
-            pCapi->setForcaCuspe(cuspe);
-            pCapi->setGolpeEspecial(especial);
-            pListaEntidades->addEntidade(static_cast<Entidade*>(pCapi));
+            pCapi = new Capivara(pos);
+            if (pCapi)
+            {
+                pCapi->setNumVidas(vidas);
+                pCapi->setVelocidade(vel);
+                pCapi->setPontos(pontos);
+                pCapi->setForcaCuspe(cuspe);
+                pCapi->setGolpeEspecial(especial);
+                pListaEntidades->addEntidade(static_cast<Entidade*>(pCapi));
+            }
         }
     }
     RecuperaSaveJacare.close();

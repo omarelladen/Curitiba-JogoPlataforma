@@ -26,7 +26,7 @@ void ObservadorMenuPrincipal::teclaSolta(const Keyboard::Key tecla)
 	else
 		enter = false;
 
-	if (tecla == Keyboard::Down && pMenuPrincipal->getOpcao() < 3)
+	if (tecla == Keyboard::Down && pMenuPrincipal->getOpcao() < 4)
 	{
 		pMenuPrincipal->operator++();
 	}

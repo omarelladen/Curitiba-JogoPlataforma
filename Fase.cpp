@@ -9,14 +9,12 @@ Fase::Fase(const IDs id) :
 	listaObstaculos(nullptr),
 	gerenciadorColisoes(nullptr),
 	observadorFase(nullptr),
-	pJogador(nullptr)
+	pJogador(nullptr),
+	num_inimigos(0),
+	num_obstaculos(0),
+	contador_inimigos(0),
+	contador_obstaculos(0)
 {
-	// NAO EH AQUI QUE CRIA O PERSONAGEM !!!!!
-	/*// Cria o personagem
-	construtorEntidade->setJogador(  (Jogador*)(construtorEntidade->criarCapivara(Vector2f(9, 8)))  );
-	listaPersonagens->setEntidade(construtorEntidade->getJogador());
-	// Player 2:*/
-
 	//Cria Listas de Entidades
 	listaPersonagens = new ListaEntidades();
 	listaObstaculos = new ListaEntidades();
@@ -26,7 +24,6 @@ Fase::Fase(const IDs id) :
 
 	gerenciadorColisoes->setListaObstaculos(listaObstaculos);
 	gerenciadorColisoes->setListaPersonagens(listaPersonagens);
-
 
 	// Cria seu Observador:
 	observadorFase = new ObservadorFase(this); // this para setar la tambem Observers::
@@ -45,6 +42,7 @@ Fase::~Fase()
 	{
 		listaPersonagens->clear();
 	}
+
 	listaPersonagens = nullptr;
 	listaObstaculos = nullptr;
 	gerenciadorColisoes = nullptr;
@@ -71,8 +69,14 @@ void Fase::setJogador(Jogador* pJ)
 
 
 
-void Fase::salvar()
+void Fase::salvarJogada()
 {
 	if (gerenciadorColisoes)
 		gerenciadorColisoes->salvar();
+}
+
+void Fase::recuperarJogada()
+{
+	if (gerenciadorColisoes)
+		gerenciadorColisoes->recuperar();
 }

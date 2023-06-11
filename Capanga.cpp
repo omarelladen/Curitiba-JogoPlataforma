@@ -68,34 +68,37 @@ ListaEntidades* Capanga::recuperar()
     if (!RecuperaSaveCapanga)
     {
         cerr << "Arquivo nao pode ser aberto" << endl;
-        exit(1);
+        salvo = false;
     }
 
-    pListaEntidades = new ListaEntidades();
-    Capanga* pCapan = nullptr;
-    Vector2f pos;
-    int vidas;
-    Vector2f vel;
-    bool dir;
-    int tiro;
-    int estupidez;
-    int tempo_congelado;
-    bool congelado;
-
-    while (RecuperaSaveCapanga >> pos.x >> pos.y >> vidas >> vel.x >> vel.y >> 
-           dir >> tiro >> estupidez >> tempo_congelado >> congelado)
+    if (salvo)
     {
-        pCapan = new Capanga(pos);
-        if (pCapan)
+        pListaEntidades = new ListaEntidades();
+        Capanga* pCapan = nullptr;
+        Vector2f pos;
+        int vidas;
+        Vector2f vel;
+        bool dir;
+        int tiro;
+        int estupidez;
+        int tempo_congelado;
+        bool congelado;
+
+        while (RecuperaSaveCapanga >> pos.x >> pos.y >> vidas >> vel.x >> vel.y >>
+            dir >> tiro >> estupidez >> tempo_congelado >> congelado)
         {
-            pCapan->setNumVidas(vidas);
-            pCapan->setVelocidade(vel);
-            pCapan->setDireita(dir);
-            pCapan->setNivelTiro(tiro);
-            pCapan->setNivelEstupidez(estupidez);
-            pCapan->setTempoCongelado(tempo_congelado);
-            pCapan->setCongelado(congelado);
-            pListaEntidades->addEntidade(static_cast<Entidade*>(pCapan));
+            pCapan = new Capanga(pos);
+            if (pCapan)
+            {
+                pCapan->setNumVidas(vidas);
+                pCapan->setVelocidade(vel);
+                pCapan->setDireita(dir);
+                pCapan->setNivelTiro(tiro);
+                pCapan->setNivelEstupidez(estupidez);
+                pCapan->setTempoCongelado(tempo_congelado);
+                pCapan->setCongelado(congelado);
+                pListaEntidades->addEntidade(static_cast<Entidade*>(pCapan));
+            }
         }
     }
     RecuperaSaveCapanga.close();

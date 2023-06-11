@@ -9,25 +9,13 @@ Gerenciador_Grafico* Gerenciador_Grafico::pGerenciadorGrafico(nullptr);
 
 Gerenciador_Grafico::Gerenciador_Grafico() :
 	janela(nullptr),
-	camera(),
-	game_over(),
-	fonte()
+	camera()
 {
 	janela = new RenderWindow(VideoMode(1000, 900), "Jogo");////
 	if (janela == nullptr)
 	{
 		cerr << "Erro - Alocacao de janela nao realizada" << endl;
 	}
-
-
-	fonte.loadFromFile("Fonte/SparkyStonesRegular-BW6ld.ttf");
-
-	game_over.setFont(fonte);
-	game_over.setString("Game Over");
-	game_over.setFillColor(Color::Black);
-	game_over.setOutlineColor(Color::White);
-	game_over.setCharacterSize(60);
-	game_over.setPosition(Vector2f(0.f, 0.f));
 }
 
 Gerenciador_Grafico::~Gerenciador_Grafico()
@@ -65,9 +53,14 @@ void Gerenciador_Grafico::limpaJanela()
 	janela->clear();
 }
 
-void Gerenciador_Grafico::desenhaEnte(RectangleShape body)
+void Gerenciador_Grafico::desenhaNaJanela(RectangleShape body)
 {
 	janela->draw(body);
+}
+
+void Gerenciador_Grafico::desenhaNaJanela(Text texto)
+{
+	janela->draw(texto);
 }
 
 void Gerenciador_Grafico::printaJogo()
@@ -80,9 +73,14 @@ void Gerenciador_Grafico::fechaJanela()
 	janela->close();
 }
 
-Vector2f Gerenciadores::Gerenciador_Grafico::getCentroJanela()
+const Vector2f Gerenciador_Grafico::getCentroJanela() const
 {
 	return camera.getCenter();
+}
+
+const Vector2f Gerenciador_Grafico::getTamJanela() const
+{
+	return static_cast<Vector2f>(janela->getSize());
 }
 
 const bool Gerenciador_Grafico::VerificaSeJanelaAberta()

@@ -54,8 +54,8 @@ void Botao::naoSelecionado()
 void Botao::render()
 {
 	// Retangulo
-	Gerenciador_Grafico::getGerenciadorGrafico()->desenhaEnte(forma);
+	Gerenciador_Grafico::getGerenciadorGrafico()->desenhaNaJanela(forma);
 
 	// Texto
-	Gerenciador_Grafico::getGerenciadorGrafico()->getJanela()->draw(texto);
+	Gerenciador_Grafico::getGerenciadorGrafico()->desenhaNaJanela(texto);
 }

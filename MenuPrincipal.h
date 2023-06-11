@@ -17,11 +17,10 @@ namespace Menus
 		ObservadorMenuPrincipal* observadorMenuPrincipal; //dupla// precisa?
 
 		Botao* botao_jogarBarigui;
-		Botao* botao_jogarCooperativoBarigui;
-		//Botao* botao_continuar;
+		Botao* botao_jogarbeco;
+		Botao* botao_ranking;
 		Botao* botao_sair;
 		//Botao* botao_configuracoes;
-
 
 	public:
 		MenuPrincipal();

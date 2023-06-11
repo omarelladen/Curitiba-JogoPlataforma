@@ -24,6 +24,11 @@ namespace Fases
 
 		Jogador* pJogador;
 
+		int num_inimigos;
+		int contador_inimigos;
+		int num_obstaculos;
+		int contador_obstaculos;
+
 	public:
 		Fase(const IDs id = {});
 		~Fase();
@@ -32,7 +37,8 @@ namespace Fases
 
 		void setJogador(Jogador* pJ);
 
-		void salvar();
+		void salvarJogada();
+		void recuperarJogada();
 
 		virtual void criarMapa() = 0;
 		virtual void executar() = 0;

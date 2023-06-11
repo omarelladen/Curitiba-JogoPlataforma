@@ -51,21 +51,24 @@ ListaEntidades* Chao::recuperar()
     if (!RecuperaSaveChao)
     {
         cerr << "Arquivo nao pode ser aberto" << endl;
-        exit(1);
+        salvo = false;
     }
 
-    pListaEntidades = new ListaEntidades();
-    Chao* pPlat = nullptr;
-    Vector2f pos;
-    double atrito;
-
-    while (RecuperaSaveChao >> pos.x >> pos.y >> atrito)
+    if (salvo)
     {
-        pPlat = new Chao(pos);
-        if (pPlat)
+        pListaEntidades = new ListaEntidades();
+        Chao* pPlat = nullptr;
+        Vector2f pos;
+        double atrito;
+
+        while (RecuperaSaveChao >> pos.x >> pos.y >> atrito)
         {
-            pPlat->setAtrito(atrito);
-            pListaEntidades->addEntidade(static_cast<Entidade*>(pPlat));
+            pPlat = new Chao(pos);
+            if (pPlat)
+            {
+                pPlat->setAtrito(atrito);
+                pListaEntidades->addEntidade(static_cast<Entidade*>(pPlat));
+            }
         }
     }
     RecuperaSaveChao.close();

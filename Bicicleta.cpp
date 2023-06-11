@@ -55,25 +55,28 @@ ListaEntidades* Bicicleta::recuperar()
     if (!RecuperaSaveBicicleta)
     {
         cerr << "Arquivo nao pode ser aberto" << endl;
-        exit(1);
+        salvo = false;
     }
 
-    pListaEntidades = new ListaEntidades();
-    Bicicleta* pBike = nullptr;
-    Vector2f pos;
-    Vector2f vel;
-    int ricochete;
-    int damage;
-
-    while (RecuperaSaveBicicleta >> pos.x >> pos.y >> vel.x >> vel.y >> ricochete >> damage)
+    if (salvo)
     {
-        pBike = new Bicicleta(pos);
-        if (pBike)
+        pListaEntidades = new ListaEntidades();
+        Bicicleta* pBike = nullptr;
+        Vector2f pos;
+        Vector2f vel;
+        int ricochete;
+        int damage;
+
+        while (RecuperaSaveBicicleta >> pos.x >> pos.y >> vel.x >> vel.y >> ricochete >> damage)
         {
-            pBike->setVelocidade(vel);
-            pBike->setNivelRicochete(ricochete);
-            pBike->setDano(damage);
-            pListaEntidades->addEntidade(static_cast<Entidade*>(pBike));
+            pBike = new Bicicleta(pos);
+            if (pBike)
+            {
+                pBike->setVelocidade(vel);
+                pBike->setNivelRicochete(ricochete);
+                pBike->setDano(damage);
+                pListaEntidades->addEntidade(static_cast<Entidade*>(pBike));
+            }
         }
     }
     RecuperaSaveBicicleta.close();

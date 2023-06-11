@@ -16,11 +16,10 @@ Entidade::Entidade(const IDs id, Vector2f pos) : //
 	tempo(),
 	relogio_gravidade(),
 	esta_no_chao(false),
+	salvo(true),
 	pListaEntidades(nullptr),
 	textura(),
-
-
-	listaProjeteis()//
+	listaProjeteis()
 {
 	corpo.setPosition(pos);
 	relogio_gravidade.restart();
@@ -85,7 +84,7 @@ void Entidade::desenhar_se()
 {
 	if (window_manager && window_manager->getJanela())
 	{
-		window_manager->desenhaEnte(corpo);
+		window_manager->desenhaNaJanela(corpo);
 	}
 	else
 	{
