@@ -14,6 +14,10 @@ ObservadorFase::~ObservadorFase()
 }
 
 
+void ObservadorFase::teclaPressionada(const Keyboard::Key tecla)
+{
+}
+
 void ObservadorFase::teclaSolta(const Keyboard::Key tecla)
 {
 	switch (tecla)
@@ -22,11 +26,8 @@ void ObservadorFase::teclaSolta(const Keyboard::Key tecla)
 	{
 		Gerenciador_Eventos::getGerenciadorEventos()->desativaObservadores();
 
-		Gerenciador_Estados::getGerenciadorEstados()->addEstado
-		(
-			Gerenciador_Estados::getGerenciadorEstados()->criarEstadoMenuPause()
-		);
-
-	}break;
+		pGEstados->addEstado(pGEstados->criarEstadoMenuPause());
+	}
+	break;
 	}
 }

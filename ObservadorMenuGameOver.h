@@ -1,18 +1,18 @@
 #pragma once
 #include"Observador.h"
-#include"MenuPause.h"
+#include"MenuGameOver.h"
 using namespace Menus;
 
 namespace Observers
 {
-	class ObservadorMenuPause : public Observador
+	class ObservadorMenuGameOver : public Observador
 	{
 	private:
-		MenuPause* pMenuPause;
+		MenuGameOver* pMenuGameOver;
 
 	public:
-		ObservadorMenuPause(MenuPause* pMP = nullptr);
-		~ObservadorMenuPause();
+		ObservadorMenuGameOver(MenuGameOver* pMGO = nullptr);
+		~ObservadorMenuGameOver();
 
 		void teclaPressionada(const Keyboard::Key tecla);
 		void teclaSolta(const Keyboard::Key tecla);

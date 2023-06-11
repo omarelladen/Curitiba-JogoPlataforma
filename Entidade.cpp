@@ -1,5 +1,11 @@
 #include "Entidade.h"
 using namespace Entidades;
+#include "ListaEntidades.h"//
+
+ListaEntidades* Entidades::Entidade::getListaProje()
+{
+	return listaProjeteis;
+}
 
 Entidade::Entidade(const IDs id, Vector2f pos) : //
 	Ente(id),
@@ -11,12 +17,19 @@ Entidade::Entidade(const IDs id, Vector2f pos) : //
 	relogio_gravidade(),
 	esta_no_chao(false),
 	pListaEntidades(nullptr),
-	textura()
+	textura(),
+
+
+	listaProjeteis()//
 {
 	corpo.setPosition(pos);
 	relogio_gravidade.restart();
 	// rand
 	// lista direto de Entidade* //
+
+
+
+	listaProjeteis = new ListaEntidades();
 }
 
 Entidade::~Entidade()

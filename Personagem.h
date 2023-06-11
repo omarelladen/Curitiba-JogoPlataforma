@@ -15,7 +15,14 @@ namespace Entidades
 
 			RectangleShape barra_vidas;
 
+
+		
+
 		public:
+			
+
+			void addProje(Entidade* pP);
+
 			Personagem(const IDs id = {}, Vector2f pos = Vector2f(0.f, 0.f));
 			~Personagem();
 

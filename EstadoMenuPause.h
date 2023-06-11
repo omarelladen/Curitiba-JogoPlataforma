@@ -5,7 +5,6 @@ using namespace Menus;
 
 namespace Estados
 {
-
 	class EstadoMenuPause : public Estados::Estado
 	{
 	private:

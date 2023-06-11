@@ -4,24 +4,23 @@
 
 namespace Observers
 {
-	class ObservadorMenuPause;
+	class ObservadorMenuGameOver;
 }
 using namespace Observers;
 
 namespace Menus
 {
-	class MenuPause : public Menu
+	class MenuGameOver : public Menu
 	{
 	private:
-		ObservadorMenuPause* observadorMenuPause;
+		ObservadorMenuGameOver* observadorMenuGameOver;
 
-		Botao* botao_voltar;
-		Botao* botao_sair;
-		Botao* botao_salvar;
+		Botao* botao_menuPrincipal;
+		Botao* botao_jogarNovamente;
 
 	public:
-		MenuPause();
-		~MenuPause();
+		MenuGameOver();
+		~MenuGameOver();
 
 		void selecionaBotao(const bool enter);
 		void atualizarPosicao();

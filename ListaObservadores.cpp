@@ -1,4 +1,5 @@
 #include "ListaObservadores.h"
+#include "ListaObservadores.h"
 
 ListaObservadores::ListaObservadores() :
 	listaObservadores()
@@ -23,12 +24,12 @@ void ListaObservadores::notificarTeclaSolta(const Keyboard::Key tecla)
 			listaObservadores[i]->teclaSolta(tecla);
 }
 
-void ListaObservadores::notificarMouseSolta(Event::MouseMoveEvent mouse)// Mouse::Button botaoMouse, 
+/*void ListaObservadores::notificarMouseSolta(Event::MouseMoveEvent mouse)// Mouse::Button botaoMouse,
 {
 	for (int i = 0; i < listaObservadores.getTam(); i++)
 		if (listaObservadores[i]->getAtivado())
 			listaObservadores[i]->botaoMouseSolta(Vector2f((float) mouse.x, (float) mouse.y)); //botaoMouse,  Vector2f(mouse.x, mouse.y)
-}
+}*/
 
 
 void ListaObservadores::desativarObservadores()

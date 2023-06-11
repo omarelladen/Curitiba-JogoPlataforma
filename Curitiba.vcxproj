@@ -31,6 +31,7 @@
     <ClCompile Include="Entidade.cpp" />
     <ClCompile Include="Estado.cpp" />
     <ClCompile Include="EstadoJogar.cpp" />
+    <ClCompile Include="EstadoMenuGameOver.cpp" />
     <ClCompile Include="EstadoMenuPause.cpp" />
     <ClCompile Include="EstadoMenuPrincipal.cpp" />
     <ClCompile Include="Fase.cpp" />
@@ -47,11 +48,13 @@
     <ClCompile Include="ListaObservadores.cpp" />
     <ClCompile Include="Lixo.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="MenuGameOver.cpp" />
     <ClCompile Include="MenuPause.cpp" />
     <ClCompile Include="MenuPrincipal.cpp" />
     <ClCompile Include="Observador.cpp" />
     <ClCompile Include="ObservadorFase.cpp" />
     <ClCompile Include="ObservadorJogador.cpp" />
+    <ClCompile Include="ObservadorMenuGameOver.cpp" />
     <ClCompile Include="ObservadorMenuPause.cpp" />
     <ClCompile Include="ObservadorMenuPrincipal.cpp" />
     <ClCompile Include="Obstaculo.cpp" />
@@ -71,6 +74,7 @@
     <ClInclude Include="Entidade.h" />
     <ClInclude Include="Estado.h" />
     <ClInclude Include="EstadoJogar.h" />
+    <ClInclude Include="EstadoMenuGameOver.h" />
     <ClInclude Include="EstadoMenuPause.h" />
     <ClInclude Include="EstadoMenuPrincipal.h" />
     <ClInclude Include="Fase.h" />
@@ -89,11 +93,13 @@
     <ClInclude Include="ListaObservadores.h" />
     <ClInclude Include="Lixo.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="MenuGameOver.h" />
     <ClInclude Include="MenuPause.h" />
     <ClInclude Include="MenuPrincipal.h" />
     <ClInclude Include="Observador.h" />
     <ClInclude Include="ObservadorFase.h" />
     <ClInclude Include="ObservadorJogador.h" />
+    <ClInclude Include="ObservadorMenuGameOver.h" />
     <ClInclude Include="ObservadorMenuPause.h" />
     <ClInclude Include="ObservadorMenuPrincipal.h" />
     <ClInclude Include="Obstaculo.h" />

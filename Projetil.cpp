@@ -21,14 +21,15 @@ Projetil::~Projetil()
 
 void Projetil::inicializaAtributos()
 {
-    // Cor do tiro
+    //setTextura("Texturas/Sprite-projetil.png");
+
     corpo.setFillColor(sf::Color::Red);//
-    setTamanho(Vector2f(20.f, 20.f));//
+    setTamanho(Vector2f(10.f, 10.f));//
 
     time_t t;
     srand((unsigned)time(&t));
 
-    velocidade = Vector2f(0.001f, 0.f); //(rand() % 11 + 10) / 10.f em x
+    velocidade = Vector2f(0.7f, 0.f); //(rand() % 11 + 10) / 10.f em x
 }
 
 void Projetil::setAtirador(Personagem* atir)
@@ -188,12 +189,14 @@ void Projetil::mover()
 {
     corpo.move(velocidade);
     posicao = corpo.getPosition();
+    //corpo.setPosition(posicao);
 }
 
 void Projetil::executar()
 {
-    cout << "Oi" << endl;
-    desenhar_se();
-    //efeitoGravidade();
+    //posicao.y = 300;
+    //cout << posicao.x << "/" << posicao.y << endl;
     mover();
+    //efeitoGravidade();
+    desenhar_se();
 }

@@ -20,12 +20,13 @@ enum class IDs
 	jogo,
 	menuPrincipal,
 	menuPause,
+	menuGameOver,
 
 	estadoJogar,
 	estadoMenuPrincipal,
 	estadoMenuPause,
+	estadoMenuGameOver,
 
 	fase_barigui,
 	fase_beco
 };
-

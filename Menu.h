@@ -1,25 +1,36 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+#include"Gerenciador_Eventos.h"
+#include"Ente.h"
+#include<SFML/Graphics.hpp>
 using namespace sf;
-#include "Ente.h"
 
-#define TAM_BOTOES_X 400.f
-#define TAM_BOTOES_Y 100.f
+#define TAM_BOTOES_X 250.f
+#define TAM_BOTOES_Y 70.f
 
 namespace Menus
 {
 	class Menu : public Ente//
 	{
 	protected:
-		// botoes
+		Font fonte;
+		Text titulo;
+		Vector2f centro_janela;
 
-		Text texto;
+		Gerenciador_Estados* pGEstados;
+		Gerenciador_Eventos* pGEventos;
+
+		int opcao;
 
 	public:
 		Menu(const IDs id = {});
 		~Menu();
 
-		virtual void verificaClique(Vector2f posMouse) = 0;
+		void operator++();
+		void operator--();
+
+		const int getOpcao() const;
+
+		virtual void selecionaBotao(const bool enter) = 0;
 		virtual void desenhar_se() = 0;
 		virtual void executar() = 0;
 	};

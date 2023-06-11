@@ -3,7 +3,7 @@
 using namespace Gerenciadores;
 #include<math.h>
 
-Gerenciador_Colisoes* Gerenciador_Colisoes::pGerenciadorColisoes(nullptr);
+Gerenciador_Colisoes* Gerenciador_Colisoes::pGerenciadorColisoes = nullptr;
 
 Gerenciador_Colisoes::Gerenciador_Colisoes() :
 	listaObstaculos(nullptr),
@@ -11,6 +11,7 @@ Gerenciador_Colisoes::Gerenciador_Colisoes() :
 	listaProjeteis(new ListaEntidades()),
 	pJogador(nullptr)
 {
+
 }
 
 Gerenciador_Colisoes::~Gerenciador_Colisoes()
@@ -47,6 +48,7 @@ void Gerenciador_Colisoes::setListaObstaculos(ListaEntidades* list)
 		listaObstaculos = list;
 	}
 }
+
 
 void Gerenciador_Colisoes::setJogador(Jogador* pJ)
 {
@@ -92,12 +94,12 @@ void Gerenciador_Colisoes::GerenciarColisoes()
 
 				//Calcula colisao Obstaculos e Projeteis
 
-				for (int k = 0; k < listaProjeteis->getTamLista(); j++)
+				/*for (int k = 0; k < listaProjeteis->getTamLista(); k++)
 				{
-					pEnt3 = listaProjeteis->getEntidade(j);
+					pEnt3 = listaProjeteis->getEntidade(k);
 
 					CalculaColisao(pEnt2, pEnt3);
-				}
+				}*/
 			}
 
 			//Calcula colisao Personagem e Personagem
@@ -107,17 +109,33 @@ void Gerenciador_Colisoes::GerenciarColisoes()
 				pEnt2 = listaPersonagens->getEntidade(j);
 
 				CalculaColisao(pEnt1, pEnt2);
+
+				//cout << pEnt2->getListaProje()->getTamLista() << endl;
+				for (int k = 0; k < pEnt2->getListaProje()->getTamLista(); k++)
+				{
+					pEnt3 = pEnt2->getListaProje()->operator[](k);
+
+					CalculaColisao(pEnt1, pEnt3);
+				}
+
+				for (int k = 0; k < pEnt1->getListaProje()->getTamLista(); k++)
+				{
+					pEnt3 = pEnt1->getListaProje()->operator[](k);
+
+					CalculaColisao(pEnt2, pEnt3);
+				}
+
 			}
 
 			//Calcula colisao Personagem e Projeteis
 
-			for (int j = 0; j < listaProjeteis->getTamLista(); j++)
+			/*for (int j = 0; j < listaProjeteis->getTamLista(); j++)
 			{
 				pEnt2 = listaProjeteis->getEntidade(j);
 
 				if (pEnt2)
 					CalculaColisao(pEnt1, pEnt2);
-			}
+			}*/
 		}
 	}
 	else
@@ -128,6 +146,7 @@ void Gerenciador_Colisoes::GerenciarColisoes()
 
 void Gerenciador_Colisoes::CalculaColisao(Entidade* ent1, Entidade* ent2)
 {
+
 	//Calcula colisao usando os centros das entidades
 
 	Vector2f tam_ent1 = ent1->getTamanho();
@@ -195,23 +214,27 @@ void Gerenciador_Colisoes::CalculaColisao(Entidade* ent1, Entidade* ent2)
 		ent1->colisao(ent2->getID(), ent2, distancia_colisao);
 
 
-		/*if (ent2->getID() == IDs::projetil)
+		if (ent2->getID() == IDs::projetil)
 		{
-			listaProjeteis->deleteEntidade(ent2);
-		}*/
+			Projetil* pP = static_cast<Projetil*>(ent2);// ou dynamic_cast
+			if ( !( (ent1->getID() == IDs::capanga || ent1->getID() == IDs::jacare || ent1->getID() == IDs::chefeMafia) && 
+				    (pP->getAtirador()->getID() == IDs::capanga || pP->getAtirador()->getID() == IDs::jacare || pP->getAtirador()->getID() == IDs::chefeMafia) ) )
+			{
+				if (pP)
+					pP->getAtirador()->getListaProje()->deleteEntidade(ent2);
+			}
+		}
 	}
 }
 
 void Gerenciador_Colisoes::executar()
 {
-	bool chamar_executar = true;
-
 	if (listaPersonagens)
 	{
 		//Verifica se os Personagens estao vivos
 		for (int i = 0; i < listaPersonagens->getTamLista(); i++)
 		{
-			Personagem* pPerso =  static_cast<Personagem*>(listaPersonagens->getEntidade(i));
+			Personagem* pPerso = static_cast<Personagem*>(listaPersonagens->getEntidade(i));
 			if (pPerso)
 			{
 				if (pPerso->getNumVidas() <= 0)
@@ -225,29 +248,26 @@ void Gerenciador_Colisoes::executar()
 					else
 					{
 						//Morte do Jogador
-						pJogador->setVelocidade(Vector2f(0.f, 0.f));
-						Gerenciador_Grafico::getGerenciadorGrafico()->setPosicaoGameOver(pJogador->getPosicao());
-						Gerenciador_Grafico::getGerenciadorGrafico()->gameOver();
-						chamar_executar = false;
+						Gerenciador_Estados::getGerenciadorEstados()->addEstado
+						(
+							Gerenciador_Estados::getGerenciadorEstados()->criarEstadoMenuGameOver()
+						);
 					}
 				}
 			}
 		}
-		if(chamar_executar)
-			listaPersonagens->executar();
+
+		listaPersonagens->executar();
 	}
 
-	if (chamar_executar)
+	if (listaObstaculos)
 	{
-		if (listaObstaculos)
-		{
 			listaObstaculos->executar();
-		}
-
-		if (listaProjeteis)
-		{
-			listaProjeteis->executar();
-		}
 	}
+
+	/*if (listaProjeteis)
+	{
+		listaProjeteis->executar();
+	}*/
 	GerenciarColisoes();
 }

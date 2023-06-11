@@ -48,10 +48,11 @@ void Gerenciador_Eventos::executar()
 			listaObservadores->notificarTeclaSolta(evento.key.code);
 
 		// Mouse
-		else if (Mouse::isButtonPressed(Mouse::Left))//evento.type == Event::MouseButtonReleased
+		/*else if (Mouse::isButtonPressed(Mouse::Left))//evento.type == Event::MouseButtonReleased
 		{
 			listaObservadores->notificarMouseSolta(evento.mouseMove);//evento.mouseButton.button
-		}
+		}*/
+
 		// Exit
 		else if (evento.type == Event::Closed)
 			pGrafico->fechaJanela();

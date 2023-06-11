@@ -2,13 +2,17 @@
 #include"Personagem.h"
 using namespace Entidades;
 
+
 Personagem::Personagem(const IDs id, Vector2f pos) :
     Entidade(id, pos),
     num_vidas(0),
     direita(true),
     relogio_ataque(),
     barra_vidas()
+    //listaProjeteis()///////
 {
+    //listaProjeteis = new ListaEntidades();
+
     // Barra vidas;
     barra_vidas.setFillColor(Color::Red);
     barra_vidas.setOutlineColor(Color::Black);
@@ -20,6 +24,12 @@ Personagem::Personagem(const IDs id, Vector2f pos) :
 
 Personagem::~Personagem()
 {
+}
+
+
+void Entidades::Personagens::Personagem::addProje(Entidade* pP)
+{
+    listaProjeteis->addEntidade(pP);
 }
 
 void Personagem::setNumVidas(const int vidas)
@@ -51,6 +61,26 @@ const bool Personagem::getDireita()
 
 void Personagem::atirar(const int dano)
 {
+    // TESTE PROJETIL
+    /*Projetil* pP = new Projetil(Vector2f(posicao.x + 100, posicao.y));
+    pP->setAtirador(this);
+    pP->setDano(10);*/
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     Projetil* pProj = nullptr;
 
     if (direita)
@@ -80,7 +110,8 @@ void Personagem::atirar(const int dano)
     pProj->setAtirador(this);
     pProj->setDano(dano);
 
-    Gerenciador_Colisoes::getGerenciadorColisoes()->addProjetil(static_cast<Entidade*>(pProj));
+    //Gerenciador_Colisoes::getGerenciadorColisoes()->addProjetil(static_cast<Entidade*>(pProj));
+    addProje(static_cast<Entidade*>(pProj));
 }
 
 void Personagem::diminuirVida(int dano)

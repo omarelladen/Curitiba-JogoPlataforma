@@ -1,7 +1,6 @@
 #pragma once
 #include"FaseParqueBarigui.h"
 #include"Botao.h"
-#include"Gerenciador_Eventos.h"
 #include"Menu.h"
 
 namespace Observers
@@ -28,9 +27,10 @@ namespace Menus
 		MenuPrincipal();
 		~MenuPrincipal();
 
-		void verificaClique(Vector2f posMouse); //const Mouse::Button botaoMouse,
+		void selecionaBotao(const bool enter);
+		void atualizarPosicao();
 
-		void desenhar_se(); // chamado pelo gerenciador grafico??
+		void desenhar_se();
 		void executar();
 	};
 }

@@ -204,6 +204,15 @@
     <ClCompile Include="Personagem.cpp">
       <Filter>Arquivos .cpp\Ente\Entidade\Personagem</Filter>
     </ClCompile>
+    <ClCompile Include="EstadoMenuGameOver.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuGameOver.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="ObservadorMenuGameOver.cpp">
+      <Filter>Arquivos .cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Botao.h">
@@ -325,6 +334,15 @@
     </ClInclude>
     <ClInclude Include="Beco.h">
       <Filter>Arquivos .h\Ente\Fase</Filter>
+    </ClInclude>
+    <ClInclude Include="EstadoMenuGameOver.h">
+      <Filter>Arquivos .h\Ente\Estado</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuGameOver.h">
+      <Filter>Arquivos .h</Filter>
+    </ClInclude>
+    <ClInclude Include="ObservadorMenuGameOver.h">
+      <Filter>Arquivos .h</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

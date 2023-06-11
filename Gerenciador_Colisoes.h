@@ -1,4 +1,5 @@
 #pragma once
+#include"Gerenciador_Estados.h"
 #include"ListaEntidades.h"
 
 namespace Entidades

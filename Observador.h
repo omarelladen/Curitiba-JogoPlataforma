@@ -7,7 +7,7 @@ namespace Observers
 	class Observador : public Ente
 	{
 	protected:
-		//Gerenciador_Estados* pGEstados;
+		Gerenciador_Estados* pGEstados;
 
 	private:
 		bool ativado;
@@ -24,11 +24,7 @@ namespace Observers
 		//Recebe do Gerenciador de Eventos:
 
 		// Teclado
-		virtual void teclaPressionada(const Keyboard::Key tecla); // = 0
-		virtual void teclaSolta(const Keyboard::Key tecla); // = 0
-
-		// Mouse
-		//virtual void moveMouse(const Vector2f posMouse);
-		virtual void botaoMouseSolta(Vector2f posMouse); // const Mouse::Button botaoMouse, 
+		virtual void teclaPressionada(const Keyboard::Key tecla) = 0;
+		virtual void teclaSolta(const Keyboard::Key tecla) = 0;
 	};
 }

@@ -2,6 +2,8 @@
 #include"Gerenciador_Eventos.h"
 #include"ObservadorJogador.h"
 
+#include "ListaEntidades.h"
+
 Jogador::Jogador(const IDs id, Vector2f pos) :
     Personagem(id, pos),
     pontos(0),
@@ -99,7 +101,14 @@ void Jogador::parar()
 
 void Jogador::executar()
 {
-    cout << num_vidas << endl;
+
+    if (listaProjeteis != nullptr)
+    {
+        listaProjeteis->executar();
+    }
+
+
+    //cout << num_vidas << endl;
     imprimirBarraVidas();
 
     window_manager->setCentro(posicao);

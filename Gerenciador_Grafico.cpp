@@ -13,13 +13,13 @@ Gerenciador_Grafico::Gerenciador_Grafico() :
 	game_over(),
 	fonte()
 {
-	janela = new RenderWindow(VideoMode(1000, 700), "Jogo");////
+	janela = new RenderWindow(VideoMode(1000, 900), "Jogo");////
 	if (janela == nullptr)
 	{
 		cerr << "Erro - Alocacao de janela nao realizada" << endl;
 	}
 
-	
+
 	fonte.loadFromFile("Fonte/SparkyStonesRegular-BW6ld.ttf");
 
 	game_over.setFont(fonte);
@@ -70,7 +70,7 @@ void Gerenciador_Grafico::desenhaEnte(RectangleShape body)
 	janela->draw(body);
 }
 
-void Gerenciador_Grafico::mostraEnte()
+void Gerenciador_Grafico::printaJogo()
 {
 	janela->display();
 }
@@ -80,14 +80,9 @@ void Gerenciador_Grafico::fechaJanela()
 	janela->close();
 }
 
-void Gerenciador_Grafico::gameOver()
+Vector2f Gerenciadores::Gerenciador_Grafico::getCentroJanela()
 {
-	janela->draw(game_over);
-}
-
-void Gerenciador_Grafico::setPosicaoGameOver(Vector2f pos_jog)
-{
-	game_over.setPosition(Vector2f(pos_jog.x - game_over.getGlobalBounds().width / 2.f, pos_jog.y - game_over.getGlobalBounds().height / 2.f));
+	return camera.getCenter();
 }
 
 const bool Gerenciador_Grafico::VerificaSeJanelaAberta()

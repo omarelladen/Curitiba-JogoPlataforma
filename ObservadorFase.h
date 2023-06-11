@@ -15,7 +15,7 @@ namespace Observers
 		ObservadorFase(Fase* pF = nullptr);
 		~ObservadorFase();
 
-		//void teclaPressionada(const Keyboard::Key tecla);
+		void teclaPressionada(const Keyboard::Key tecla);
 		void teclaSolta(const Keyboard::Key tecla);
 	};
 }

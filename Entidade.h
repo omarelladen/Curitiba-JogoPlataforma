@@ -3,6 +3,8 @@
 using namespace std;
 #include"Ente.h"
 
+
+
 #define GRAVIDADE 9.81f
 #define MAX_VEL 2.f
 #define MAX_VEL_AR 1.f
@@ -25,13 +27,21 @@ namespace Entidades
 		Vector2f velocidade;
 		Time tempo;
 		Clock relogio_gravidade;
+
 		Texture textura;
 
 		bool esta_no_chao;
 
 		ListaEntidades* pListaEntidades;
 
+
+
+		ListaEntidades* listaProjeteis;// teste proj na mao
+
 	public:
+		ListaEntidades* getListaProje();
+
+
 		Entidade(const IDs id = {}, Vector2f pos = Vector2f(0.f, 0.f));
 		~Entidade();
 

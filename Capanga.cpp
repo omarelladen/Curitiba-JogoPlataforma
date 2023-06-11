@@ -153,8 +153,9 @@ void Capanga::mover()
             perseguirAlvo();
 
             tempo = relogio_ataque.getElapsedTime();
-            if (tempo.asSeconds() >= nivel_estupidez)
+            if (tempo.asSeconds() >= 1)//>= nivel_estupidez)
             {
+                //cout << "Capanga atira" << endl;
                 atirar(nivel_tiro);
                 relogio_ataque.restart();
             }
@@ -257,6 +258,12 @@ void Capanga::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 
 void Capanga::executar()
 {
+    if (listaProjeteis)
+    {
+        listaProjeteis->executar();
+    }
+
+
     imprimirBarraVidas();
 
     desenhar_se();

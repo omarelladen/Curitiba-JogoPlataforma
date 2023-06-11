@@ -29,11 +29,10 @@ namespace Gerenciadores
 		void setCentro(Vector2f pos_jog);
 		void limpaJanela();
 		void desenhaEnte(RectangleShape body);
-		void mostraEnte();
+		void printaJogo();
 		void fechaJanela();
 
-		void gameOver(); //
-		void setPosicaoGameOver(Vector2f pos_jog); //
+		Vector2f getCentroJanela();
 
 		const bool VerificaSeJanelaAberta();
 	};

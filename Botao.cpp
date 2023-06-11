@@ -1,6 +1,6 @@
 #include "Botao.h"
 
-Botao::Botao(Vector2f pos, Vector2f tam, string t, const int tamTexto, Color c):
+Botao::Botao(Vector2f pos, Vector2f tam, string t, const int tamTexto, Color c) :
 	forma(),
 	fonte(nullptr),
 	texto(),
@@ -18,9 +18,10 @@ Botao::Botao(Vector2f pos, Vector2f tam, string t, const int tamTexto, Color c):
 	texto.setString(t);
 	texto.setFillColor(Color::Black);
 	texto.setOutlineColor(Color::White);
+	texto.setOutlineThickness(1.f);
 	texto.setCharacterSize(tamTexto);
 	texto.setPosition(forma.getPosition().x + forma.getSize().x / 2.f - texto.getGlobalBounds().width / 2.f,
-					  forma.getPosition().y + forma.getSize().y / 2.f - texto.getGlobalBounds().height);
+		forma.getPosition().y + forma.getSize().y / 2.f - texto.getGlobalBounds().height);
 }
 
 Botao::~Botao()
@@ -32,12 +33,22 @@ Vector2f Botao::getPosicao()
 	return forma.getPosition();
 }
 
-const bool Botao::pressionado(Vector2f posMouse)
+void Botao::atualizarPosicao(Vector2f pos)
 {
-	return ((posMouse.x >= forma.getPosition().x && posMouse.x <= forma.getPosition().x + forma.getSize().x)
-		 && (posMouse.y >= forma.getPosition().y && posMouse.y <= forma.getPosition().y + forma.getSize().y));
+	forma.setPosition(pos);
+	texto.setPosition(forma.getPosition().x + forma.getSize().x / 2.f - texto.getGlobalBounds().width / 2.f,
+		forma.getPosition().y + forma.getSize().y / 2.f - texto.getGlobalBounds().height);
+}
 
-	//return (forma.getGlobalBounds().contains(posMouse));
+void Botao::selecionado()
+{
+	forma.setOutlineThickness(5.f);
+	forma.setOutlineColor(Color::White);
+}
+
+void Botao::naoSelecionado()
+{
+	forma.setOutlineThickness(0.f);
 }
 
 void Botao::render()

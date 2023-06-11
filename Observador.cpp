@@ -1,9 +1,10 @@
 #include "Observador.h"
 using namespace Observers;
 
-Observador::Observador(IDs id):
+Observador::Observador(IDs id) :
     Ente(id),
-    ativado(true)
+    ativado(true),
+    pGEstados(Gerenciador_Estados::getGerenciadorEstados())
 {
 }
 
@@ -22,19 +23,5 @@ const bool Observador::getAtivado() const
 }
 
 void Observador::executar()
-{
-    // precisa ??? por causa do Ente??
-}
-
-void Observador::teclaPressionada(const Keyboard::Key tecla)
-{
-}
-
-void Observador::teclaSolta(const Keyboard::Key tecla)
-{
-}
-
-
-void Observador::botaoMouseSolta(Vector2f posMouse) // const Mouse::Button botaoMouse, 
 {
 }

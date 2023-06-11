@@ -3,7 +3,7 @@ using namespace Fases;
 #include"ObservadorFase.h"
 using namespace Observers;
 
-Fase::Fase(const IDs id):
+Fase::Fase(const IDs id) :
 	Ente(id),
 	listaPersonagens(nullptr),
 	listaObstaculos(nullptr),

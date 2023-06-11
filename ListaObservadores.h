@@ -24,13 +24,12 @@ namespace Listas
 		int getTamanho();
 		Observador* operator[](int pos);
 
-
 		// Teclado
 		void notificarTeclaPressionada(const Keyboard::Key tecla);
 		void notificarTeclaSolta(const Keyboard::Key tecla);
 
 		// Mouse
-		void notificarMouseSolta(Event::MouseMoveEvent mouse); //Mouse::Button botaoMouse, 
+		//void notificarMouseSolta(Event::MouseMoveEvent mouse); //Mouse::Button botaoMouse, 
 
 		//
 		void desativarObservadores();
@@ -72,7 +71,7 @@ namespace Listas
 		void notificarTeclaSolta(const Keyboard::Key tecla);
 
 		// Mouse
-		void notificarMouseSolta(Event::MouseMoveEvent mouse); //Mouse::Button botaoMouse, 
+		void notificarMouseSolta(Event::MouseMoveEvent mouse); //Mouse::Button botaoMouse,
 
 		//
 		void desativarObservadores();

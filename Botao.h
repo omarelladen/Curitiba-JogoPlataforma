@@ -23,8 +23,10 @@ public:
 
 	Vector2f getPosicao();
 
-	const bool pressionado(Vector2f posMouse);
+	void atualizarPosicao(Vector2f pos);
+
+	void selecionado();
+	void naoSelecionado();
 
 	void render();
 };
-

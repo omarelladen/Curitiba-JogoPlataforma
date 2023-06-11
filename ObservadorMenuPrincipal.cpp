@@ -1,6 +1,6 @@
 #include "ObservadorMenuPrincipal.h"
 
-Observers::ObservadorMenuPrincipal::ObservadorMenuPrincipal(MenuPrincipal* pMP) :
+ObservadorMenuPrincipal::ObservadorMenuPrincipal(MenuPrincipal* pMP) :
 	Observador(IDs::menuPrincipal),
 	pMenuPrincipal(nullptr)
 {
@@ -8,12 +8,32 @@ Observers::ObservadorMenuPrincipal::ObservadorMenuPrincipal(MenuPrincipal* pMP) 
 		pMenuPrincipal = pMP;
 }
 
-Observers::ObservadorMenuPrincipal::~ObservadorMenuPrincipal()
+ObservadorMenuPrincipal::~ObservadorMenuPrincipal()
 {
 	pMenuPrincipal = nullptr;
 }
 
-void Observers::ObservadorMenuPrincipal::botaoMouseSolta(Vector2f posMouse) // const Mouse::Button botaoMouse, 
+void ObservadorMenuPrincipal::teclaPressionada(const Keyboard::Key tecla)
 {
-	pMenuPrincipal->verificaClique(posMouse); // botaoMouse,
+}
+
+void ObservadorMenuPrincipal::teclaSolta(const Keyboard::Key tecla)
+{
+	bool enter = false;
+
+	if (tecla == Keyboard::Enter)
+		enter = true;
+	else
+		enter = false;
+
+	if (tecla == Keyboard::Down && pMenuPrincipal->getOpcao() < 3)
+	{
+		pMenuPrincipal->operator++();
+	}
+	else if (tecla == Keyboard::Up && pMenuPrincipal->getOpcao() > 1)
+	{
+		pMenuPrincipal->operator--();
+	}
+
+	pMenuPrincipal->selecionaBotao(enter);
 }

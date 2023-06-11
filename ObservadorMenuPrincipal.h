@@ -14,9 +14,7 @@ namespace Observers
 		ObservadorMenuPrincipal(MenuPrincipal* pMP);
 		~ObservadorMenuPrincipal();
 
-		void botaoMouseSolta(Vector2f posMouse); // const Mouse::Button botaoMouse, 
-
-		// teclado=0 ou mouse
+		void teclaPressionada(const Keyboard::Key tecla);
+		void teclaSolta(const Keyboard::Key tecla);
 	};
 }
-

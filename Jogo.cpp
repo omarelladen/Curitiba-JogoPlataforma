@@ -1,17 +1,14 @@
 #include "Jogo.h"
+#include "Jogo.h"
 #include"Gerenciador_Estados.h"
 
-Jogo::Jogo():
+Jogo::Jogo() :
 	gerenciador_eventos(Gerenciador_Eventos::getGerenciadorEventos()),
 	gerenciador_grafico(Gerenciador_Grafico::getGerenciadorGrafico()),
 	gerenciador_estados(Gerenciador_Estados::getGerenciadorEstados())
 {
 	// Manda criar e adicionar o Estado Menu Principal
-		gerenciador_estados->addEstado
-	(
-		gerenciador_estados->criarEstadoMenuPrincipal()
-	);
-	
+	gerenciador_estados->addEstado(gerenciador_estados->criarEstadoMenuPrincipal());
 
 	executar();
 }
@@ -35,7 +32,7 @@ void Jogo::executar()
 
 		gerenciador_estados->executar();
 
-		gerenciador_grafico->mostraEnte(); //
+		gerenciador_grafico->printaJogo();
 
 	}
 }

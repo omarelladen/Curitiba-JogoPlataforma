@@ -1,6 +1,8 @@
 #include"ListaEntidades.h"
 #include "Capivara.h"
 
+#include "Gerenciador_Colisoes.h"
+
 Capivara::Capivara(Vector2f pos) :
 	Jogador(IDs::capivara, pos),
 	forca_cuspe(0),
@@ -244,7 +246,7 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 
     case IDs::projetil:
     {
-        cout << " Capivara Colisao com Projetil" << endl;
+        //cout << " Capivara Colisao com Projetil" << endl;
     }
 
     default: {

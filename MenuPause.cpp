@@ -1,24 +1,34 @@
+#include"ObservadorMenuPause.h"
 #include "MenuPause.h"
 using namespace Menus;
 
 //
-MenuPause::MenuPause():
+MenuPause::MenuPause() :
 	Menu(IDs::menuPause),
 	observadorMenuPause(nullptr),
 	botao_voltar(nullptr),
 	botao_sair(nullptr),
 	botao_salvar(nullptr)
 {
+	//Alocacao observador
 	observadorMenuPause = new ObservadorMenuPause(this); // this para setar la tambem
 
-	Gerenciador_Eventos::getGerenciadorEventos()->adicionarObservador(observadorMenuPause);//
+	//Adiciona o seu Observador na lista de Observadores
+	Gerenciador_Eventos::getGerenciadorEventos()->adicionarObservador(observadorMenuPause);
 
-	RenderWindow* janela = Gerenciador_Grafico::getGerenciadorGrafico()->getJanela();
+	titulo.setString("PAUSE");
 
 	// Alocacao Botoes
-	botao_voltar = new Botao(Vector2f((janela->getSize().x / 2.f) - TAM_BOTOES_X / 2.f, (janela->getSize().y / 4.f) - TAM_BOTOES_Y / 2.f), Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Voltar", 25, Color::Green);
-	botao_sair = new Botao(Vector2f((janela->getSize().x / 2.f) - TAM_BOTOES_X / 2.f, (janela->getSize().y / 2.f) - TAM_BOTOES_Y / 2.f), Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Sair", 25, Color::Red);
-	botao_salvar = new Botao(Vector2f((janela->getSize().x / 2.f) - TAM_BOTOES_X / 2.f, ((janela->getSize().y * 3.f) / 4.f) - TAM_BOTOES_Y / 2.f), Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Salvar", 25, Color::Green);
+	botao_voltar = new Botao(Vector2f(centro_janela.x - TAM_BOTOES_X / 2.f, ((centro_janela.y * 3.f) / 2.f) - TAM_BOTOES_Y / 2.f),
+		Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Voltar", 25, Color::Green);
+
+	botao_salvar = new Botao(Vector2f(centro_janela.x - TAM_BOTOES_X / 2.f, ((centro_janela.y * 3.f) / 2.f) - TAM_BOTOES_Y / 2.f + 70.f),
+		Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Salvar", 25, Color::Green);
+
+	botao_sair = new Botao(Vector2f(centro_janela.x - TAM_BOTOES_X / 2.f, ((centro_janela.y * 3.f) / 2.f) - TAM_BOTOES_Y / 2.f + 140.f),
+		Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Sair", 25, Color::Red);
+
+	selecionaBotao(false);
 }
 
 MenuPause::~MenuPause()
@@ -34,50 +44,93 @@ MenuPause::~MenuPause()
 	botao_salvar = nullptr;
 }
 
-void MenuPause::verificaClique(Vector2f posMouse)
+void MenuPause::selecionaBotao(const bool enter)
 {
-	//if (Mouse::isButtonPressed(Mouse::Left)) //forma.getGlobalBounds().contains(posMouse))
-	//{
-		if (botao_voltar->pressionado(posMouse))
+	if (opcao == 1)
+	{
+		//Botoes nao selecionados
+		botao_salvar->naoSelecionado();
+		botao_voltar->naoSelecionado();
+
+		//VOLTAR PARA O MENU PRINCIPAL
+
+		botao_sair->selecionado();
+
+		if (enter)
 		{
-			Gerenciador_Eventos::getGerenciadorEventos()->desativaObservadores();
+			pGEventos->desativaObservadores();
 
-			// ativar
-			Gerenciador_Eventos::getGerenciadorEventos()->ativaObservador(IDs::jogo); // Obs ja existem
-	
+			pGEventos->ativaObservador(IDs::menuPrincipal);
 
-			// desempilha para voltar
-			Gerenciador_Estados::getGerenciadorEstados()->removerEstado(1); // isso excluir estado, obj e obs
-
-			
+			//Desempilha 2 estados (pause e jogo) pra voltar ao menu principal
+			pGEstados->removerEstado(2);
 		}
-		//else
-		else if (botao_sair->pressionado(posMouse))
-		{
-			Gerenciador_Eventos::getGerenciadorEventos()->desativaObservadores();
+	}
+	else if (opcao == 2)
+	{
+		//Botoes nao selecionados
+		botao_sair->naoSelecionado();
+		botao_voltar->naoSelecionado();
 
-			Gerenciador_Eventos::getGerenciadorEventos()->ativaObservador(IDs::menuPrincipal);
+		//SALVAR JOGADA
 
-			// Desempilha 2 estados (pause e jogo) pra voltar ao menu principal
-			Gerenciador_Estados::getGerenciadorEstados()->removerEstado(2); // desempilha o pause e o jog (n = 2)
-		} 
-		else if(botao_salvar->pressionado(posMouse))
+		botao_salvar->selecionado();
+
+		if (enter)
 		{
 			//desempilhar menu pause
 			//Usar o salvar do estado jogar
 			//empilhar o menu pause
 		}
-	//}
+	}
+	else if (opcao == 3)
+	{
+		//Botoes nao selecionados
+		botao_sair->naoSelecionado();
+		botao_salvar->naoSelecionado();
+
+		//VOLTAR PARA O ESTADO JOGAR
+
+		botao_voltar->selecionado();
+
+		if (enter)
+		{
+			pGEventos->desativaObservadores();
+
+			//Ativa observadores pertinentes ao jogo
+			pGEventos->ativaObservador(IDs::jogo);
+
+			//Desempilha Menu Pause para voltar
+			pGEstados->removerEstado(1);
+		}
+	}
+}
+
+void MenuPause::atualizarPosicao()
+{
+	centro_janela = Gerenciador_Grafico::getGerenciadorGrafico()->getCentroJanela();
+
+	titulo.setPosition(Vector2f(centro_janela.x - titulo.getGlobalBounds().width / 2.f,
+		centro_janela.y - TAM_BOTOES_Y * 2.f));
+
+	botao_voltar->atualizarPosicao(Vector2f(centro_janela.x - TAM_BOTOES_X / 2.f,
+		centro_janela.y + TAM_BOTOES_Y));
+	botao_salvar->atualizarPosicao(Vector2f(centro_janela.x - TAM_BOTOES_X / 2.f,
+		centro_janela.y + TAM_BOTOES_Y + 90.f));
+	botao_sair->atualizarPosicao(Vector2f(centro_janela.x - TAM_BOTOES_X / 2.f,
+		centro_janela.y + TAM_BOTOES_Y + 180.f));
 }
 
 void MenuPause::desenhar_se()
 {
+	Gerenciador_Grafico::getGerenciadorGrafico()->getJanela()->draw(titulo);
 	botao_voltar->render();
+	botao_salvar->render();
 	botao_sair->render();
 }
 
 void MenuPause::executar()
 {
-	Gerenciador_Grafico::getGerenciadorGrafico()->setCentro(botao_voltar->getPosicao());
+	atualizarPosicao();
 	desenhar_se();
 }

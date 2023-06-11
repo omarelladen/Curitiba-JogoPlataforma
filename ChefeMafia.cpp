@@ -19,6 +19,8 @@ ChefeMafia::~ChefeMafia()
 
 void ChefeMafia::inicializaAtributos()
 {
+    setTextura("Texturas/Sprite-chefe.png");
+
     setTamanho(Vector2f(75.f, 120.f));
 
     time_t t;

@@ -1,8 +1,7 @@
 #include "ObservadorMenuPause.h"
 using namespace Observers;
-#include"MenuPause.h"
 
-ObservadorMenuPause::ObservadorMenuPause(MenuPause* pMP):
+ObservadorMenuPause::ObservadorMenuPause(MenuPause* pMP) :
 	Observador(IDs::menuPause),
 	pMenuPause(nullptr)
 {
@@ -15,7 +14,27 @@ ObservadorMenuPause::~ObservadorMenuPause()
 	pMenuPause = nullptr;
 }
 
-void ObservadorMenuPause::botaoMouseSolta(Vector2f posMouse)
+void ObservadorMenuPause::teclaPressionada(const Keyboard::Key tecla)
 {
-	pMenuPause->verificaClique(posMouse);
+}
+
+void ObservadorMenuPause::teclaSolta(const Keyboard::Key tecla)
+{
+	bool enter = false;
+
+	if (tecla == Keyboard::Enter)
+		enter = true;
+	else
+		enter = false;
+
+	if (tecla == Keyboard::Down && pMenuPause->getOpcao() > 1)
+	{
+		pMenuPause->operator--();
+	}
+	else if (tecla == Keyboard::Up && pMenuPause->getOpcao() < 3)
+	{
+		pMenuPause->operator++();
+	}
+
+	pMenuPause->selecionaBotao(enter);
 }
