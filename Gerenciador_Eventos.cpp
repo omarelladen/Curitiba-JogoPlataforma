@@ -19,9 +19,9 @@ Gerenciador_Eventos* Gerenciador_Eventos::getGerenciadorEventos()
 }
 
 
-void Gerenciador_Eventos::adicionarObservador(Observador* observador)
+void Gerenciador_Eventos::addObservador(Observador* observador)
 {
-	listaObservadores->adicionarObservador(observador);
+	listaObservadores->addObservador(observador);
 }
 
 
@@ -32,26 +32,20 @@ void Gerenciador_Eventos::ativaObservador(IDs id)
 
 void Gerenciador_Eventos::desativaObservadores()
 {
-	listaObservadores->desativarObservadores();
+	listaObservadores->desativaObservadores();
 }
 
 void Gerenciador_Eventos::executar()
 {
-	sf::Event evento;
+	Event evento;
 	Gerenciador_Grafico* pGrafico = Gerenciador_Grafico::getGerenciadorGrafico();
 	while (pGrafico->getJanela()->pollEvent(evento))
 	{
 		// Teclado
 		if (evento.type == Event::KeyPressed)
-			listaObservadores->notificarTeclaPressionada(evento.key.code);
+			listaObservadores->notificaTeclaPressionada(evento.key.code);
 		else if (evento.type == Event::KeyReleased)
-			listaObservadores->notificarTeclaSolta(evento.key.code);
-
-		// Mouse
-		/*else if (Mouse::isButtonPressed(Mouse::Left))//evento.type == Event::MouseButtonReleased
-		{
-			listaObservadores->notificarMouseSolta(evento.mouseMove);//evento.mouseButton.button
-		}*/
+			listaObservadores->notificaTeclaSolta(evento.key.code);
 
 		// Exit
 		else if (evento.type == Event::Closed)

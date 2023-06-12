@@ -13,7 +13,7 @@ namespace Observers
 		bool ativado;
 
 	public:
-		Observador(IDs id);
+		Observador(const IDs id = {});
 		~Observador();
 
 		void setAtivado(const bool ativar);

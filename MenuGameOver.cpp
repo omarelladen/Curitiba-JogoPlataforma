@@ -6,7 +6,6 @@ MenuGameOver::MenuGameOver(Jogador* jog) :
 	Menu(IDs::menuGameOver),
 	observadorMenuGameOver(nullptr),
 	registroNome(nullptr),
-	fonte(),
 	pontos(),
 	aux_pontos(),
 	nome(),
@@ -40,14 +39,12 @@ void MenuGameOver::inicializaAtributos()
 
 	registroNome = new ObservadorInputTexto();
 
-	pGEventos->adicionarObservador(static_cast<Observador*>(observadorMenuGameOver));//
-	pGEventos->adicionarObservador(static_cast<Observador*>(registroNome));
+	pGEventos->addObservador(static_cast<Observador*>(observadorMenuGameOver));//
+	pGEventos->addObservador(static_cast<Observador*>(registroNome));
 
 	titulo.setString("GAME OVER");
 
 	aux_nome = "Nome:  ";
-
-	fonte.loadFromFile("Fonte/SparkyStonesRegular-BW6ld.ttf");
 
 	pontos.setFont(fonte);
 	pontos.setString(aux_pontos);
@@ -98,7 +95,7 @@ void MenuGameOver::selecionaBotao(const bool enter)
 			pGEventos->ativaObservador(IDs::menuPrincipal);
 
 			//Desempilha 2 estados (Game Over e Jogo) 
-			pGEstados->removerEstado(2);
+			pGEstados->deleteEstado(2);
 		}
 	}
 	else if (opcao == 2)
@@ -116,7 +113,7 @@ void MenuGameOver::selecionaBotao(const bool enter)
 			pGEventos->ativaObservador(IDs::jogo);
 
 			//Desempilha o Game Over e o Jogo para começar um novo jogo
-			pGEstados->removerEstado(2);
+			pGEstados->deleteEstado(2);
 
 			pGEstados->addEstado(pGEstados->criarEstadoJogar(IDs::fase_barigui));
 		}

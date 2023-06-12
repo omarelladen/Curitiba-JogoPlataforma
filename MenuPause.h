@@ -18,7 +18,6 @@ namespace Menus
 
 		Botao* botao_voltar;
 		Botao* botao_sair;
-		Botao* botao_salvar;
 
 	public:
 		MenuPause();

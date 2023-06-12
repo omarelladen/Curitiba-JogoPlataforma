@@ -24,9 +24,6 @@ namespace Entidades
 			void setGolpeEspecial(const int especial);
 			const int getGolpeEspecial() const;
 
-			void salvar();
-			ListaEntidades* recuperar();
-
 			void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao);
 		};
 	}

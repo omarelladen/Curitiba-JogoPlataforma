@@ -8,10 +8,10 @@ namespace Observers
 	class ObservadorMenuPrincipal : public Observador
 	{
 	private:
-		MenuPrincipal* pMenuPrincipal; //dupla
+		MenuPrincipal* pMenuPrincipal;
 
 	public:
-		ObservadorMenuPrincipal(MenuPrincipal* pMP);
+		ObservadorMenuPrincipal(MenuPrincipal* pMP = nullptr);
 		~ObservadorMenuPrincipal();
 
 		void teclaPressionada(const Keyboard::Key tecla);

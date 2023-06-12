@@ -34,7 +34,6 @@
     <ClCompile Include="EstadoMenuGameOver.cpp" />
     <ClCompile Include="EstadoMenuPause.cpp" />
     <ClCompile Include="EstadoMenuPrincipal.cpp" />
-    <ClCompile Include="EstadoRanking.cpp" />
     <ClCompile Include="Fase.cpp" />
     <ClCompile Include="FaseParqueBarigui.cpp" />
     <ClCompile Include="Gerenciador_Colisoes.cpp" />
@@ -59,12 +58,10 @@
     <ClCompile Include="ObservadorMenuGameOver.cpp" />
     <ClCompile Include="ObservadorMenuPause.cpp" />
     <ClCompile Include="ObservadorMenuPrincipal.cpp" />
-    <ClCompile Include="ObservadorRanking.cpp" />
     <ClCompile Include="Obstaculo.cpp" />
     <ClCompile Include="Personagem.cpp" />
     <ClCompile Include="Chao.cpp" />
     <ClCompile Include="Projetil.cpp" />
-    <ClCompile Include="Ranking.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Arvore.h" />
@@ -81,7 +78,6 @@
     <ClInclude Include="EstadoMenuGameOver.h" />
     <ClInclude Include="EstadoMenuPause.h" />
     <ClInclude Include="EstadoMenuPrincipal.h" />
-    <ClInclude Include="EstadoRanking.h" />
     <ClInclude Include="Fase.h" />
     <ClInclude Include="FaseParqueBarigui.h" />
     <ClInclude Include="Gerenciador_Colisoes.h" />
@@ -108,12 +104,10 @@
     <ClInclude Include="ObservadorMenuGameOver.h" />
     <ClInclude Include="ObservadorMenuPause.h" />
     <ClInclude Include="ObservadorMenuPrincipal.h" />
-    <ClInclude Include="ObservadorRanking.h" />
     <ClInclude Include="Obstaculo.h" />
     <ClInclude Include="Personagem.h" />
     <ClInclude Include="Chao.h" />
     <ClInclude Include="Projetil.h" />
-    <ClInclude Include="Ranking.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

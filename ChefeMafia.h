@@ -27,12 +27,9 @@ namespace Entidades
 			const int getNivelMedo() const;
 
 			void setVidasRegeneradas(const int vidas);
-			const int getVidasRegeneradas();
+			const int getVidasRegeneradas() const;
 
 			void regeneraVida();
-
-			void salvar();
-			ListaEntidades* recuperar();
 
 			void mover();
 			void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao);

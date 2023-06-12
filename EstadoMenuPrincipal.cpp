@@ -6,7 +6,7 @@ EstadoMenuPrincipal::EstadoMenuPrincipal():
 	menu_principal(nullptr)
 {
 	// Cria o Menu Principal
-	menu_principal = new MenuPrincipal();///
+	menu_principal = new MenuPrincipal();
 }
 
 EstadoMenuPrincipal::~EstadoMenuPrincipal()
@@ -15,10 +15,7 @@ EstadoMenuPrincipal::~EstadoMenuPrincipal()
 	menu_principal = nullptr;
 }
 
-void EstadoMenuPrincipal::executar()//id
+void EstadoMenuPrincipal::executar()
 {
-	// n sei oq colocar aqui, talvez se tivesse uma animação atras?????
-
 	menu_principal->executar();
-	
 }

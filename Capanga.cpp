@@ -14,8 +14,6 @@ Capanga::Capanga(Vector2f pos) :
 
 Capanga::~Capanga()
 {
-    delete pListaEntidades;
-    pListaEntidades = nullptr;
 }
 
 void Capanga::inicializaAtributos()
@@ -35,75 +33,6 @@ void Capanga::inicializaAtributos()
 const int Capanga::getNivelEstupidez() const
 {
 	return nivel_estupidez;
-}
-
-void Capanga::salvar()
-{
-    ofstream SalvaCapanga("SaveCapanga.dat", ios::out);
-
-    if (!SalvaCapanga)
-    {
-        cerr << "Arquivo nao pode ser aberto" << endl;
-        exit(1);
-    }
-
-    SalvaCapanga << posicao.x << ' '
-        << posicao.y << ' '
-        << num_vidas << ' '
-        << velocidade.x << ' '
-        << velocidade.y << ' '
-        << direita << ' '
-        << nivel_tiro << ' '
-        << nivel_estupidez << ' '
-        << tempo_congelado << ' ' 
-        << congelado << endl;
-
-    SalvaCapanga.close();
-}
-
-ListaEntidades* Capanga::recuperar()
-{
-    ifstream RecuperaSaveCapanga("SaveCapanga.dat", ios::in);
-
-    if (!RecuperaSaveCapanga)
-    {
-        cerr << "Arquivo nao pode ser aberto" << endl;
-        salvo = false;
-    }
-
-    if (salvo)
-    {
-        pListaEntidades = new ListaEntidades();
-        Capanga* pCapan = nullptr;
-        Vector2f pos;
-        int vidas;
-        Vector2f vel;
-        bool dir;
-        int tiro;
-        int estupidez;
-        int tempo_congelado;
-        bool congelado;
-
-        while (RecuperaSaveCapanga >> pos.x >> pos.y >> vidas >> vel.x >> vel.y >>
-            dir >> tiro >> estupidez >> tempo_congelado >> congelado)
-        {
-            pCapan = new Capanga(pos);
-            if (pCapan)
-            {
-                pCapan->setNumVidas(vidas);
-                pCapan->setVelocidade(vel);
-                pCapan->setDireita(dir);
-                pCapan->setNivelTiro(tiro);
-                pCapan->setNivelEstupidez(estupidez);
-                pCapan->setTempoCongelado(tempo_congelado);
-                pCapan->setCongelado(congelado);
-                pListaEntidades->addEntidade(static_cast<Entidade*>(pCapan));
-            }
-        }
-    }
-    RecuperaSaveCapanga.close();
-
-    return pListaEntidades;
 }
 
 void Capanga::setNivelTiro(const int tiro)

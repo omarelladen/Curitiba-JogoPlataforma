@@ -9,7 +9,7 @@ using namespace sf;
 
 namespace Menus
 {
-	class Menu : public Ente//
+	class Menu : public Ente
 	{
 	protected:
 		Font fonte;

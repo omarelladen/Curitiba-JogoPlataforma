@@ -78,11 +78,6 @@ const Vector2f Gerenciador_Grafico::getCentroJanela() const
 	return camera.getCenter();
 }
 
-const Vector2f Gerenciador_Grafico::getTamJanela() const
-{
-	return static_cast<Vector2f>(janela->getSize());
-}
-
 const bool Gerenciador_Grafico::VerificaSeJanelaAberta()
 {
 	return janela->isOpen();

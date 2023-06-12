@@ -30,13 +30,8 @@ namespace Gerenciadores
 		void setListaObstaculos(ListaEntidades* list);
 		void setJogador(Jogador* pJ);
 
-		//NAO FUNCIONA
-		void salvar();
-		void recuperar();
-
 		void GerenciarColisoes();
 
-		//Calcula Colisao
 		void CalculaColisao(Entidade* ent1, Entidade* ent2);
 
 		void executar();

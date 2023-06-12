@@ -44,8 +44,8 @@ const int Personagem::getNumVidas() const
 
 void Personagem::imprimirBarraVidas()
 {
-    barra_vidas.setSize(Vector2f((float)num_vidas, 4));
-    barra_vidas.setPosition(Vector2f(posicao.x, posicao.y-10));
+    barra_vidas.setSize(Vector2f((float)num_vidas, 4.f));
+    barra_vidas.setPosition(Vector2f(posicao.x, posicao.y - 10.f));
     Gerenciador_Grafico::getGerenciadorGrafico()->getJanela()->draw(barra_vidas);
 }
 
@@ -54,7 +54,7 @@ void Personagem::setDireita(const bool dir)
     direita = dir;
 }
 
-const bool Personagem::getDireita()
+const bool Personagem::getDireita() const
 {
     return direita;
 }

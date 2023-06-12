@@ -19,8 +19,6 @@ namespace Menus
 
 		ObservadorInputTexto* registroNome;
 
-		Font fonte;
-
 		Text pontos;
 		string aux_pontos;
 

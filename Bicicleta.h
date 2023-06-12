@@ -18,9 +18,6 @@ namespace Entidades
 
 			void inicializaAtributos();
 
-			void salvar();
-			ListaEntidades* recuperar();
-
 			void setNivelRicochete(const int ricochete);
 			const int getNivelRicochete() const;
 

@@ -25,14 +25,9 @@ namespace Listas
 
 		void addEntidade(Entidade* entid);
 		void deleteEntidade(Entidade* entid);
-		//void deleteEntidade(int pos);
 
 		Entidade* getEntidade(int pos);
 		Entidade* operator[](int pos);
-
-		//NAO FUNCIONA
-		void salvarEntidades();
-		void recuperarEntidades();
 
 		const int getTamLista() const;
 

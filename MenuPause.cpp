@@ -7,25 +7,21 @@ MenuPause::MenuPause() :
 	Menu(IDs::menuPause),
 	observadorMenuPause(nullptr),
 	botao_voltar(nullptr),
-	botao_sair(nullptr),
-	botao_salvar(nullptr)
+	botao_sair(nullptr)
 {
 	//Alocacao observador
 	observadorMenuPause = new ObservadorMenuPause(this); // this para setar la tambem
 
 	//Adiciona o seu Observador na lista de Observadores
-	Gerenciador_Eventos::getGerenciadorEventos()->adicionarObservador(observadorMenuPause);
+	Gerenciador_Eventos::getGerenciadorEventos()->addObservador(observadorMenuPause);
 
 	titulo.setString("PAUSE");
 
 	// Alocacao Botoes
-	botao_voltar = new Botao(Vector2f(centro_janela.x - TAM_BOTOES_X / 2.f, ((centro_janela.y * 3.f) / 2.f) - TAM_BOTOES_Y / 2.f),
+	botao_voltar = new Botao(Vector2f(centro_janela.x - TAM_BOTOES_X / 2.f, centro_janela.y + TAM_BOTOES_Y),
 		Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Voltar", 25, Color::Green);
 
-	botao_salvar = new Botao(Vector2f(centro_janela.x - TAM_BOTOES_X / 2.f, ((centro_janela.y * 3.f) / 2.f) - TAM_BOTOES_Y / 2.f + 70.f),
-		Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Salvar", 25, Color::Green);
-
-	botao_sair = new Botao(Vector2f(centro_janela.x - TAM_BOTOES_X / 2.f, ((centro_janela.y * 3.f) / 2.f) - TAM_BOTOES_Y / 2.f + 140.f),
+	botao_sair = new Botao(Vector2f(centro_janela.x - TAM_BOTOES_X / 2.f, centro_janela.y + TAM_BOTOES_Y + 90.f),
 		Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Sair", 25, Color::Red);
 
 	selecionaBotao(false);
@@ -36,12 +32,10 @@ MenuPause::~MenuPause()
 	delete observadorMenuPause;
 	delete botao_voltar;
 	delete botao_sair;
-	delete botao_salvar;
 
 	observadorMenuPause = nullptr;
 	botao_sair = nullptr;
 	botao_voltar = nullptr;
-	botao_salvar = nullptr;
 }
 
 void MenuPause::selecionaBotao(const bool enter)
@@ -49,7 +43,6 @@ void MenuPause::selecionaBotao(const bool enter)
 	if (opcao == 1)
 	{
 		//Botoes nao selecionados
-		botao_salvar->naoSelecionado();
 		botao_voltar->naoSelecionado();
 
 		//VOLTAR PARA O MENU PRINCIPAL
@@ -63,41 +56,13 @@ void MenuPause::selecionaBotao(const bool enter)
 			pGEventos->ativaObservador(IDs::menuPrincipal);
 
 			//Desempilha 2 estados (pause e jogo) pra voltar ao menu principal
-			pGEstados->removerEstado(2);
+			pGEstados->deleteEstado(2);
 		}
 	}
 	else if (opcao == 2)
 	{
 		//Botoes nao selecionados
 		botao_sair->naoSelecionado();
-		botao_voltar->naoSelecionado();
-
-		//SALVAR JOGADA
-
-		botao_salvar->selecionado();
-
-		if (enter)
-		{
-			/*pGEventos->desativaObservadores();
-
-			pGEventos->ativaObservador(IDs::jogo);
-			*/
-			pGEstados->removerEstado(1);
-
-			EstadoJogar* estado = static_cast<EstadoJogar*>(pGEstados->getEstadoAtual());
-
-			estado->salvarJogada();
-
-			pGEventos->desativaObservadores();
-
-			pGEstados->addEstado(pGEstados->criarEstadoMenuPause());
-		}
-	}
-	else if (opcao == 3)
-	{
-		//Botoes nao selecionados
-		botao_sair->naoSelecionado();
-		botao_salvar->naoSelecionado();
 
 		//VOLTAR PARA O ESTADO JOGAR
 
@@ -111,7 +76,7 @@ void MenuPause::selecionaBotao(const bool enter)
 			pGEventos->ativaObservador(IDs::jogo);
 
 			//Desempilha Menu Pause para voltar
-			pGEstados->removerEstado(1);
+			pGEstados->deleteEstado(1);
 		}
 	}
 }
@@ -125,17 +90,14 @@ void MenuPause::atualizarPosicao()
 
 	botao_voltar->atualizarPosicao(Vector2f(centro_janela.x - TAM_BOTOES_X / 2.f,
 		centro_janela.y + TAM_BOTOES_Y));
-	botao_salvar->atualizarPosicao(Vector2f(centro_janela.x - TAM_BOTOES_X / 2.f,
-		centro_janela.y + TAM_BOTOES_Y + 90.f));
 	botao_sair->atualizarPosicao(Vector2f(centro_janela.x - TAM_BOTOES_X / 2.f,
-		centro_janela.y + TAM_BOTOES_Y + 180.f));
+		centro_janela.y + TAM_BOTOES_Y + 90.f));
 }
 
 void MenuPause::desenhar_se()
 {
 	Gerenciador_Grafico::getGerenciadorGrafico()->getJanela()->draw(titulo);
 	botao_voltar->render();
-	botao_salvar->render();
 	botao_sair->render();
 }
 

@@ -14,13 +14,11 @@ namespace Menus
 	class MenuPrincipal : public Menu
 	{
 	private:
-		ObservadorMenuPrincipal* observadorMenuPrincipal; //dupla// precisa?
+		ObservadorMenuPrincipal* observadorMenuPrincipal;
 
 		Botao* botao_jogarBarigui;
-		Botao* botao_jogarbeco;
-		Botao* botao_ranking;
+		Botao* botao_jogarBeco;
 		Botao* botao_sair;
-		//Botao* botao_configuracoes;
 
 	public:
 		MenuPrincipal();

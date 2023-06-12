@@ -15,7 +15,7 @@ Jogador::Jogador(const IDs id, Vector2f pos) :
     observadorJogador = new ObservadorJogador(this); // this para setar la tambem
 
     // Adiciona o seu Observador na lista de Observadores
-    Gerenciador_Eventos::getGerenciadorEventos()->adicionarObservador(observadorJogador);
+    Gerenciador_Eventos::getGerenciadorEventos()->addObservador(observadorJogador);
 }
 
 Jogador::~Jogador()

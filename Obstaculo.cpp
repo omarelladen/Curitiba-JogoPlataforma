@@ -5,13 +5,6 @@ Obstaculo::Obstaculo(const IDs id, Vector2f pos) :
 	Entidade(id, pos),
 	danoso(false)
 {
-	// rand
-	/*time_t t;
-	srand((unsigned)time(&t));
-	if (rand() % 10 == 1)
-	{
-		danoso = true;
-	}*/
 }
 
 Obstaculo::~Obstaculo()

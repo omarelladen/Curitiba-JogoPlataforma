@@ -13,8 +13,6 @@ ChefeMafia::ChefeMafia(Vector2f pos) :
 
 ChefeMafia::~ChefeMafia()
 {
-    delete pListaEntidades;
-    pListaEntidades = nullptr;
 }
 
 void ChefeMafia::inicializaAtributos()
@@ -57,7 +55,7 @@ void ChefeMafia::setVidasRegeneradas(const int vidas)
     vidas_regeneradas = vidas;
 }
 
-const int ChefeMafia::getVidasRegeneradas()
+const int ChefeMafia::getVidasRegeneradas() const
 {
     return vidas_regeneradas;
 }
@@ -76,72 +74,6 @@ void ChefeMafia::regeneraVida()
             num_vidas = NUM_MAX_VIDAS;
         }
     }
-}
-
-void ChefeMafia::salvar()
-{
-    ofstream SalvaChefeMafia("SaveChefeMafia.dat", ios::out);
-
-    if (!SalvaChefeMafia)
-    {
-        cerr << "Arquivo nao pode ser aberto" << endl;
-        exit(1);
-    }
-
-    SalvaChefeMafia << posicao.x << ' '
-        << posicao.y << ' '
-        << num_vidas << ' '
-        << velocidade.x << ' '
-        << velocidade.y << ' '
-        << direita << ' '
-        << nivel_forca << ' '
-        << nivel_medo << ' '
-        << vidas_regeneradas << endl;
-
-    SalvaChefeMafia.close();
-}
-
-ListaEntidades* ChefeMafia::recuperar()
-{
-    ifstream RecuperaSaveChefeMafia("SaveChefeMafia.dat", ios::in);
-
-    if (!RecuperaSaveChefeMafia)
-    {
-        cerr << "Arquivo nao pode ser aberto" << endl;
-        salvo = false;
-    }
-
-    if (salvo)
-    {
-        pListaEntidades = new ListaEntidades();
-        ChefeMafia* pCM = nullptr;
-        Vector2f pos;
-        int vidas;
-        Vector2f vel;
-        bool dir;
-        int forca; //força
-        int medo;
-        int vidas_rege;
-
-        while (RecuperaSaveChefeMafia >> pos.x >> pos.y >> vidas >> vel.x >> vel.y >>
-            dir >> forca >> medo >> vidas_rege)
-        {
-            pCM = new ChefeMafia(pos);
-            if (pCM)
-            {
-                pCM->setNumVidas(vidas);
-                pCM->setVelocidade(vel);
-                pCM->setDireita(dir);
-                pCM->setNivelForca(forca);
-                pCM->setNivelMedo(medo);
-                pCM->setVidasRegeneradas(vidas_rege);
-                pListaEntidades->addEntidade(static_cast<Entidade*>(pCM));
-            }
-        }
-    }
-    RecuperaSaveChefeMafia.close();
-
-    return pListaEntidades;
 }
 
 void ChefeMafia::mover()

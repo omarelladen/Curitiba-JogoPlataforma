@@ -17,8 +17,6 @@ namespace Entidades
 
 			const bool getDanoso() const;
 
-			virtual void salvar() = 0;
-			virtual ListaEntidades* recuperar() = 0;
 			virtual void executar() = 0;
 		};
 	}

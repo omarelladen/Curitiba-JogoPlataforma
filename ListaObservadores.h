@@ -2,7 +2,6 @@
 #include "Lista.h"
 #include "Observador.h"
 using namespace Observers;
-
 #include <SFML/Graphics.hpp>
 using namespace sf;
 
@@ -17,63 +16,18 @@ namespace Listas
 		ListaObservadores();
 		~ListaObservadores();
 
-		void adicionarObservador(Observador* observador);
-		void removerObservador(Observador* observador);
+		void addObservador(Observador* observador);
+		void deleteObservador(Observador* observador);
 
-		void ativaObservador(IDs id);// especificos - igual nome do gerenciador chama essa
-		int getTamanho();
+		void ativaObservador(IDs id);
+
+		const int getTamanho() const;
 		Observador* operator[](int pos);
 
-		// Teclado
-		void notificarTeclaPressionada(const Keyboard::Key tecla);
-		void notificarTeclaSolta(const Keyboard::Key tecla);
+		//Teclado
+		void notificaTeclaPressionada(const Keyboard::Key tecla);
+		void notificaTeclaSolta(const Keyboard::Key tecla);
 
-		// Mouse
-		//void notificarMouseSolta(Event::MouseMoveEvent mouse); //Mouse::Button botaoMouse, 
-
-		//
-		void desativarObservadores();
+		void desativaObservadores();
 	};
 }
-
-
-/*#pragma once
-#include "Lista.h"
-#include "Observador.h"
-using namespace Observers;
-
-#include <SFML/Graphics.hpp>
-using namespace sf;
-
-#include <vector>//
-
-namespace Listas
-{
-	class ListaObservadores
-	{
-	private:
-		vector<Observador*> listaObservadores;
-
-	public:
-		ListaObservadores();
-		~ListaObservadores();
-
-		void adicionarObservador(Observador* observador);
-		//void removerObservador(Observador* observador);
-
-		void ativaObservador(IDs id);// especificos - igual nome do gerenciador chama essa
-		int getTamanho();
-		Observador* operator[](int pos);
-
-
-		// Teclado
-		void notificarTeclaPressionada(const Keyboard::Key tecla);
-		void notificarTeclaSolta(const Keyboard::Key tecla);
-
-		// Mouse
-		void notificarMouseSolta(Event::MouseMoveEvent mouse); //Mouse::Button botaoMouse,
-
-		//
-		void desativarObservadores();
-	};
-}*/

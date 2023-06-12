@@ -9,7 +9,7 @@ namespace Entidades
 		{
 		private:
 			Texture textura_tronco;
-			RectangleShape tronco; // Mexer no setPosition
+			RectangleShape tronco;
 			int altura;
 
 		public:
@@ -17,9 +17,6 @@ namespace Entidades
 			~Arvore();
 
 			void inicializaAtributos();
-
-			void salvar();
-			ListaEntidades* recuperar();
 
 			void setAltura(const int alt);
 			const int getAltura() const;

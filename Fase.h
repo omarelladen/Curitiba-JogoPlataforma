@@ -37,25 +37,7 @@ namespace Fases
 
 		void setJogador(Jogador* pJ);
 
-		void salvarJogada();
-		void recuperarJogada();
-
 		virtual void criarMapa() = 0;
 		virtual void executar() = 0;
 	};
 }
-/*
-private:
-	
-	ConstrutorEntidade* contrutorEntidades;
-
-
-public:
-	Fase();
-	~Fase();
-
-	void criarMapa(); //c
-
-	virtual void gerenciar_colisoes() = 0;
-	virtual void executar() = 0; // n pura na vdd pelo video
-*/

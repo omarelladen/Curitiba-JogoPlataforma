@@ -2,7 +2,7 @@
 
 Botao::Botao(Vector2f pos, Vector2f tam, string t, const int tamTexto, Color c) :
 	forma(),
-	fonte(nullptr),
+	fonte(),
 	texto(),
 	cor(c)
 {
@@ -10,11 +10,9 @@ Botao::Botao(Vector2f pos, Vector2f tam, string t, const int tamTexto, Color c) 
 	forma.setSize(tam);
 	forma.setFillColor(c);
 
-	fonte = new Font();
+	fonte.loadFromFile("Fonte/SparkyStonesRegular-BW6ld.ttf");
 
-	fonte->loadFromFile("Fonte/SparkyStonesRegular-BW6ld.ttf");
-
-	texto.setFont(*fonte);
+	texto.setFont(fonte);
 	texto.setString(t);
 	texto.setFillColor(Color::Black);
 	texto.setOutlineColor(Color::White);
@@ -24,13 +22,12 @@ Botao::Botao(Vector2f pos, Vector2f tam, string t, const int tamTexto, Color c) 
 		forma.getPosition().y + forma.getSize().y / 2.f - texto.getGlobalBounds().height);
 }
 
-Botao::~Botao()
+Botao::Botao()
 {
 }
 
-Vector2f Botao::getPosicao()
+Botao::~Botao()
 {
-	return forma.getPosition();
 }
 
 void Botao::atualizarPosicao(Vector2f pos)

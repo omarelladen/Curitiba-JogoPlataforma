@@ -9,8 +9,8 @@ namespace Entidades
 		{
 		private:
 			int forca_mordida;
-			int raio_super_pulo;
-			int rapidez_mordida;// Pula até o jogador
+			int raio_super_pulo; // Pula até o jogador
+			int rapidez_mordida; 
 
 		public:
 			Jacare(Vector2f pos = Vector2f(0.f, 0.f));
@@ -22,13 +22,10 @@ namespace Entidades
 			const int getForcaMordida() const;
 
 			void setRaioSuperPulo(const int raio_pulo);
-			const int getRaioSuperPulo();
+			const int getRaioSuperPulo() const;
 
 			void setRapidezMordida(const int tempo);
-			const int getRapidezMordida();
-
-			void salvar();
-			ListaEntidades* recuperar();
+			const int getRapidezMordida() const;
 
 			void mover();
 			void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao);

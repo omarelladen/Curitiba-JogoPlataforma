@@ -18,9 +18,6 @@ namespace Entidades
 
 			void inicializaAtributos();
 
-			void salvar();
-			ListaEntidades* recuperar();
-
 			void setDano(const int d);
 			const int getDano() const;
 

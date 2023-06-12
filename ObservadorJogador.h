@@ -10,7 +10,7 @@ namespace Observers
 		Jogador* pJogador;
 
 	public:
-		ObservadorJogador(Jogador* pJ);
+		ObservadorJogador(Jogador* pJ = nullptr);
 		~ObservadorJogador();
 
 		void teclaPressionada(const Keyboard::Key tecla);

@@ -23,11 +23,9 @@ namespace Entidades
 		protected:
 			ObservadorJogador* observadorJogador;
 
-			// bool jogador2;
 			int pontos;
 
 		public:
-			//(, bool dupla = false) false default, so passa como parametro se for dupla
 			Jogador(const IDs id = {}, Vector2f pos = Vector2f(0.f, 0.f));
 			~Jogador();
 
@@ -38,11 +36,7 @@ namespace Entidades
 
 			void mover(const char* direcao);
 			void parar();
-
-			virtual void salvar() = 0;
-			virtual ListaEntidades* recuperar() = 0;
 			void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao) = 0;
-			
 			void executar();
 		};
 	}

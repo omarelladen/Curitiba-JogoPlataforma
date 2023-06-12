@@ -12,12 +12,7 @@ ObservadorInputTexto::~ObservadorInputTexto()
 {
 }
 
-void ObservadorInputTexto::resetaTexto()
-{
-    texto = "";
-}
-
-string ObservadorInputTexto::getTexto()
+const string ObservadorInputTexto::getTexto() const
 {
     return texto;
 }

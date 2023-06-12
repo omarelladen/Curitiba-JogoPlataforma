@@ -198,15 +198,6 @@
     <ClCompile Include="Personagem.cpp">
       <Filter>Arquivos .cpp\Ente\Entidade\Personagem</Filter>
     </ClCompile>
-    <ClCompile Include="ObservadorRanking.cpp">
-      <Filter>Arquivos .cpp\Ente\Observador</Filter>
-    </ClCompile>
-    <ClCompile Include="Ranking.cpp">
-      <Filter>Arquivos .cpp\Ente</Filter>
-    </ClCompile>
-    <ClCompile Include="EstadoRanking.cpp">
-      <Filter>Arquivos .cpp\Ente\Estado</Filter>
-    </ClCompile>
     <ClCompile Include="MenuGameOver.cpp">
       <Filter>Arquivos .cpp\Ente\Menu</Filter>
     </ClCompile>
@@ -348,15 +339,6 @@
       <Filter>Arquivos .h\Ente\Fase</Filter>
     </ClInclude>
     <ClInclude Include="EstadoMenuGameOver.h">
-      <Filter>Arquivos .h\Ente\Estado</Filter>
-    </ClInclude>
-    <ClInclude Include="ObservadorRanking.h">
-      <Filter>Arquivos .h\Ente\Observador</Filter>
-    </ClInclude>
-    <ClInclude Include="Ranking.h">
-      <Filter>Arquivos .h\Ente</Filter>
-    </ClInclude>
-    <ClInclude Include="EstadoRanking.h">
       <Filter>Arquivos .h\Ente\Estado</Filter>
     </ClInclude>
     <ClInclude Include="MenuGameOver.h">

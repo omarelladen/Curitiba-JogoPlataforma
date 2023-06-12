@@ -20,8 +20,6 @@ namespace Estados
 		EstadoJogar(const IDs id_fase = {});
 		~EstadoJogar();
 
-		void salvarJogada();
-
 		void executar();
 	};
 }

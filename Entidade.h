@@ -3,8 +3,6 @@
 using namespace std;
 #include"Ente.h"
 
-
-
 #define GRAVIDADE 9.81f
 #define MAX_VEL 2.f
 #define MAX_VEL_AR 1.f
@@ -31,9 +29,6 @@ namespace Entidades
 		Texture textura;
 
 		bool esta_no_chao;
-		bool salvo;
-
-		ListaEntidades* pListaEntidades;
 
 		ListaEntidades* listaProjeteis;
 
@@ -46,7 +41,7 @@ namespace Entidades
 		void setTextura(const char* caminho_textura);
 
 		void setEstaNoChao(const bool c);
-		const bool getEstaNoChao();
+		const bool getEstaNoChao() const;
 
 		void setPosicao(Vector2f pos);
 		Vector2f getPosicao() const;
@@ -62,11 +57,9 @@ namespace Entidades
 		void restartRelogio();
 
 		void efeitoGravidade();
-		virtual void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao);
 		void desenhar_se();
 
-		virtual void salvar() = 0;
-		virtual ListaEntidades* recuperar() = 0;
+		virtual void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao);
 		virtual void executar() = 0;
 	};
 }

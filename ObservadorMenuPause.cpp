@@ -31,7 +31,7 @@ void ObservadorMenuPause::teclaSolta(const Keyboard::Key tecla)
 	{
 		pMenuPause->operator--();
 	}
-	else if (tecla == Keyboard::Up && pMenuPause->getOpcao() < 3)
+	else if (tecla == Keyboard::Up && pMenuPause->getOpcao() < 2)
 	{
 		pMenuPause->operator++();
 	}

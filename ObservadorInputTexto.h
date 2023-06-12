@@ -15,8 +15,7 @@ namespace Observers
         ObservadorInputTexto();
         ~ObservadorInputTexto();
 
-        void resetaTexto();
-        string getTexto();
+        const string getTexto() const;
 
         const bool getEscrevendo() const;
 

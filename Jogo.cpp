@@ -24,7 +24,7 @@ void Jogo::executar()
 {
 
 	// Loop infinito (até fechar o jogo)
-	while (gerenciador_grafico->getJanela()->isOpen())
+	while (gerenciador_grafico->VerificaSeJanelaAberta())
 	{
 		gerenciador_eventos->executar();
 

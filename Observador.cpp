@@ -1,7 +1,7 @@
 #include "Observador.h"
 using namespace Observers;
 
-Observador::Observador(IDs id) :
+Observador::Observador(const IDs id) :
     Ente(id),
     ativado(true),
     pGEstados(Gerenciador_Estados::getGerenciadorEstados())

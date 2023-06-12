@@ -52,21 +52,6 @@ void Gerenciador_Colisoes::setJogador(Jogador* pJ)
 		pJogador = pJ;
 }
 
-void Gerenciador_Colisoes::salvar()
-{
-	listaObstaculos->salvarEntidades();
-	listaPersonagens->salvarEntidades();
-}
-
-void Gerenciador_Colisoes::recuperar()
-{
-	if (listaObstaculos)
-		listaObstaculos->recuperarEntidades();
-
-	if (listaPersonagens)
-		listaPersonagens->recuperarEntidades();
-}
-
 void Gerenciador_Colisoes::GerenciarColisoes()
 {
 	Entidade* pEnt1 = nullptr;

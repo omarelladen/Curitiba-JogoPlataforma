@@ -29,7 +29,7 @@ Fase::Fase(const IDs id) :
 	observadorFase = new ObservadorFase(this); // this para setar la tambem Observers::
 
 	// Adiciona o seu Observador na lista de Observadores
-	Gerenciador_Eventos::getGerenciadorEventos()->adicionarObservador(observadorFase);
+	Gerenciador_Eventos::getGerenciadorEventos()->addObservador(observadorFase);
 }
 
 Fase::~Fase()
@@ -65,18 +65,4 @@ void Fase::setJogador(Jogador* pJ)
 {
 	if (pJ)
 		pJogador = pJ;
-}
-
-
-
-void Fase::salvarJogada()
-{
-	if (gerenciadorColisoes)
-		gerenciadorColisoes->salvar();
-}
-
-void Fase::recuperarJogada()
-{
-	if (gerenciadorColisoes)
-		gerenciadorColisoes->recuperar();
 }

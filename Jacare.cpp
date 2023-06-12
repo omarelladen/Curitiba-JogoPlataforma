@@ -13,8 +13,6 @@ Jacare::Jacare(Vector2f pos):
 
 Jacare::~Jacare()
 {
-    delete pListaEntidades;
-    pListaEntidades = nullptr;
 }
 
 void Jacare::inicializaAtributos()
@@ -46,7 +44,7 @@ void Jacare::setRaioSuperPulo(const int raio_pulo)
     raio_super_pulo = raio_pulo;
 }
 
-const int Jacare::getRaioSuperPulo()
+const int Jacare::getRaioSuperPulo() const
 {
     return raio_super_pulo;
 }
@@ -56,72 +54,9 @@ void Jacare::setRapidezMordida(const int tempo)
     rapidez_mordida = tempo;
 }
 
-const int Jacare::getRapidezMordida()
+const int Jacare::getRapidezMordida() const
 {
     return rapidez_mordida;
-}
-
-void Jacare::salvar()
-{
-    ofstream SalvaJacare("SaveJacare.dat", ios::out);
-
-    if (!SalvaJacare)
-    {
-        cerr << "Arquivo nao pode ser aberto" << endl;
-        exit(1);
-    }
-
-    SalvaJacare << posicao.x << ' '
-        << posicao.y << ' '
-        << num_vidas << ' '
-        << velocidade.x << ' '
-        << velocidade.y << ' '
-        << direita << ' '
-        << forca_mordida << ' '
-        << raio_super_pulo << endl;
-
-    SalvaJacare.close();
-}
-
-ListaEntidades* Jacare::recuperar()
-{
-    ifstream RecuperaSaveJacare("SaveJacare.dat", ios::in);
-
-    if (!RecuperaSaveJacare)
-    {
-        cerr << "Arquivo nao pode ser aberto" << endl;
-        salvo = false;
-    }
-
-    if (salvo)
-    {
-        pListaEntidades = new ListaEntidades();
-        Jacare* pJac = nullptr;
-        Vector2f pos;
-        int vidas;
-        Vector2f vel;
-        bool dir;
-        int mordida;
-        int raio_pulo;
-
-        while (RecuperaSaveJacare >> pos.x >> pos.y >> vidas >> vel.x >> vel.y >>
-            dir >> mordida >> raio_pulo)
-        {
-            pJac = new Jacare(pos);
-            if (pJac)
-            {
-                pJac->setNumVidas(vidas);
-                pJac->setVelocidade(vel);
-                pJac->setDireita(dir);
-                pJac->setForcaMordida(mordida);
-                pJac->setRaioSuperPulo(raio_pulo);
-                pListaEntidades->addEntidade(static_cast<Entidade*>(pJac));
-            }
-        }
-    }
-    RecuperaSaveJacare.close();
-
-    return pListaEntidades;
 }
 
 void Jacare::mover()

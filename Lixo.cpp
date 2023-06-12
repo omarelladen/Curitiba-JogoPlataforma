@@ -12,8 +12,6 @@ Lixo::Lixo(Vector2f pos):
 
 Lixo::~Lixo()
 {
-	delete pListaEntidades;
-	pListaEntidades = nullptr;
 }
 
 void Lixo::inicializaAtributos()
@@ -24,61 +22,10 @@ void Lixo::inicializaAtributos()
 	time_t t;
 	srand((unsigned)time(&t));
 
+	danoso = true;
 	dano = (rand() % 3 + 1);
 	tempo_retardo = rand() % 3 + 3;
 	rapidez_intoxicacao = rand() % 2 + 1;
-}
-
-void Lixo::salvar()
-{
-	ofstream SalvaLixo("SaveLixo.dat", ios::out);
-
-	if (!SalvaLixo)
-	{
-		cerr << "Arquivo nao pode ser aberto" << endl;
-		exit(1);
-	}
-
-	SalvaLixo << posicao.x << ' '
-		<< posicao.y << ' '
-		<< dano << ' '
-		<< tempo_retardo << endl;
-
-	SalvaLixo.close();
-}
-
-ListaEntidades* Lixo::recuperar()
-{
-	ifstream RecuperaSaveLixo("SaveArvore.dat", ios::in);
-
-	if (!RecuperaSaveLixo)
-	{
-		cerr << "Arquivo nao pode ser aberto" << endl;
-		salvo = false;
-	}
-
-	if (salvo)
-	{
-		pListaEntidades = new ListaEntidades();
-		Lixo* pLixo = nullptr;
-		Vector2f pos;
-		int dano;
-		int tr; //tempo_retardo
-
-		while (RecuperaSaveLixo >> pos.x >> pos.y >> dano >> tr)
-		{
-			pLixo = new Lixo(pos);
-			if (pLixo)
-			{
-				pLixo->setDano(dano);
-				pLixo->setTempoRetardo(tr);
-				pListaEntidades->addEntidade(static_cast<Entidade*>(pLixo));
-			}
-		}
-	}
-	RecuperaSaveLixo.close();
-
-	return pListaEntidades;
 }
 
 void Lixo::setDano(const int d)

@@ -9,19 +9,16 @@ using namespace Gerenciadores;//
 class Botao
 {
 private:
-	//int estado;
-
 	RectangleShape forma;
 
-	Font* fonte;
+	Font fonte;
 	Text texto;
 	Color cor;
 
 public:
-	Botao(Vector2f pos = Vector2f(0.f, 0.f), Vector2f tam = Vector2f(0.f, 0.f), string t = "", const int tamTexto = 25, Color c = Color::Black);
+	Botao(Vector2f pos, Vector2f tam, string t, const int tamTexto, Color c);
+	Botao();
 	~Botao();
-
-	Vector2f getPosicao();
 
 	void atualizarPosicao(Vector2f pos);
 

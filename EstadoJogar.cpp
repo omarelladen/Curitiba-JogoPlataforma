@@ -27,11 +27,6 @@ EstadoJogar::~EstadoJogar()
 	jogador1 = nullptr;
 }
 
-void EstadoJogar::salvarJogada()
-{
-	fase->salvarJogada();
-}
-
 void EstadoJogar::executar()
 {
 	fase->executar();

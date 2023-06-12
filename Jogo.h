@@ -11,6 +11,7 @@ namespace Gerenciadores
 {
 	class Gerenciador_Estados;
 }
+using namespace Gerenciadores;
 
 class Jogo
 {

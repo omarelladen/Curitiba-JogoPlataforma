@@ -32,7 +32,6 @@ namespace Gerenciadores
 		void fechaJanela();
 
 		const Vector2f getCentroJanela() const;
-		const Vector2f getTamJanela() const;
 
 		const bool VerificaSeJanelaAberta();
 	};

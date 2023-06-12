@@ -39,55 +39,6 @@ Entidade* ListaEntidades::operator[](int pos)
     return listaEntidades[pos];
 }
 
-void ListaEntidades::salvarEntidades()
-{
-    for (int i = 0; i < getTamLista(); i++)
-    {
-        getEntidade(i)->salvar();
-    }
-}
-
-void ListaEntidades::recuperarEntidades()
-{
-    //Pequeno problema com desalocacao
-
-    Capivara jogador;
-    ChefeMafia mafioso;
-    Capanga capanga;
-    Jacare crocodilo;
-    Arvore arvore;
-    Lixo lixao;
-    Bicicleta bike;
-    Chao piso;
-
-    ListaEntidades* pListJog = new ListaEntidades();
-    pListJog = jogador.recuperar();
-
-    ListaEntidades* pListInim = new ListaEntidades();
-    pListInim = mafioso.recuperar();
-    pListInim = capanga.recuperar();
-    pListInim = crocodilo.recuperar();
-
-    ListaEntidades* pListObsts = new ListaEntidades();
-    pListObsts = arvore.recuperar();
-    pListObsts = lixao.recuperar();
-    pListObsts = bike.recuperar();
-    pListObsts = piso.recuperar();
-
-    for (int i = 0; i < pListInim->getTamLista(); i++)
-    {
-        Inimigo* pInim = static_cast<Inimigo*>(pListInim->getEntidade(i));
-        if (pInim)
-        {
-            pInim->setAlvo(static_cast<Capivara*>(pListJog->getEntidade(0)));
-        }
-    }
-
-    this->operator=(*pListJog);
-    this->operator=(*pListInim);
-    this->operator=(*pListObsts);
-}
-
 const int ListaEntidades::getTamLista() const
 {
     return listaEntidades.getTam();

@@ -27,11 +27,6 @@ namespace Entidades
 		void setDano(const int d);
 		const int getDano() const;
 
-		//void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao);
-
-		void salvar();
-		ListaEntidades* recuperar();
-
 		void mover();
 		void executar();
 	};

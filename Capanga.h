@@ -19,9 +19,6 @@ namespace Entidades
 
 			void inicializaAtributos();
 
-			void salvar();
-			ListaEntidades* recuperar();
-
 			void setNivelTiro(const int tiro);
 			const int getNivelTiro() const;
 

@@ -6,15 +6,14 @@ MenuPrincipal::MenuPrincipal() :
 	Menu(IDs::menuPrincipal),
 	observadorMenuPrincipal(nullptr),
 	botao_jogarBarigui(nullptr),
-	botao_jogarbeco(nullptr),
-	botao_ranking(nullptr),
+	botao_jogarBeco(nullptr),
 	botao_sair(nullptr)
 {
 	//Alocacao observador
 	observadorMenuPrincipal = new ObservadorMenuPrincipal(this); // this para setar la tambem
 
 	//Adiciona o seu Observador na lista de Observadores
-	Gerenciador_Eventos::getGerenciadorEventos()->adicionarObservador(observadorMenuPrincipal);
+	Gerenciador_Eventos::getGerenciadorEventos()->addObservador(observadorMenuPrincipal);
 
 	titulo.setString("MENU PRINCIPAL");
 
@@ -22,9 +21,7 @@ MenuPrincipal::MenuPrincipal() :
 
 	botao_jogarBarigui = new Botao(Vector2f(0.f, 0.f), Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Jogar Fase Barigui", 20, Color::Green);
 
-	botao_jogarbeco = new Botao(Vector2f(0.f, 0.f), Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Jogar Fase Beco", 20, Color::Green);
-
-	botao_ranking = new Botao(Vector2f(0.f, 0.f), Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Ranking", 20, Color::Green);
+	botao_jogarBeco = new Botao(Vector2f(0.f, 0.f), Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Jogar Fase Beco", 20, Color::Green);
 
 	botao_sair = new Botao(Vector2f(0.f, 0.f), Vector2f(TAM_BOTOES_X, TAM_BOTOES_Y), "Sair", 20, Color::Red);
 
@@ -35,14 +32,12 @@ MenuPrincipal::~MenuPrincipal()
 {
 	delete observadorMenuPrincipal;
 	delete botao_jogarBarigui;
-	delete botao_jogarbeco;
-	delete botao_ranking;
+	delete botao_jogarBeco;
 	delete botao_sair;
 
 	observadorMenuPrincipal = nullptr;
 	botao_jogarBarigui = nullptr;
-	botao_jogarbeco = nullptr;
-	botao_ranking = nullptr;
+	botao_jogarBeco = nullptr;
 	botao_sair = nullptr;
 }
 
@@ -51,8 +46,7 @@ void MenuPrincipal::selecionaBotao(const bool enter)
 	if (opcao == 1)
 	{
 		//Botoes nao selecionados
-		botao_jogarbeco->naoSelecionado();
-		botao_ranking->naoSelecionado();
+		botao_jogarBeco->naoSelecionado();
 		botao_sair->naoSelecionado();
 
 		//JOGAR FASE PARQUE BARIGUI
@@ -70,12 +64,11 @@ void MenuPrincipal::selecionaBotao(const bool enter)
 	{
 		//Botoes nao selecionados
 		botao_jogarBarigui->naoSelecionado();
-		botao_ranking->naoSelecionado();
 		botao_sair->naoSelecionado();
 
 		//JOGAR FASE BECO
 
-		botao_jogarbeco->selecionado();
+		botao_jogarBeco->selecionado();
 
 		if (enter)
 		{
@@ -87,29 +80,9 @@ void MenuPrincipal::selecionaBotao(const bool enter)
 	}
 	else if (opcao == 3)
 	{
-		botao_jogarBarigui->naoSelecionado();
-		botao_jogarbeco->naoSelecionado();
-		botao_sair->naoSelecionado();
-
-		//ABRIR RANKING
-
-		botao_ranking->selecionado();
-
-		if (enter)
-		{
-			//Desativa todos os observadores ativados
-			pGEventos->desativaObservadores();
-
-			//Cria o EstadoRanking e coloca ele no topo da pilha
-			pGEstados->addEstado(pGEstados->criarEstadoRanking());
-		}
-	}
-	else if (opcao == 4)
-	{
 		//Botoes nao selecionados;
 		botao_jogarBarigui->naoSelecionado();
-		botao_jogarbeco->naoSelecionado();
-		botao_ranking->naoSelecionado();
+		botao_jogarBeco->naoSelecionado();
 
 		//FECHAR JOGO
 
@@ -131,19 +104,16 @@ void MenuPrincipal::atualizarPosicao()
 
 	botao_jogarBarigui->atualizarPosicao(Vector2f(centro_janela.x - TAM_BOTOES_X / 2.f, centro_janela.y - TAM_BOTOES_Y));
 
-	botao_jogarbeco->atualizarPosicao(Vector2f(centro_janela.x - TAM_BOTOES_X / 2.f, centro_janela.y - TAM_BOTOES_Y + 90.f));
+	botao_jogarBeco->atualizarPosicao(Vector2f(centro_janela.x - TAM_BOTOES_X / 2.f, centro_janela.y - TAM_BOTOES_Y + 90.f));
 
-	botao_ranking->atualizarPosicao(Vector2f(centro_janela.x - TAM_BOTOES_X / 2.f, centro_janela.y - TAM_BOTOES_Y + 180.f));
-
-	botao_sair->atualizarPosicao(Vector2f(centro_janela.x - TAM_BOTOES_X / 2.f, centro_janela.y - TAM_BOTOES_Y + 270.f));
+	botao_sair->atualizarPosicao(Vector2f(centro_janela.x - TAM_BOTOES_X / 2.f, centro_janela.y - TAM_BOTOES_Y + 180.f));
 }
 
 void MenuPrincipal::desenhar_se()
 {
 	Gerenciador_Grafico::getGerenciadorGrafico()->getJanela()->draw(titulo);
 	botao_jogarBarigui->render();
-	botao_jogarbeco->render();
-	botao_ranking->render();
+	botao_jogarBeco->render();
 	botao_sair->render();
 }
 

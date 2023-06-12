@@ -26,8 +26,6 @@ namespace Entidades
 
 			void setAlvo(Capivara* target);
 
-			virtual void salvar() = 0;
-			virtual ListaEntidades* recuperar() = 0;
 			virtual void colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao) = 0;
 			virtual void executar() = 0;
 		};

@@ -1,5 +1,4 @@
 #include "ListaObservadores.h"
-#include "ListaObservadores.h"
 
 ListaObservadores::ListaObservadores() :
 	listaObservadores()
@@ -10,14 +9,14 @@ ListaObservadores::~ListaObservadores()
 {
 }
 
-void ListaObservadores::notificarTeclaPressionada(const Keyboard::Key tecla)
+void ListaObservadores::notificaTeclaPressionada(const Keyboard::Key tecla)
 {
 	for (int i = 0; i < listaObservadores.getTam(); i++)
 		if (listaObservadores[i]->getAtivado())
 			listaObservadores[i]->teclaPressionada(tecla);
 }
 
-void ListaObservadores::notificarTeclaSolta(const Keyboard::Key tecla)
+void ListaObservadores::notificaTeclaSolta(const Keyboard::Key tecla)
 {
 	for (int i = 0; i < listaObservadores.getTam(); i++)
 		if (listaObservadores[i]->getAtivado())
@@ -32,19 +31,19 @@ void ListaObservadores::notificarTeclaSolta(const Keyboard::Key tecla)
 }*/
 
 
-void ListaObservadores::desativarObservadores()
+void ListaObservadores::desativaObservadores()
 {
 	for (int i = 0; i < listaObservadores.getTam(); i++)
 		if (listaObservadores[i]->getAtivado())
 			listaObservadores[i]->setAtivado(false);
 }
 
-void ListaObservadores::adicionarObservador(Observador* observador)
+void ListaObservadores::addObservador(Observador* observador)
 {
 	listaObservadores.addElemento(observador);
 }
 
-void ListaObservadores::removerObservador(Observador* observador)
+void ListaObservadores::deleteObservador(Observador* observador)
 {
 	listaObservadores.deleteElemento(observador);
 }
@@ -63,7 +62,7 @@ void ListaObservadores::ativaObservador(IDs id)
 	}
 }
 
-int ListaObservadores::getTamanho()
+const int ListaObservadores::getTamanho() const
 {
 	return listaObservadores.getTam();
 }

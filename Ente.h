@@ -11,7 +11,6 @@ class Ente
 {
 protected:
 	const IDs ID;
-	static int cont;
 	static Gerenciador_Grafico* window_manager;
 
 public:
@@ -21,9 +20,6 @@ public:
 	const IDs getID() const;
 
 	static Gerenciador_Grafico* getManager();
-
-	static void setCont(const int con);
-	static int getCont();
 
 	virtual void executar() = 0;
 };

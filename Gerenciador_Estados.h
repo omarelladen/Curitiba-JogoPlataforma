@@ -18,8 +18,6 @@ namespace Gerenciadores
 	class Gerenciador_Estados
 	{
 	private:
-		Jogo* pJogo;
-
 		stack<Estado*> pilhaEstados;
 
 		static Gerenciador_Estados* pGerenciadorEstados;
@@ -35,15 +33,15 @@ namespace Gerenciadores
 		Estado* criarEstadoMenuPrincipal();
 		Estado* criarEstadoMenuPause();
 		Estado* criarEstadoMenuGameOver(Jogador* jog);
-		Estado* criarEstadoRanking();
 
 		// Gestão de Estados
-		void removerEstado(int n); // pop delete e fecha janela se empty
 		void addEstado(Estado* pE);
+		void deleteEstado(const int n);
+
+		//Retorna o topo da pilha
 		Estado* getEstadoAtual();
 
-		Jogo* getJogo();
-
-		void executar(); // no loop do Jogo(Principal) ele executa o topo da pilha
+		//Chama o executar do Estado no topo da pilha
+		void executar();
 	};
 }

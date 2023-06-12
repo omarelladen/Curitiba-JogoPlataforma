@@ -16,9 +16,6 @@ namespace Entidades
 
 			void inicializaAtributos();
 
-			void salvar();
-			ListaEntidades* recuperar();
-			
 			void setAtrito(const double atri);
 			const double getAtrito() const;
 

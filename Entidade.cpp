@@ -16,8 +16,6 @@ Entidade::Entidade(const IDs id, Vector2f pos) : //
 	tempo(),
 	relogio_gravidade(),
 	esta_no_chao(false),
-	salvo(true),
-	pListaEntidades(nullptr),
 	textura(),
 	listaProjeteis()
 {
@@ -48,7 +46,7 @@ void Entidade::setEstaNoChao(const bool c)
 	esta_no_chao = c;
 }
 
-const bool Entidades::Entidade::getEstaNoChao()
+const bool Entidades::Entidade::getEstaNoChao() const
 {
 	return esta_no_chao;
 }

@@ -4,7 +4,6 @@ using namespace Gerenciadores;
 #include"EstadoMenuPrincipal.h"
 #include"EstadoMenuPause.h"
 #include"EstadoMenuGameOver.h"
-#include"EstadoRanking.h"
 using namespace Estados;
 #include"Jogo.h"
 
@@ -13,15 +12,12 @@ using namespace Estados;
 Gerenciador_Estados* Gerenciador_Estados::pGerenciadorEstados = nullptr;
 
 Gerenciador_Estados::Gerenciador_Estados() :
-	pJogo(nullptr),
 	pilhaEstados()
 {
 }
 
 Gerenciador_Estados::~Gerenciador_Estados()
 {
-	pJogo = nullptr;
-
 	// limpar pilhaEstados
 	for (int i = 0; i < (int)pilhaEstados.size(); i++)
 	{
@@ -62,13 +58,7 @@ Estado* Gerenciador_Estados::criarEstadoMenuGameOver(Jogador* jog)
 	return static_cast<Estado*>(new EstadoMenuGameOver(jog));
 }
 
-Estado* Gerenciador_Estados::criarEstadoRanking()
-{
-	return static_cast<Estado*>(new EstadoRanking());
-}
-
-
-void Gerenciador_Estados::removerEstado(int n) // n: numero de estados a serem desempilhados - mais reutilizável
+void Gerenciador_Estados::deleteEstado(const int n) // n: numero de estados a serem desempilhados e deletados
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -90,13 +80,6 @@ void Gerenciador_Estados::addEstado(Estado* pE)
 Estado* Gerenciador_Estados::getEstadoAtual()
 {
 	return pilhaEstados.top();
-}
-
-Jogo* Gerenciador_Estados::getJogo()
-{
-	if (pJogo)
-		return pJogo;
-	return nullptr;
 }
 
 void Gerenciador_Estados::executar()
