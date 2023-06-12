@@ -5,12 +5,13 @@ FaseBeco::FaseBeco():
 	Fase(IDs::fase_beco)
 {
 	// Textura Fundo
-	if (!textura_fundo.loadFromFile("Fundo/parque-generico.jpg"))
+	if (!textura_fundo.loadFromFile("Fundo/beco.jpg"))
 	{
 		cout << "Erro ao carregar a textura do fundo" << endl;
 		exit(1);
 	}
 	fundo.setTexture(textura_fundo);
+	fundo.setScale(Vector2f(1.6f, 1.5f));///
 }
 
 FaseBeco::~FaseBeco()
@@ -22,7 +23,7 @@ void FaseBeco::criarMapa()
 	ifstream arquivo;
 	string linha;
 
-	arquivo.open("Mapas/MapaParqueBarigui.txt");
+	arquivo.open("Mapas/MapaBeco.txt");
 
 
 	if (!arquivo.is_open())
@@ -109,6 +110,24 @@ void FaseBeco::criarEntidade(const char simbolo, Vector2f pos)
 	}
 	break;
 
+	case 'a':
+	{
+		if (contador_obstaculos < num_obstaculos)
+		{
+		Arvore* pA = new Arvore(Vector2f(pos.x * 50.f, pos.y * 50));
+		if (pA)
+		{
+			listaObstaculos->addEntidade(static_cast<Entidade*>(pA));
+			contador_obstaculos++;
+		}
+		else
+		{
+			cout << "Entidade nula" << endl;
+			exit(1);
+		}
+		}
+	}
+	break;
 
 	default:
 		break;

@@ -169,7 +169,7 @@ void Gerenciador_Colisoes::CalculaColisao(Entidade* ent1, Entidade* ent2)
 
 		ent1->colisao(ent2->getID(), ent2, distancia_colisao);
 
-
+		// Alternativa para nao deletar
 		if (ent2->getID() == IDs::projetil)
 		{
 			Projetil* pP = static_cast<Projetil*>(ent2);// ou dynamic_cast
@@ -178,7 +178,7 @@ void Gerenciador_Colisoes::CalculaColisao(Entidade* ent1, Entidade* ent2)
 			{
 				if (pP)
 				{
-					ent2->setPosicao(Vector2f(0.f, 100000.f));//pP->getAtirador()->getListaProje()->deleteEntidade(ent2);
+					ent2->setPosicao(Vector2f(0.f, 100000.f));
 					ent2->setVelocidade(Vector2f(0.f, 0.f));
 				}
 			}

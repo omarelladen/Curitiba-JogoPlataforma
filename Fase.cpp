@@ -30,6 +30,11 @@ Fase::Fase(const IDs id) :
 
 	// Adiciona o seu Observador na lista de Observadores
 	Gerenciador_Eventos::getGerenciadorEventos()->addObservador(observadorFase);
+
+	time_t t;
+	srand((unsigned)time(&t));
+	num_inimigos = rand() % 15 + 3;
+	num_obstaculos = rand() % 20 + 3;
 }
 
 Fase::~Fase()

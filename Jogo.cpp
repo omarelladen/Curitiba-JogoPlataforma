@@ -23,7 +23,7 @@ Jogo::~Jogo()
 void Jogo::executar()
 {
 
-	// Loop infinito (até fechar o jogo)
+	// Loop até fechar o jogo
 	while (gerenciador_grafico->VerificaSeJanelaAberta())
 	{
 		gerenciador_eventos->executar();

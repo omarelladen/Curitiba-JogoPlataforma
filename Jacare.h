@@ -9,7 +9,7 @@ namespace Entidades
 		{
 		private:
 			int forca_mordida;
-			int raio_super_pulo; // Pula até o jogador
+			int raio_super_pulo;
 			int rapidez_mordida; 
 
 		public:

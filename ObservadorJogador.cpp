@@ -16,9 +16,7 @@ ObservadorJogador::~ObservadorJogador()
 
 void ObservadorJogador::teclaPressionada(const Keyboard::Key tecla)
 {
-	//if(!pJogador->jogador2)
-	//switch (tecla)
-	//{
+
 	// Pular
 	if (tecla == Keyboard::W)
 	{
@@ -29,7 +27,7 @@ void ObservadorJogador::teclaPressionada(const Keyboard::Key tecla)
 			else
 				pJogador->mover("Cima");
 
-			pJogador->setEstaNoChao(false);////////////////
+			pJogador->setEstaNoChao(false);
 		}
 	}
 		//break;
@@ -57,47 +55,6 @@ void ObservadorJogador::teclaPressionada(const Keyboard::Key tecla)
 		pJogador->setTextura("Texturas/Sprite-capivara-direita.png");
 		pJogador->mover("Direita");
 	}
-		//break;
-
-	//default:
-		//cout << "Tecla que nao faz nada" << endl;
-		//break;
-	//}
-
-	/*else
-	{
-		switch (tecla)
-		{
-		// Pular
-		case (Keyboard::Up):
-		{
-			if (Keyboard::isKeyPressed(Keyboard::LShift))
-				pJogador->mover("Cima++");
-			else
-				pJogador->mover("Cima");
-		}
-			break;
-
-		// Andar para a esquerda
-		case (Keyboard::Left):
-			pJogador->mover("Esquerda");
-			break;
-
-		case (Keyboard::Down):
-			pJogador->mover("Baixo");
-			break;
-
-		// Andar para a direita
-		case (Keyboard::Right):
-			pJogador->mover("Direita");
-			break;
-
-		default:
-			pJogador->mover("");
-			break;
-		}
-	}
-	*/
 }
 
 void ObservadorJogador::teclaSolta(const Keyboard::Key tecla)
@@ -124,7 +81,6 @@ void ObservadorJogador::teclaSolta(const Keyboard::Key tecla)
 	break;
 
 	default:
-		//cout << "Tecla que nao faz nada" << endl;
 		break;
 	}
 }

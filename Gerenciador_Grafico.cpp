@@ -11,7 +11,7 @@ Gerenciador_Grafico::Gerenciador_Grafico() :
 	janela(nullptr),
 	camera()
 {
-	janela = new RenderWindow(VideoMode(1000, 900), "Jogo");////
+	janela = new RenderWindow(VideoMode(1000, 900), "Jogo");
 	if (janela == nullptr)
 	{
 		cerr << "Erro - Alocacao de janela nao realizada" << endl;

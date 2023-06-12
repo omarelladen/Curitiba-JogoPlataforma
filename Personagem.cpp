@@ -9,10 +9,7 @@ Personagem::Personagem(const IDs id, Vector2f pos) :
     direita(true),
     relogio_ataque(),
     barra_vidas()
-    //listaProjeteis()///////
 {
-    //listaProjeteis = new ListaEntidades();
-
     // Barra vidas;
     barra_vidas.setFillColor(Color::Red);
     barra_vidas.setOutlineColor(Color::Black);
@@ -61,26 +58,6 @@ const bool Personagem::getDireita() const
 
 void Personagem::atirar(const int dano)
 {
-    // TESTE PROJETIL
-    /*Projetil* pP = new Projetil(Vector2f(posicao.x + 100, posicao.y));
-    pP->setAtirador(this);
-    pP->setDano(10);*/
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     Projetil* pProj = nullptr;
 
     if (direita)
@@ -110,7 +87,6 @@ void Personagem::atirar(const int dano)
     pProj->setAtirador(this);
     pProj->setDano(dano);
 
-    //Gerenciador_Colisoes::getGerenciadorColisoes()->addProjetil(static_cast<Entidade*>(pProj));
     addProje(static_cast<Entidade*>(pProj));
 }
 

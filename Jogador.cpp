@@ -9,8 +9,6 @@ Jogador::Jogador(const IDs id, Vector2f pos) :
     pontos(0),
     observadorJogador(nullptr)
 {
-    //corpo.setFillColor(Color::Blue);
-
     // Cria seu Observador:
     observadorJogador = new ObservadorJogador(this); // this para setar la tambem
 
@@ -106,13 +104,9 @@ void Jogador::executar()
         listaProjeteis->executar();
     }
 
-
-    //cout << num_vidas << endl;
     imprimirBarraVidas();
 
     window_manager->setCentro(Vector2f(posicao.x, 150.f));
     efeitoGravidade();
     desenhar_se();
-
-    //corpo.move(velocidade);
 }

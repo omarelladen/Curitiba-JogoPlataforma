@@ -7,8 +7,6 @@ Projetil::Projetil(Vector2f pos) :
     dano(0),
     atirador(nullptr)
 {
-    //Textura
-
     inicializaAtributos();
 }
 
@@ -19,15 +17,13 @@ Projetil::~Projetil()
 
 void Projetil::inicializaAtributos()
 {
-    //setTextura("Texturas/Sprite-projetil.png");
-
-    corpo.setFillColor(sf::Color::Red);//
-    setTamanho(Vector2f(10.f, 10.f));//
+    corpo.setFillColor(sf::Color::Red);
+    setTamanho(Vector2f(10.f, 10.f));
 
     time_t t;
     srand((unsigned)time(&t));
 
-    velocidade = Vector2f(0.7f, 0.f); //(rand() % 11 + 10) / 10.f em x
+    velocidade = Vector2f(0.7f, 0.f);
 }
 
 void Projetil::setAtirador(Personagem* atir)
@@ -59,6 +55,5 @@ void Projetil::mover()
 void Projetil::executar()
 {
     mover();
-    //efeitoGravidade();
     desenhar_se();
 }

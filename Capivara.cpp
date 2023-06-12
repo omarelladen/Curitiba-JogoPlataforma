@@ -24,7 +24,7 @@ void Capivara::inicializaAtributos()
     srand((unsigned)time(&t));
     forca_cuspe = rand() % 5 + 1;
 
-    num_vidas = 5;
+    num_vidas = 100;
 }
 
 void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
@@ -62,8 +62,6 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
         }
         else //Colisao em y
         {
-            /*Quanto mais estupido mais leva dano quando a capivara pula em cima
-            pCap->diminuirVida(pCap->getNivelEstupidez());*/
             velocidade.y = -5.f;
             velocidade.x = 2.f;
         }
@@ -100,7 +98,6 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
         }
         else //Colisao em y
         {
-            //pJac->diminuirVida(1);
             velocidade.y = -5.f;
             velocidade.x = 2.f;
         }
@@ -137,8 +134,6 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
         }
         else //Colisao em y
         {
-            /*Quanto maior o nivel medo, menos dano ele recebe quando a capivara pula em cima
-            pCM->diminuirVida(20/pCM->getNivelMedo());*/
             velocidade.y = -5.f;
             velocidade.x = 2.f;
         }
@@ -223,7 +218,6 @@ void Capivara::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 
 
     default: {
-        //cout << "Erro Colisao Jogador" << endl;
     }
            break;
     }

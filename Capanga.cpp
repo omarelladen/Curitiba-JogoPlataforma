@@ -85,9 +85,8 @@ void Capanga::mover()
             perseguirAlvo();
 
             tempo = relogio_ataque.getElapsedTime();
-            if (tempo.asSeconds() >= 1)//>= nivel_estupidez)
+            if (tempo.asSeconds() >= 1)
             {
-                //cout << "Capanga atira" << endl;
                 atirar(nivel_tiro);
                 relogio_ataque.restart();
             }
@@ -101,7 +100,6 @@ void Capanga::mover()
         {
             tempo = relogio_gravidade.restart();
             velocidade.y = 0.f;
-            //formaPadraoMover();
             corpo.move(velocidade);
         }
         posicao = corpo.getPosition();
@@ -129,10 +127,6 @@ void Capanga::colisao(const IDs id, Entidade* ent, Vector2f distancia_colisao)
 
     case IDs::chao:
     {
-        /*pos_ini.x = ent->getPosicao().x;
-        pos_fin.x = ent->getPosicao().x + ent->getTamanho().x;*/
-        
-
         //o if de distancia_colisao tá ao contrario pq umas das distancia_colisao é zerada no gerenciador de colisoes, asssim mudando quem é maior
         //Colisao Cima 
         if (ent->getPosicao().y >= posicao.y + tam_corpo.y && distancia_colisao.x > distancia_colisao.y)

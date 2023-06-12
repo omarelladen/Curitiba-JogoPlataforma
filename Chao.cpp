@@ -15,7 +15,6 @@ Chao::~Chao()
 
 void Chao::inicializaAtributos()
 {
-    // if (id barigui)
     setTextura("Texturas/Sprite-chao-parque.png");
     setTamanho(Vector2f(50.f, 50.f));
 

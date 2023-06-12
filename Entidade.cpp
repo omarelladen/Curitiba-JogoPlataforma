@@ -21,10 +21,6 @@ Entidade::Entidade(const IDs id, Vector2f pos) : //
 {
 	corpo.setPosition(pos);
 	relogio_gravidade.restart();
-	// rand
-	// lista direto de Entidade* //
-
-
 
 	listaProjeteis = new ListaEntidades();
 }

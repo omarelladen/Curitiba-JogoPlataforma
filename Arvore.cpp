@@ -33,7 +33,6 @@ void Arvore::inicializaAtributos()
     altura = rand() % 21 + 130;
     tronco.setSize(Vector2f(40.f, posicao.y));
     tronco.setPosition(posicao + Vector2f(5.f, 25.f));
-    //tronco.setScale(5.f, 5.f);
     
 }
 
