@@ -1,1 +1,4 @@
-Primeiro Jogo de plataforma usando SFML em c++ para a disciplina de Técnicas de Programação
+- Jogo de plataforma
+- Interface gráfica com a biblioteca SFML
+- Construido usando Visual Studio
+- Realizado para a disciplina Técnicas de Programação
